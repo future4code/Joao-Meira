@@ -4,32 +4,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>Adicionar Produto</title>
+    <link rel="stylesheet" type="text/css" href="sistema-loja.css">
 </head>
-<body style="background-color: gray">
+<body gray">
 
-<h1 style="background: yellow; text-align: center">ADICIONAR PRODUTO</h1>
+<div id=heading> ADICIONAR PRODUTOS AO ESTOQUE</div>
 
-<p>Para adicionar produtos ao controle de estoque, preencha o formulário abaixo:</p>
-
-<br>
-
-<form>
-    <label for=nome >Descrição&nbsp&nbsp</label>
-    <input id=nome></input>
-    <br>
-    <label for=identificador>Preço&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-    <input id=identificador></input>
-    <br>
-    <label for=identificador>Quantidade</label>
-    <input id=identificador></input>
-    <br>
-    <br>
-    <button type="submit">Enviar</button>
-</form>
+<div id=menu>
+    <h4>Para adicionar produtos ao controle de estoque, preencha o formulário abaixo:</h4>
+</div>
 
 <br>
 
-<a href="sistemaInterno.html" style="background-color: rgb(185, 185, 185)" >VOLTAR</a>
+<div id=form>
+    <form>
+        <label for=nome >Descrição</label>
+        <input id=nome></input>
+        <label id=preco for=identificador>Preço</label>
+        <input id=identificador></input>
+        <label for=identificador>Quantidade</label>
+        <input id=identificador></input>
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
+
+    
+</div>
+
+<a id=ctrl href="sistemaInterno.html">VOLTAR</a>
+
+
+<div id="foot">
+    <p><b>Dúvidas? Ligue! Mande uma mensagem!</b></p>
+    tel: (31) 98474-9348; e-mail: pelademocracia@omg.br
+    <br>
+    Atendimento de segunda à sexta das 8h às 17h.
+</div>
+    
 
 </body>
 </html>
