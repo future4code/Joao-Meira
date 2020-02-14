@@ -1,0 +1,198 @@
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: none;
+    text-decoration: none;
+}
+
+body{
+    background-color: #EBE3DA;
+}
+
+
+h4{
+    color: #8309ED;
+    text-align: center;
+    padding-bottom: 2vw;
+    padding-top: 10px;
+}
+
+
+input {
+    display: block;
+}
+
+
+td{
+text-align: center;
+min-width: 15vw;
+border: #707070;
+border-style: double;
+}
+
+
+img{
+    width: 15vw;
+    border: 10px solid transparent;
+    padding: 15px;
+    border-image: url(https://p7.hiclipart.com/preview/964/200/865/pink-disk-circle-pink-circle.jpg) 15 stretch;
+}
+
+
+table{ 
+    background-color: #FFEF9E;
+    color: #8309ED;
+    font-size: medium;
+    text-align: center;
+    border: #707070;
+    border-style: dashed;
+    border-width: thick;
+    margin: 2vw 20vw;
+}
+
+
+ol{
+    background-color: #FFEF9E;
+    color: #8309ED;
+    font-size: medium;
+    text-align: left;
+    border: #707070;
+    border-style: dashed;
+    border-width: thick;
+    margin: 8vw 25vw; 
+    padding-left: 15vw;
+    padding-top: 2vw;
+    padding-bottom: 1vw;
+}
+
+a:hover{
+    background-color: #D6B656;
+}
+    
+
+a:link{
+        background-color: #6B6B6B;
+        color:white;
+        padding: 0vw 2vw;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+}
+
+
+
+
+#heading{
+    background-color: #FFEF9E;
+    color: #DE3333;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: larger;
+    border: #D6B656;
+    padding: 1vw;
+    text-align: center;
+    border-radius: 6px;
+    border-style: solid;
+    border-width: thick;
+    margin: 1vw 6px
+}
+
+#title{
+    font-size: xx-large;
+    font-weight: 700
+}
+
+#sub{
+    font-size: larger
+}
+
+#menu{
+background-color: #6B6B6B;
+padding: 1vw;
+border: solid #BFBFBF;
+color: #EBE3DA;
+border-width: 2px;
+}
+
+
+#menu2{
+    display: inline;
+    float: right;
+}
+
+
+#ctrl{
+    color: #EBE3DA;
+}
+
+#add{
+    color: #EBE3DA;
+
+}
+
+#func{
+    color: #EBE3DA;
+
+}
+
+#sair{
+    color: #EBE3DA;
+    text-align: end;
+
+}
+
+#perfil{
+    text-align: end;
+    color: #EBE3DA;
+
+}
+
+
+#msg{
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTKmIKoDd2X6mH6XWzEs9wo0knosXSn1-QCAev51EUXvYjE0YCm);
+    background-repeat: repeat;
+    background-position: 100% 100%;
+    height: 40vw;
+}
+
+#in{
+    background-color: #FFEF9E;
+    color: #8309ED;
+    font-size: x-large;
+    text-align: center;
+    border: #707070;
+    border-style: dashed;
+    border-width: thick;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-top: 4vw;
+    padding-bottom: 4vw;
+    margin: 8vw 40vw 16vw 40vw;
+}
+
+#ltl{
+    font-size: 1vw;
+}
+
+#foot{
+    text-align: center;
+    font-size: 11px;
+    border-top: outset  #707070;
+    border-width: 2px;
+    padding-top: 4px
+}
+
+
+#form{
+    background-color: #FFEF9E;
+    color: #8309ED;
+    border: #707070;
+    border-style: dashed;
+    border-width: thick;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    margin: 10vw 35vw;
+    height: auto;
+}
+

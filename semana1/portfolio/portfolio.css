@@ -1,0 +1,188 @@
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: none;
+    text-decoration: none;
+}
+
+body{
+    background-color: #white;
+}
+
+
+img{
+    width: 10vw;
+}
+
+
+td{
+text-align: center;
+max-width: 5vw;
+min-width: 5vw;
+border: 2px solid rgb(0, 61, 153);
+border-radius: 3vw;
+background-image: url(https://miro.medium.com/max/14000/1*LpbDW-kW6Jh85WFAFEKwlQ.jpeg);
+}
+
+
+
+table{ 
+    background-color:;
+    color: rgb(62, 139, 255);
+    font-size: medium;
+    text-align: center;
+    min-width: 100%;
+    padding: 0vw 17vw;
+    margin: 1vw 0vw;
+}
+
+span{
+    color: rgb(62, 139, 255);
+}
+
+
+
+#menu{
+    background-color: white;
+    padding: 1vw;
+    border-bottom: solid #BFBFBF;
+    border-width: 1px;
+}
+
+a:hover{
+    background-color: rgb(164, 205, 252);
+    border-radius: 1vw;
+}
+    
+
+a:link{
+        padding: 0vw 2vw;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+}
+
+#oi{
+    color: rgb(62, 139, 255);
+}
+
+#cont{
+    color: rgb(62, 139, 255);
+}
+
+#home{
+    color: rgb(62, 139, 255);
+}
+
+#heading{
+    background-image: url(https://miro.medium.com/max/14000/1*LpbDW-kW6Jh85WFAFEKwlQ.jpeg);
+    background-position: unset;
+    background-size: 100%;
+    background-attachment: fixed;
+    height: 43vw;  
+    text-align: center;
+    padding-top: 8vw;
+    color: rgb(0, 61, 153);
+}
+
+
+#corpo{
+    background-image: url(https://miro.medium.com/max/14000/1*LpbDW-kW6Jh85WFAFEKwlQ.jpeg);
+    background-position: unset;
+    background-size: 100%;
+    background-attachment: fixed;
+    text-align: center;
+    padding: 4vw;
+    color: rgb(0, 61, 153);
+}
+
+#corpo2{
+    background-color: white;
+    text-align: center;
+    padding-bottom: 0vw;
+    color: rgb(0, 61, 153);
+    margin: 0vw 0vw;
+    padding: 4vw;
+
+}
+
+
+
+#title{
+    font-size: xx-large;
+    font-weight: 700;
+    vertical-align: top;
+    padding-bottom: 1vw;
+}
+
+#sub{
+    font-size: larger;
+    padding-bottom: 5vw;
+    color: rgb(62, 139, 255)
+}
+
+
+#menu2{
+    display: inline;
+    float: right;
+}
+
+#profile{
+    border: 10px inset rgb(62, 139, 255);;
+    border-radius: 6vw;
+    margin-bottom: 8vw;
+}
+
+#projetos{
+    height: 15vw;
+}
+
+.hab{
+    height: 20vw;
+    padding: 2vw;
+    font-size: 20px;
+
+}
+
+.wrap{
+    vertical-align: top;
+}
+
+#icone{
+    width: 2vw;
+}
+
+#redes{
+    border-top: solid grey;
+}
+
+.noborder{
+    border: transparent;
+    background-color: white;
+    background-image: none;
+    padding-bottom: 0vw;
+    text-align: top;
+    max-width: 0vw;
+}
+
+#contato{
+    background-image: url(https://miro.medium.com/max/14000/1*LpbDW-kW6Jh85WFAFEKwlQ.jpeg);
+    background-position: unset;
+    background-size: 100%;
+    background-attachment: fixed;
+    height: 43vw;  
+    text-align: center;
+    padding-top: 8vw;
+    color: rgb(0, 61, 153);
+    display: block;
+    width: 100%;
+}
+
+.ola{
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin: 6px 40vw;
+    padding: 1vw 5vw;
+}
