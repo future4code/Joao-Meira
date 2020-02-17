@@ -36,8 +36,9 @@ div>p:first-child {
 }
 
 div img {
-    background: black;
+    background:;
 }
+
 
 .botao-amarelo {
     background-color: #ffaf43;
@@ -114,9 +115,19 @@ td button {
     color: black;
 }
 
+
 td button:hover {
     background-color: #c4ad31;
 }
+
+td button:active{
+    color: white;
+}
+
+#back-button:active{
+    color: white;
+}
+
 
 .container-do-search {
     margin-top: 20px;
@@ -128,7 +139,7 @@ td button:hover {
 }
 
 .container-do-search img:active {
-    opacity: 100%;
+    opacity: 10%;
 }
 
 #back-button {
