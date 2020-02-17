@@ -136,11 +136,11 @@ td button:active{
 }
 
 .container-do-search img:hover {
-    opacity: 30%;
+    opacity: 20%;
 }
 
 .container-do-search img:active {
-    opacity: 10%;
+    opacity: 100%;
 }
 
 #back-button {
