@@ -187,6 +187,8 @@ ol{
     list-style-type: decimal;
 }
 
-li{
-    display: ;
+#lista{
+    display: inline-block;
+    text-align: left;
+    padding: 1vw 0vw;
 }
