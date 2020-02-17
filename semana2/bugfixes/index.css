@@ -32,7 +32,7 @@ img {
 }
 
 div>p:first-child {
-    display: inline;
+    display: 0;
 }
 
 div img {
@@ -143,4 +143,24 @@ td button:hover {
 
 #back-button:hover {
     background-color: #635a3d
+}
+
+span:first-of-type{
+    display: block;
+    text-align: end;
+    padding-right: 6vw;
+}
+
+span:nth-of-type(2){
+    display: block;
+    text-align: end;
+    padding-right: 4vw;
+
+}
+
+span:nth-of-type(3){
+    display: block;
+    text-align: end;
+    padding-right: 2vw;
+
 }
