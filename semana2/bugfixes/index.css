@@ -8,6 +8,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
+    text-decoration: none;
 }
 
 h2 {
@@ -45,6 +46,8 @@ div img {
     border-radius: 5px;
     font-size: 20px;
     color: white;
+    display: block;
+    margin: auto;
 }
 
 .botao-amarelo:hover {
