@@ -24,7 +24,7 @@ input {
     border-width: 0 0 4px 0;}
 
 button:focus {
-    color: white;
+    outline:0;
 }
 
 img {
@@ -181,4 +181,12 @@ span:nth-of-type(3){
     width: 50%;
     margin: auto;
 
+}
+
+ol{
+    list-style-type: decimal;
+}
+
+li{
+    display: ;
 }
