@@ -1,0 +1,194 @@
+/** 
+  *
+  *  ESTILOS GERAIS 
+  *
+  **/
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}
+
+h2 {
+    background-color: #fe7e02;
+    padding: 10px 5px 10px 5px;
+    color: white;
+    text-align: center;
+}
+
+input {
+    height: 20px;
+    width: 500px;
+    border-width: 0 0 4px 0;}
+
+button:focus {
+    outline:0;
+}
+
+img {
+    width: 5vw;
+}
+
+div>p:first-child {
+    display: 0;
+}
+
+div img {
+    background:;
+}
+
+
+.botao-amarelo {
+    background-color: #ffaf43;
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+    display: block;
+    margin: auto;
+}
+
+.botao-amarelo:hover {
+    background-color: #c44f00;
+}
+
+.container {
+    height: 500px;
+    text-align: center;
+}
+
+.icone {
+    height: 15px;
+}
+
+
+/** 
+  *
+  *  ESTILOS HOME 
+  *
+  **/
+
+#container-de-descricao {
+    background-color: #2274a5;
+    color: white;
+    padding-top: 3vw;
+}
+
+#container-de-descricao>ol {
+    padding: 15px 0px;
+}
+
+#container-para-comprar {
+    background-color: #e7eb90;
+}
+
+#container-para-comprar>p {
+    color: #c44f00;
+    padding: 100px 0;
+    font-size: 60px;
+}
+
+
+/**
+  *
+  *  ESTILOS COMPRAR 
+  *
+  **/
+
+div:nth-child(2),
+div:last-child {
+    text-align: center;
+}
+
+table {
+    width: 60%;
+    text-align: center;
+}
+
+td button {
+    background-color: #fadf63;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    color: black;
+}
+
+
+td button:hover {
+    background-color: #c4ad31;
+}
+
+td button:active{
+    color: white;
+}
+
+#back-button:active{
+    color: white;
+}
+
+
+.container-do-search {
+    margin-top: 20px;
+    height: 100px;
+}
+
+.container-do-search img:hover {
+    opacity: 20%;
+}
+
+.container-do-search img:active {
+    opacity: 100%;
+}
+
+#back-button {
+    background-color: white;
+    width: 100px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 10px;
+    color: black;
+}
+
+#back-button:hover {
+    background-color: #635a3d
+}
+
+span:first-of-type{
+    display: block;
+    text-align: end;
+    padding-right: 6vw;
+}
+
+span:nth-of-type(2){
+    display: block;
+    text-align: end;
+    padding-right: 4vw;
+
+}
+
+span:nth-of-type(3){
+    display: block;
+    text-align: end;
+    padding-right: 2vw;
+
+}
+
+#compra{
+    width: 50%;
+    margin: auto;
+
+}
+
+ol{
+    list-style-type: decimal;
+}
+
+#lista{
+    display: inline-block;
+    text-align: left;
+    padding: 1vw 0vw;
+}
