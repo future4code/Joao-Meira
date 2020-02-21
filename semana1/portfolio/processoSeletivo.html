@@ -1,0 +1,135 @@
+ <!DOCTYPE html>
+<html lang="en">
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<meta charset="utf-8">
+
+<script>
+
+function ValidateEmail(emailverify)
+{
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        let usrname = document.getElementById('usrname').value;
+
+        if(emailverify.value.match(reg)) 
+        {
+              alert ("O email " + usrname + " foi enviado")
+              document.querySelector('#form1 > font').innerHTML = 'Bem vindo ' + usrname + '!'
+            return true;
+        }
+        else
+        {
+           alert("Email inválido")
+           return false;
+        }
+       
+}
+
+
+</script>
+
+<style>
+body {
+ background-color: #585D95;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 9vw;
+}
+
+.flex-container {
+  display: flex;
+  background-color: #585D95;
+  justify-content: center;
+}
+
+.flex-container > div {
+  background-color: 0;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  margin-top: 9vw;
+  margin-bottom: 9vw;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+  font-size: 3vw;
+  text-align: center;
+  font-family: roboto;
+  font-weight: 900;
+  color: white
+}
+
+div.top {
+  outline-style: solid;
+  outline-color: #CC4D00;
+  outline-width: 1vw;
+  padding-top: 2px;
+  color: white;
+  height: 4vw;
+  width: 100vw;
+  margin: 0%;
+  text-align: center;
+  font-family: roboto;
+  font-size: 3vw;
+  font-weight: 600;
+  background-color:#CC4D00;
+}
+
+div.bottom {
+  height: 6vw;
+  width: 100vw;
+  padding-top: 4vw;
+  padding-bottom: 4vw;
+  outline-style: solid;
+  outline-color: #d8d8d8;
+  outline-width: 1vw;
+}
+
+p {
+  color: white;
+  text-align: right;
+  font-family: roboto;
+  font-weight: 600;
+  margin-bottom: 1vw;
+  margin-right: 1vw;
+  font-size: 2vw;
+}
+
+form {
+
+}
+</style>
+</head>
+<body id="demo">
+
+<div class="top">Projeto Seletivo Future4</div>
+
+<br>
+
+<img src="data:image/png;base64,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" alt="FUTURE4 future, for anyone." style="width: 31vw";>
+
+<br>
+
+<div class="flex-container">
+  <div style="background-color:#769EE4; border: 3vw solid #769EE4;" ><i>Web<br>Full Stack</i></div>
+  <div style="background-color:#9EC284; border: 3vw solid #9EC284"><i>Mobile<br>&nbspFrontend&nbsp</i></div>
+  <div style="background-color:#D36D69;border: 3vw solid #D36D69"><i>Data<br>&nbsp&nbspScience&nbsp&nbsp</i></div>
+</div>
+
+<p><i>Turmas de 2020</i></p>
+
+<div class="bottom" style="text-align: center; background-color:#d8d8d8;" id="outputDiv">
+
+<form class="form1" id="form1">
+  <font size="6">
+  <input id="usrname"  required placeholder="Coloque seu e-mail para contato! :)"  style="text-align: left; font-weight: 700; font-family: roboto; font-size: 2vw; height: 5vw; width: 35vw; padding-top: 0vw; padding-bottom: 0vw; border-top: 0px solid white; border-left: 0px solid white; border-right: 0px solid white;  border-bottom: 0px solid white; outline: 1px solid #808080;" type="text" onblur="ValidateEmail(this)"></input>
+  <input type="submit" style="text-align: center; font-weight: 600;font-size: 2vw; font-family: roboto; color:white; background-color:#CC4D00; height: 5vw; width: 10vw; border: 0 solid #CC4D00; outline: 1px solid #808080;" onclick="ValidateEmail(emailverify);" value="ENVIAR"></input>
+  </font>
+</form>
+
+</div>
+</body>
+</html>
