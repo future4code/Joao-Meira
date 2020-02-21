@@ -1,0 +1,141 @@
+
+
+body {
+    width: 100vw;
+    height: 150vh;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    color: black;
+}
+
+header{
+    width: 100%;
+    height: 9%;
+    background-color:#698f69;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+header>img{
+    height: 50%;
+    background-color: #698f69;
+    padding-left: 3vw;
+}
+
+#search{
+    min-width: 30%;
+    background-color: #698f69;
+}
+
+input{
+    align-self: flex-end;
+    width: 40%;
+    border: 4px solid #ccc;
+    border-radius: 5px;
+    font-size: 1vw;
+    align-self: flex-end;
+    margin-left: 40%;
+}
+
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+    background-color: white;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+main>div{
+    width: 100%;
+    color: white;
+    background-color: #698f69;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+div>p:first-child{
+    width: 100%;
+    color: white;
+    background-color: #698f69;
+    text-align: center;
+    font-size: 2vw;
+    margin: 0 0;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+div>p:last-child{
+    width: 100%;
+    color: white;
+    background-color: #698f69;
+    text-align: center;
+    justify-content: start;
+}
+
+p{
+    width: 100%;
+    color: white;
+    background-color: #698f69;
+    text-align: center;
+    font-size: 1vw;
+}
+
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: ;
+    max-width: 70%;
+    flex-direction: column;
+    text-align: center;
+    border: #3b4f66 1px ridge;
+    border-bottom: none;
+    background-color: #b8bfc7;
+    border-radius: 1vw;
+}
+
+section>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    min-width: 70%;
+
+}
+
+
+.pessoas{
+    display: flex;
+    flex-direction: row;
+    padding: 1vw 1vw;
+}
+.lista{
+    width: 20%;
+}
+
+
+footer{
+    width: 100%;
+    height: 8%;
+    background-color:#698f69;
+    bottom: 0;
+    padding-top: 1vh;
+    font-weight: 700;
+    display: flex;
+    align-items: ;
+    justify-content: center;
+}
+
+
+
+@media screen and (max-width: 930px){
+
+    
