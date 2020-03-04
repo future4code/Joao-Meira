@@ -171,6 +171,12 @@ while(quantidadeAtual < quantidadeTotal){
 */
 
 
+
+
+
+
+
+
 //desafio 2
 
 /*
@@ -207,6 +213,48 @@ while (errou){
   }
 
 }
+
 */
 
 
+
+
+
+
+//Desafio 3
+
+/*
+let random =  Math.floor((Math.random() * 100) + 1)
+console.log("Vamos jogar!")
+
+let adivinha = Number(prompt("Chute um número!"))
+console.log("O número chutado foi: <" + adivinha + ">")
+
+let errou = true
+
+let tentativas = []
+
+
+while (errou){
+  if(adivinha !== random){
+    tentativas.push(adivinha)
+
+    if(adivinha>random){
+      console.log("Errou. O número escolhido é menor")
+      adivinha = Number(prompt("Chute outro número!"))
+      }
+
+    else if(adivinha<random){
+      console.log("Errou. O número escolhido é maior")
+      adivinha = Number(prompt("Chute outro número!"))
+     }
+  }
+
+  else{
+  errou=false
+  console.log("Acertou")
+  console.log("O número de tentativas foi : <" + tentativas.length + ">")
+  }
+
+}
+*/
