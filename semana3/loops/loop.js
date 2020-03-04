@@ -222,6 +222,12 @@ while (errou){
 
 
 //Desafio 3
+/*
+COMENTÁRIO: A alteração me pareceu fácil, já que a explicação do método aleatório foi trazida 
+junto ao exercício, apesar de não saber se o raciocínio foi correto.
+Não imagino como poderia ter facilitado mais, pois tive que trocar só a equação da primeira variável
+(e troquei o nome por questões estéticas).
+*/
 
 /*
 let random =  Math.floor((Math.random() * 100) + 1)
