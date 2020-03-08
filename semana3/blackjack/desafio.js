@@ -18,15 +18,182 @@ import comprarCarta from './naoMexer.js'
 console.log("Bem vindo ao jogo de Blackjack!")
 
 
-let duasCartas1 = []
+let jogador1 = []
 let valorCartas1 = []
-let duasCartas2 = []
+let nPC = []
 let valorCartas2 = []
-let duasCartasRevelada = []
-let a
-//let limite = 21
+let reveladanPC =[]
+let comprar = []
 
 
+function sumFunc(total, num)
+{
+   return total + num
+}
+
+
+// CARTAS INICIAIS USUÁRIO
+
+
+if(confirm("Quer iniciar uma nova rodada?"))
+{
+   for (let i=0; i<2; i++)
+   {
+      const carta = comprarCarta()
+      valorCartas1.push(carta.valor) 
+      jogador1.push(carta.texto)
+   }
+
+   if(valorCartas1>21)
+   {
+      for(let i=0; i<2; i++)
+      {
+         jogador1.shift()
+         valorCartas1.shift()
+      }
+      for(let i=0; i<2; i++)
+      {
+         const carta = comprarCarta()
+         valorCartas1.push(carta.valor)
+         jogador1.push(carta.texto)
+      }
+   }
+} else 
+   {
+   console.log("O jogo acabou :(")
+   }
+
+
+// CARTAS INICIAIS NPC
+
+
+if(valorCartas1!==0)
+{
+   for (let i=0; i<2; i++)
+   {
+      const carta = comprarCarta()
+      valorCartas2.push(carta.valor) 
+      nPC.push(carta.texto)
+      reveladanPC.push(carta.texto)
+   }
+   reveladanPC.pop()
+
+   if(valorCartas2>21)
+   {
+      for(let i=0; i<2; i++)
+      {
+         nPC.shift()
+         valorCartas2.shift()
+         reveladanPC.shift()
+      }
+      for(let i=0; i<2; i++)
+      {
+         const carta = comprarCarta()
+         valorCartas2.push(carta.valor) 
+         nPC.push(carta.texto)
+         reveladanPC.push(carta.texto)
+      }
+      reveladanPC.pop() 
+   } 
+}
+
+
+
+// COMPRA DE CARTAS USUÁRIO
+
+if(confirm("Suas cartas são " + jogador1 + ". A carta revelada do computador é " + reveladanPC + "." + "\n" + "Deseja comprar uma carta?"))
+{   
+   const carta = comprarCarta()
+   jogador1.push(carta.texto)
+   valorCartas1.push(carta.valor)
+   comprar.push(1)
+
+   while(comprar.reduce(sumFunc) === 1 && valorCartas1.reduce(sumFunc)<=21)
+   {  
+      if(confirm("Suas cartas são " + jogador1 + ". A carta revelada do computador é " + reveladanPC + "." + "\n" + "Deseja comprar mais uma carta?"))
+      {
+      const carta = comprarCarta()
+      jogador1.push(carta.texto)
+      valorCartas1.push(carta.valor)
+      } else
+      {
+         comprar.push(1)
+      }
+      console.log("Suas cartas são " + jogador1 + ".")
+   }
+
+}  
+
+   
+   // COMPRA DE CARTAS NPC
+
+   while(valorCartas2.reduce(sumFunc)<=valorCartas1.reduce(sumFunc))
+   {   
+      const carta = comprarCarta()
+      nPC.push(carta.texto)
+      valorCartas2.push(carta.valor)
+      console.log("As cartas do pc são " + nPC + ".")
+
+   } 
+
+
+
+// RESULTADO
+
+if(valorCartas1.reduce(sumFunc)>21)
+{
+   alert ("Suas cartas são " + jogador1 + ". Sua pontuação ultrapassou os 21 pontos." + "\n" + "Você perdeu. =(")
+}
+
+if(valorCartas1.reduce(sumFunc) > valorCartas2.reduce(sumFunc) && valorCartas1.reduce(sumFunc) <= 21)
+{
+   alert ("Suas cartas são " + jogador1 + ". Sua pontuação é " + valorCartas1.reduce(sumFunc) + "." + "\n" + "As cartas do computador são " + nPC + ". A pontuação do computador é " + valorCartas2.reduce(sumFunc) + "." + "\n" + "Você ganhou, parça!!!")
+}
+
+else if(valorCartas2.reduce(sumFunc) > valorCartas1.reduce(sumFunc) && valorCartas2.reduce(sumFunc) <= 21)
+{
+   alert ("Suas cartas são " + jogador1 + ". Sua pontuação é " + valorCartas1.reduce(sumFunc) + "." + "\n" + "As cartas do computador são " + nPC + ". A pontuação do computador é " + valorCartas2.reduce(sumFunc) + "." + "\n" + "Você perdeu. =(")
+}
+
+else if(valorCartas2.reduce(sumFunc) > 21 && valorCartas1.reduce(sumFunc)<valorCartas2.reduce(sumFunc) && valorCartas1.reduce(sumFunc)<21)
+{
+   alert ("Suas cartas são " + jogador1 + ". Sua pontuação é " + valorCartas1.reduce(sumFunc) + "." + "\n" + "As cartas do computador são " + nPC + ". A pontuação do computador é " + valorCartas2.reduce(sumFunc) + "." + "\n" + "Você ganhou, parça!!!")
+}
+
+else if(valorCartas1.reduce(sumFunc)===valorCartas2.reduce(sumFunc))
+{
+   alert ("O jogo empatou!")
+}
+
+
+
+/*
+
+RASCUNHO
+
+
+if(valorCartas1 > valorCartas2 && valorCartas1 <= 21)
+{
+   alert ("Suas cartas são " + jogador1 + ". Sua pontuação é " + valorCartas1 + "." + "\n" + "As cartas do computador são " + nPC + ". A pontuação do computador é " + valorCartas2 + "." + "\n" + "Você ganhou, parça!!!")
+}
+
+else if(valorCartas2 > valorCartas1 && valorCartas2 <= 21)
+{
+   alert ("Suas cartas são " + jogador1 + ". Sua pontuação é " + valorCartas1 + "." + "\n" + "As cartas do computador são " + nPC + ". A pontuação do computador é " + valorCartas2 + "." + "\n" + "Você perdeu. =(")
+}
+
+else if(valorCartas2 > 21 && valorCartas1<valorCartas2)
+{
+   alert ("Suas cartas são " + jogador1 + ". Sua pontuação é " + valorCartas1 + "." + "\n" + "As cartas do computador são " + nPC + ". A pontuação do computador é " + valorCartas2 + "." + "\n" + "Você ganhou, parça!!!")
+}
+
+else if(valorCartas1===valorCartas2)
+{
+   alert ("O jogo empatou!")
+}
+*/
+
+/*
 
 if(confirm("Quer iniciar uma nova rodada?")){
    const carta = comprarCarta()
@@ -113,7 +280,7 @@ console.log(duasCartas2 + valorCartas2)
 
 }
 
-
+*/
 
 
    /*
