@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="tarefa.js" defer></script>
+    <link href="tarefa.css" type="text/css" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <h2>
+            Minha Semana
+        </h2>
+        <input type="text" id="tarefa" placeholder="Escreva sua tarefa aqui!" onfocus="this.placeholder=''">
+        <select id="date">
+            <option>Segunda-feira</option>
+            <option>Terça-feira</option>
+            <option>Quarta-feira</option>
+            <option>Quinta-feira</option>
+            <option>Sexta-feira</option>
+            <option>Sábado</option>
+            <option>Domingo</option>
+        </select>
+        <button type="button" id="add" onclick="inserirTarefa()">Adicionar</button>
+    </nav>
+
+    <main>
+        <div id="container">
+
+                <div>
+                    <p> Segunda-feira </p>
+                    <ul id="segunda"></ul>
+
+                </div>
+                <div >
+                    <p> Terça-feira </p>
+                    <ul id="terça"></ul>
+
+
+                </div >
+                <div>
+                    <p> Quarta-feira </p>
+                    <ul id="quarta"></ul>
+
+
+                </div>
+                <div>
+                    <p> Quinta-feira </p>
+                    <ul  id="quinta"></ul>
+
+
+                </div >
+                <div>
+                    <p> Sexta-feira </p>
+                    <ul id="sexta"></ul>
+
+
+                </div >
+                <div>
+                    <p> Sábado </p>
+                    <ul id="sabado"></ul>
+
+
+                </div >
+                <div>
+                    <p> Domingo </p>
+                    <ul id="domingo"></ul>
+
+
+                </div>
+
+        </div>
+    </main>
+    
+</body>
+</html>
