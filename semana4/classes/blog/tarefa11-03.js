@@ -12,8 +12,6 @@ class post {
 function criarPost()
 {
     
-    variosPosts = [];
-    console.log(variosPosts);
 
 
     const titulo = document.getElementById("titulo");
@@ -22,15 +20,31 @@ function criarPost()
     const imagem = document.getElementById("imagem");
 
     const meuPost = new post (titulo.value, autor.value, texto.value, imagem.value);
-    variosPosts.push(meuPost);
+    conteudoPost.push(meuPost);
 
-    const preview = document.getElementById("preview")
-    preview.innerHTML += "<p>" + "Título:" + titulo.value + "<br>" + "Autor: "+ autor.value + "<br>" + "Texto: " + texto.value + "<br>" + "<img src='" + imagem.value + "' </img>" + "</p>"
-
+    const novoPost = document.getElementById("preview")
+    novoPost.innerHTML += "<h3>PREVIEW</h3>" + "</p>Título: " + titulo.value + "</p>" + "<p>Autor: "+ autor.value + "</p>" + "<p>Texto: " + texto.value + "</p> <br>" + "<img src='" + imagem.value + "'/img>"
 
     titulo.value = ""
     autor.value = ""
     texto.value = ""
 
+    //location.replace("./index2.html")
 }
 
+conteudoPost = [];
+console.log(conteudoPost);
+
+function onLoad () {
+    
+    //alert("Pagina Carregada! Onload funfando!")
+    //console.log(conteudoPost);
+
+    /*
+    for(elemento of conteudoPost )
+    {
+        const novoPost = document.getElementById("postado")
+        novoPost.innerHTML += "<p>" + elemento + "</p>"
+    }
+    */
+}
