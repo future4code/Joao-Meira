@@ -40,6 +40,10 @@ nav>h2{
     padding: 0 1vw;
 }
 
+#limpar{
+    padding: 0 1vw;
+}
+
 
 
 main{
@@ -68,10 +72,13 @@ main>div div p{
     color: green;
     border-bottom: dashed black 2px;
     padding: 1vw 1vw;
-    width: 70%;,
+    width: 70%;
 }
 
 main>div div ul{
     padding: 2vw;
 }
 
+.riscada{
+    text-decoration: line-through;
+}

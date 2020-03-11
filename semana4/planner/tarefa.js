@@ -20,49 +20,49 @@ function inserirTarefa()
     if (diaDaSemana === "Segunda-feira")
     {  
         const listaTarefas = document.getElementById("segunda")
-        listaTarefas.innerHTML += "<li onclick='myFunction(event)' class='tarefaInserida'>" + novaTarefa + "</li>"
+        listaTarefas.innerHTML += "<li name='pralimpar' name='pralimpar' onclick='riscarTarefa(event)' onclick='riscarTarefa(event)'>" + novaTarefa + "</li>"
     }
     if (diaDaSemana === "Terça-feira")
     {  
         const listaTarefas = document.getElementById("terça")
-        listaTarefas.innerHTML += "<li onclick='myFunction(event)' class='tarefaInserida'>" + novaTarefa + "</li>"
+        listaTarefas.innerHTML += "<li name='pralimpar' onclick='riscarTarefa(event)'>" + novaTarefa + "</li>"
     }
     if (diaDaSemana === "Quarta-feira")
     {  
         const listaTarefas = document.getElementById("quarta")
-        listaTarefas.innerHTML += "<li onclick='myFunction(event)' class='tarefaInserida'>" + novaTarefa + "</li>"
+        listaTarefas.innerHTML += "<li name='pralimpar' onclick='riscarTarefa(event)'>" + novaTarefa + "</li>"
     }
     if (diaDaSemana === "Quinta-feira")
     {  
         const listaTarefas = document.getElementById("quinta")
-        listaTarefas.innerHTML += "<li onclick='myFunction(event)' class='tarefaInserida'>" + novaTarefa + "</li>"
+        listaTarefas.innerHTML += "<li name='pralimpar' onclick='riscarTarefa(event)'>" + novaTarefa + "</li>"
     }
     if (diaDaSemana === "Sexta-feira")
     {  
         const listaTarefas = document.getElementById("sexta")
-        listaTarefas.innerHTML += "<li onclick='myFunction(event)' class='tarefaInserida'>" + novaTarefa + "</li>"
+        listaTarefas.innerHTML += "<li name='pralimpar' onclick='riscarTarefa(event)'>" + novaTarefa + "</li>"
     }
     if (diaDaSemana === "Sábado")
     {  
         const listaTarefas = document.getElementById("sabado")
-        listaTarefas.innerHTML += "<li onclick='myFunction(event)' class='tarefaInserida'>" + novaTarefa + "</li>"
+        listaTarefas.innerHTML += "<li name='pralimpar' onclick='riscarTarefa(event)'>" + novaTarefa + "</li>"
     }
     if (diaDaSemana === "Domingo")
     {  
         const listaTarefas = document.getElementById("domingo")
-        listaTarefas.innerHTML += "<li onclick='myFunction(event)' class='tarefaInserida'>" + novaTarefa + "</li>"
+        listaTarefas.innerHTML += "<li name='pralimpar' onclick='riscarTarefa(event)'>" + novaTarefa + "</li>"
     }
 
     document.getElementById("tarefa").value = ''
 }
 
-function riscarTarefa (event)
+//DESAFIO 2
+function riscarTarefa(event)
 {
-    const tarefaPraRiscar = event.target
-    tarefaPraRiscar.classList.toggle("riscada")
-    const classe = getElementsByClassName("riscada")
-    const riscar = classe.strike()
-    document.getElementsByClassName("riscada").innerHTML = riscar
+    event.target.classList.add("riscada")
+    //const classe = getElementsByClassName("riscada")
+    //const riscar = classe.strike()
+    //document.getElementsByClassName("riscada").innerHTML = riscar
     //const vamosRiscar = event.target
     //vamosRiscar.strike.toggle
     //const riscar = vamosRiscar.strike()
@@ -71,3 +71,4 @@ function riscarTarefa (event)
     //tarefaRiscada = getElementsByClassName("tarefaInserida")
     //riscar = tarefaRiscada.innerHTML
 }
+
