@@ -10,9 +10,9 @@
 <body>
 
     <div id="forms">
-        <Button onclick="HideForm()" id="close-form-button">X</Button>
+        
         <p>Preencha o formulário para entrarmos em contato com você!</p>
-        <form action="">
+        <form id="form">
             <div>
                 <label for="titulo">Título:</label>
                 <input type="text" name="titulo" id="titulo" required>
@@ -26,9 +26,13 @@
                 <textarea type="text" name="texto" id="texto" required>
             </div>
 
+            <button type="submit" id="criarPost" onclick="criarPost()">Criar Post!</button>
+
+        </form>
+
+    </div>
 
             
-<div id="container"></div>
     
 </body>
 </html> 
