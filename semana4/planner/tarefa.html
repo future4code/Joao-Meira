@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="tarefa.js" defer></script>
+    <link href="tarefa.css" type="text/css" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <h2>
+            Minha Semana
+        </h2>
+        <input type="text" id="tarefa" placeholder="Escreva sua tarefa aqui!" onfocus="this.placeholder=''">
+        <select id="date">
+            <option>Segunda-feira</option>
+            <option>Terça-feira</option>
+            <option>Quarta-feira</option>
+            <option>Quinta-feira</option>
+            <option>Sexta-feira</option>
+            <option>Sábado</option>
+            <option>Domingo</option>
+        </select>
+        <button type="button" id="add" onclick="inserirTarefa()">Adicionar</button>
+        <button type="button" id="limpar" onclick="limparTudo()">Limpar Planner</button>
+    </nav>
+
+    <main>
+        <div id="container">
+
+                <div id=limpador>
+                    <p> Segunda-feira </p>
+                    <ul class="lista" id="segunda"></ul>
+
+                </div>
+                <div id=limpador >
+                    <p> Terça-feira </p>
+                    <ul class="lista" id="terça"></ul>
+
+
+                </div >
+                <div id=limpador>
+                    <p> Quarta-feira </p>
+                    <ul class="lista" id="quarta"></ul>
+
+
+                </div>
+                <div id=limpador>
+                    <p> Quinta-feira </p>
+                    <ul class="lista"  id="quinta"></ul>
+
+
+                </div >
+                <div id=limpador>
+                    <p> Sexta-feira </p>
+                    <ul class="lista" id="sexta"></ul>
+
+
+                </div >
+                <div id=limpador>
+                    <p> Sábado </p>
+                    <ul class="lista" id="sabado"></ul>
+
+
+                </div >
+                <div id=limpador>
+                    <p> Domingo </p>
+                    <ul class="lista" id="domingo"></ul>
+
+
+                </div>
+
+        </div>
+    </main>
+    
+</body>
+</html>
