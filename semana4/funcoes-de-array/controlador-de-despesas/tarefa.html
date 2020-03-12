@@ -20,7 +20,13 @@
             </div>
             <div>
                 <label for="tipo">Tipo:</label>
-                <input type="text" id="tipo" required>
+                <select id="tipo">
+                    <option value="casa">Casa</option>
+                    <option value="carro">Carro</option>
+                    <option value="viagem">Viagem</option>
+                    <option value="lazer">Lazer</option>
+                    <option value="compras">Compras</option>
+                </select>  
             </div>
             <div>
                 <label for="descricao">Descrição:</label>
@@ -41,6 +47,7 @@
                 <label for="filtrotipo">Tipo:</label>
                 <select id="filtrotipo">
                     <option value="casa">Casa</option>
+                    <option value="carro">Carro</option>
                     <option value="viagem">Viagem</option>
                     <option value="lazer">Lazer</option>
                     <option value="compras">Compras</option>
@@ -55,7 +62,17 @@
                 <input  type="text" id="val-max" required>
             </div>
 
-            <button type="submit" id="criarPost" onclick="filtrarDespesa()">Filtrar Despesa</button>
+            <button onclick="filtrarDespesa()">Filtrar Despesa</button>
+        </div>
+
+
+        <div id="despesa-detalhada">
+            <h2>Extrato</h2>
+
+            <ol id="extrato">
+
+            </ol>
+            <p id="total"></p>
         </div>
 
     </div>
