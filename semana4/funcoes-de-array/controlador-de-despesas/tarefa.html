@@ -11,7 +11,7 @@
 
     <div id="forms">
         
-        <div id="form">
+        <div id="controlador-despesa">
             <h2>Controlador de Despesas</h2>
             <div>
                 <h4>Cadastrar Despesa</h4>
@@ -28,6 +28,34 @@
             </div>
 
             <button type="submit" id="criarPost" onclick="cadastrarDespesa()">Cadastrar Despesa</button>
+        </div>
+
+        <div id="despesa-detalhada">
+            <h2>Despesas Detalhadas</h2>
+
+            <ol id="lista-detalhada">
+
+            </ol> 
+              
+            <div>
+                <label for="filtrotipo">Tipo:</label>
+                <select id="filtrotipo">
+                    <option value="casa">Casa</option>
+                    <option value="viagem">Viagem</option>
+                    <option value="lazer">Lazer</option>
+                    <option value="compras">Compras</option>
+                </select>            
+            </div>
+            <div>
+                <label for="val-min">Valor Mínimo:</label>
+                <input type="text" id="val-min" required>
+            </div>
+            <div>
+                <label for="val-max">Valor Máximo:</label>
+                <input  type="text" id="val-max" required>
+            </div>
+
+            <button type="submit" id="criarPost" onclick="filtrarDespesa()">Filtrar Despesa</button>
         </div>
 
     </div>
