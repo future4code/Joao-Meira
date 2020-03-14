@@ -228,3 +228,114 @@ compararDoisNumeros(4, 2)
 compararDoisNumeros(3, 4)
 compararDoisNumeros(4, 3)
 */
+
+
+
+// EXERCÍCIO DE FUNÇÕES
+
+/*
+1. Escreva uma função que receba um `array` de números e imprima na tela o segundo maior e o segundo menor número. 
+Em seguida, invoque essa função.
+    RESPOSTA: como não consegui usar os métodos ensinados de maneira eficiente, pesquisei na internet e conheci o método
+    "".sort". Usando o método com o parâmetro de sequência decrescente  - function(a,b){return b-a} -, pude usar a posição
+    do segundo e do penúltimo número para imprimir o segundo maior e o segundo menor.
+
+
+
+*/
+/*
+let numeros = [1000, 20, 40, 2, 5, 100, 0, 77]
+
+    numeros.sort(function(a,b)
+    {
+        return b-a;
+    })
+    console.log(numeros[1], numeros[numeros.length-2])
+*/
+
+
+/*
+2. Escreva uma **função não nomeada** que faça um `alert("Hello Future4");`. Em seguida, invoque essa função.
+*/
+/*
+const alerte = function(){alert("Hello Future4")}
+alerte ()
+*/
+
+
+
+
+
+
+
+
+
+
+//EXERCICIO DE OBJETOS
+
+/*
+1. Explique com as suas palavras o que são e quando podemos/devemos utilizar arrays e objetos.
+    RESPOSTA: arrays são conjuntos que contêm elementos, que podem ser strings ou números. O objeto de JS é a classificação de
+    elemento sintático que pode possuir vários valores, propriedades e métodos. 
+    As arrays devem ser usadas para estocar dados simples, como números, letras e palavras; e permitem a manipulação e análise 
+    destes dados através dos comandos de JS. Os objetos, por sua vez, podem funcionar como variáveis, permitindo o acesso
+    e manipulação de seus valores através de métodos.
+*/
+
+
+
+/*
+2. Crie uma função chamada criaRetangulo que recebe como parâmetros dois lados (lado1 e lado2) e retorna um objeto com 4 informações: 
+largura (lado1), altura (lado2), perímetro (2 * (lado1 + lado2)) e área (lado1 * lado2).
+*/
+/*
+function criaRetangulo (lado1, lado2)
+{
+    const informacaoRetangulo = [{largura: lado1, altura: lado2, perímetro: (2 * (lado1 + lado2)), área: (lado1 * lado2)}]
+    console.log(informacaoRetangulo)
+}
+
+criaRetangulo (12,2)
+
+
+/*
+3. Crie um objeto para representar seu filme favorito. Ele deve ter as seguintes propriedades:
+título, ano, diretor e atores/atrizes (lista com pelo menos 2 atores/atrizes). 
+Imprima na tela a seguinte string, baseada nos valores do objeto:
+Venha assistir ao filme NOME DO FILME, de ANO, dirigido por DIRETOR e estrelado por ATOR 1, ATRIZ 2, ATOR n. 
+A lista de atores/atrizes deve ser impressa inteira, independente do tamanho da lista.
+*/
+/*
+const filmeFavorito = [{título: "V de Vingança", ano: "2005", diretor: "James McTeigue", elenco: "Natalie Portman e Hugo Weaving"}]
+
+const imprimirFilme = filmeFavorito.forEach((filme, index, array) =>
+{
+    console.log("Venha assistir ao filme " + filme.título + ", de " + filme.ano + ", dirigido por " + filme.diretor + " e estrelado por " + filme.elenco)
+})
+*/
+
+/*
+4. Crie um objeto que represente uma pessoa qualquer, com as propriedades de nome, idade, email e endereco. 
+Crie uma função chamada anonimizarPessoa, que deverá retornar um novo objeto com as mesmas propriedades, 
+mas com a string ANÔNIMO no lugar do nome. O objeto original deve ser mantido com o nome da pessoa.
+*/
+/*
+const pessoa = {nome: "João" , idade: "32", email: "joao@gmail.com", endereco: "Rua Fuad Chequer"}
+console.log(pessoa)
+
+function anonimizarPessoa ()
+{
+    const anonimo =
+    {
+    ...pessoa,
+    nome: "ANÔNIMO"  
+    }
+    console.log(anonimo)
+}
+
+
+anonimizarPessoa()
+*/
+
+
+
