@@ -339,3 +339,101 @@ anonimizarPessoa()
 
 
 
+// EXERCÍCIOS DE FUNÇÃO DE ARRAY
+/*
+1. Considere um array com o seguinte formato:
+[
+	{ nome: "Pedro", idade: 20 },
+	{ nome: "João", idade: 10 },
+	{ nome: "Paula", idade: 12 },
+	{ nome: "Artur", idade: 89 } 
+]
+a) Faça uma função que retorne um novo array só com os adultos (pessoas com idade igual ou superior a 20)
+b) Faça uma função que retorne um novo array só com as crianças/adolescentes (pessoas com idade inferior a 20)
+*/
+/*
+const informacoesPessoais = 
+[
+	{ nome: "Pedro", idade: 20 },
+	{ nome: "João", idade: 10 },
+	{ nome: "Paula", idade: 12 },
+	{ nome: "Artur", idade: 89 } 
+]
+
+const filtroDeAdultos = informacoesPessoais.filter((objeto, index, array) =>
+{
+    if(objeto.idade>=20)
+    {
+        return objeto
+    }
+})
+
+console.log (filtroDeAdultos)
+
+const filtroDeJovens = informacoesPessoais.filter((objeto, index, array) =>
+{
+    if(objeto.idade<20)
+    {
+        return objeto
+    }
+})
+
+console.log (filtroDeJovens)
+*/
+
+
+
+
+/*
+1. Em todos os itens deste exercício, você terá que escrever uma função cuja entrada seja um array. 
+Para testes, considere: const array = [1, 2, 3, 4, 5, 6].
+a) Escreva uma função que retorne um array com as entradas multiplicadas por 2. 
+Isto é [2, 4, 6, 8, 10, 12].
+b) Escreva uma função que retorne um array com as entradas multiplicadas por 3 e como strings. 
+Isto é: ["3", "6", "9", "15", "18"] 
+c) Escreva uma função que retorne um array de strings dizendo: "${número} é par/impar". 
+Isto é: ["1 é impar", "2 é par", "3 é impar", "4 é par", "5 é impar", "6 é par"] 
+*/
+
+const array = [10, 32, 13, 64, 95, 67]
+console.log(array)
+
+function dobrar() {
+    arrayDobrada = []
+    for(numero of array){
+        x = numero * 2
+        arrayDobrada.push(x)
+    }
+    console.log(arrayDobrada)
+    return arrayDobrada
+}
+
+dobrar()
+
+function triplicar(){
+    arrayTriplicada = []
+    for(numero of array){
+        y = numero * 3
+        arrayTriplicada.push(y)
+    }
+    console.log(arrayTriplicada)
+    return arrayTriplicada
+}
+
+triplicar()
+
+function tornarString(){
+    arrayString=[]
+    for(numero of array){
+        if(numero%2 === 0){
+            z = `${numero} é par`
+        } else {
+            z = `${numero} é ímpar`
+        }
+        arrayString.push(z)
+    }
+    console.log(arrayString)
+    return arrayString
+}
+
+tornarString()
