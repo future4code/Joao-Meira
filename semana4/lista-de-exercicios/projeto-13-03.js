@@ -495,7 +495,7 @@ console.log(proibidoEntrar)
 
 
 /*
-Você foi contratado por um escritório médico para gerar e-mails automáticos para seus clientes, 
+4. Você foi contratado por um escritório médico para gerar e-mails automáticos para seus clientes, 
 lembrando-os de sua consulta marcada; ou avisa-los que foi cancelada. Considere, então, essas consultas:
 
 const consultas = [
@@ -528,7 +528,7 @@ consultas.forEach((cliente, index, array)=>{
     if(cliente.genero === "masculino"){
         cliente.tratamento="Sr."
     } else {
-        cliente.tratamento="Sr."
+        cliente.tratamento="Sra."
     }
 })
 
@@ -539,8 +539,6 @@ consultas.forEach((cliente, index, array)=>{
         cliente.enclise = "lembrá-la"
     }
 })
-
-console.log(consultas)
 
 let arrayCanceladas = []
 let arrayConfirmadas = []
@@ -557,9 +555,6 @@ const addEmail = consultas.forEach((cliente, index, array)=>{
     }
 })
 
-console.log(arrayConfirmadas)
-console.log(arrayCanceladas)
-
 function imprimirNoDiv(){
     for(email of arrayConfirmadas){
         document.getElementById("container").innerHTML += "<p>" + email + "</p>"
@@ -568,3 +563,6 @@ function imprimirNoDiv(){
         document.getElementById("container").innerHTML += "<p>" + email + "</p>"
     }
 }
+
+
+
