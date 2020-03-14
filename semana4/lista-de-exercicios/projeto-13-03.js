@@ -464,6 +464,7 @@ ter, no mínimo, 1.5m de altura; ser mais velho do que 14 anos e mais novo do qu
 a) Escreva uma função que receba este array e devolva outro array somente com as pessoas que tem permissão de entrar no brinquedo
 b) Escreva uma função que receba este array e devolva outro array somente com as pessoas que não podem entrar no brinquedo.
 */
+/*
 const pessoas = [
 	{ nome: "Paula", idade: 12, altura: 1.8},
 	{ nome: "João", idade: 20, altura: 1.3},
@@ -473,19 +474,97 @@ const pessoas = [
 	{ nome: "Soter", idade: 70, altura: 1.9}
 ]
 
-const permitidoEntrar = pessoas.map((pessoa, index, array)=>
-{
+const permitidoEntrar = pessoas.map((pessoa, index, array)=>{
     if(pessoa.idade >= 14 && pessoa.idade < 60 && pessoa.altura >= 1.5){
         return pessoa
     }
 })
 console.log(permitidoEntrar)
 
-const proibidoEntrar = pessoas.map((pessoa, index, array)=>
-{
-    if(pessoa.idade < 14 || pessoa.idade > 60 || pessoa.altura < 1.5)
-    {
+const proibidoEntrar = pessoas.map((pessoa, index, array)=>{
+    if(pessoa.idade < 14 || pessoa.idade > 60 || pessoa.altura < 1.5){
         return pessoa
     }
 })
 console.log(proibidoEntrar)
+*/
+
+
+
+
+
+
+/*
+Você foi contratado por um escritório médico para gerar e-mails automáticos para seus clientes, 
+lembrando-os de sua consulta marcada; ou avisa-los que foi cancelada. Considere, então, essas consultas:
+
+const consultas = [
+	{ nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
+	{ nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
+	{ nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
+	{ nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
+]
+
+A sua tarefa é criar um array com os e-mails para cada um deles. Existem dois padrões de e-mail.
+Para as consultas não canceladas é:
+Olá, ${ Sr./Sra. } ${ nome da pessoa }. Estamos enviando esta mensagem para
+${ lembrá-lo / lembrá-la } da sua consulta no dia ${ data da consulta }. Por favor, acuse
+o recebimento deste e-mail.
+
+Para as consultas canceladas é:
+Olá, ${ Sr./Sra. } { nome da pessoa }. Infelizmente, sua consulta marcada
+para o dia ${ data da consulta } foi cancelada. Se quiser, pode entrar em 
+contato conosco para remarcá-la
+*/
+
+const consultas = [
+	{ nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
+	{ nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
+	{ nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
+	{ nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
+]
+
+consultas.forEach((cliente, index, array)=>{
+    if(cliente.genero === "masculino"){
+        cliente.tratamento="Sr."
+    } else {
+        cliente.tratamento="Sr."
+    }
+})
+
+consultas.forEach((cliente, index, array)=>{
+    if(cliente.genero === "masculino"){
+        cliente.enclise = "lembrá-lo"
+    } else {
+        cliente.enclise = "lembrá-la"
+    }
+})
+
+console.log(consultas)
+
+let arrayCanceladas = []
+let arrayConfirmadas = []
+
+const addEmail = consultas.forEach((cliente, index, array)=>{
+    if(cliente.cancelada === true){
+        arrayCanceladas.push(`Olá, ${ cliente.tratamento } ${cliente.nome}. Infelizmente, sua consulta marcada
+        para o dia ${cliente.dataDaConsulta} foi cancelada. Se quiser, pode entrar em 
+        contato conosco para remarcá-la`)
+    } else{
+        arrayConfirmadas.push(`Olá, ${ cliente.tratamento } ${ cliente.nome }. Estamos enviando esta mensagem para
+        ${ cliente.enclise } da sua consulta no dia ${ cliente.dataDaConsulta }. Por favor, acuse
+        o recebimento deste e-mail.`)
+    }
+})
+
+console.log(arrayConfirmadas)
+console.log(arrayCanceladas)
+
+function imprimirNoDiv(){
+    for(email of arrayConfirmadas){
+        document.getElementById("container").innerHTML += "<p>" + email + "</p>"
+    }
+    for(email of arrayCanceladas){
+        document.getElementById("container").innerHTML += "<p>" + email + "</p>"
+    }
+}
