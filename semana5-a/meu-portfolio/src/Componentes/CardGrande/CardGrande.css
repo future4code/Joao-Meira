@@ -1,0 +1,35 @@
+.card-grande {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: solid #dc4771 3px;
+    border-radius: 1vw;
+    margin: 1vw 0;
+}
+
+.card-grande>div{
+    display: flex;
+    padding-left: 2vw;
+    padding-bottom: 2vw;
+
+}
+
+.nome {
+    font-size: 1vw;
+    font-weight: 700;
+    padding-left: 4vw;
+    width: 30%;
+}
+
+.icone {
+    width: 18vw;
+    border-radius: 10vw;
+    margin-right: 2vw;
+}
+
+.card-grande>div>p{
+    padding: 0 2vw;
+    text-align: justify;
+    font-size: 1vw;
+    font-weight: 400;
+}

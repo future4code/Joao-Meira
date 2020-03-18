@@ -1,0 +1,23 @@
+.card-pequeno{
+    width: 100%;
+    display: flex;
+    border: solid #dc4771 3px;
+    border-radius: 1vw;
+    align-items: center;
+    margin: 1vw 0;
+    min-height: 4vw;
+}
+
+.iconezin{
+    width: 3vw;
+    padding: 0 2vw 0 4vw;
+}
+
+div>p{
+    font-size: 1vw;
+    font-weight: 700;
+}
+
+div>span{
+    padding-left: 2vw;
+}
