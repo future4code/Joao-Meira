@@ -1,7 +1,64 @@
 import React from 'react';
 import './App.css';
+import styled from 'styled-components'
+import iconeCoracaoBranco from './Img/favorite-white.svg'
+import iconeComentario from './Img/comment_icon.svg'
 
 
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  margin: 2vw 0;
+  align-items: center;
+`
+
+const PostContainer = styled.div`
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2vw 0;
+  padding: 1vw;
+  border: black solid 1px;
+`
+
+
+const PostHead = styled.div`
+  width: 100%;
+  height: 4vw;
+  display: flex;
+`
+
+const ProfileImg = styled.img`
+  width: 3vw;
+  height: 3vw;
+  border-radius: 50%;
+  margin-right: 1vw;
+`
+
+const Nome = styled.p`
+  font-size: 1vw;
+`
+
+const PostImg = styled.img`
+  width: 18vw;
+  height: auto;
+`
+
+const PostFoot = styled.div`
+  width: 100%;
+  padding: 1vw 0;
+  margin: 0 2vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  `
+
+const Icone = styled.img`
+  width: 1vw;
+`
 
 class Post extends React.Component {
   constructor(props) {
@@ -42,7 +99,7 @@ class Post extends React.Component {
       fotoUsuario: this.state.valorInputUrlPerfil,
       fotoPost: this.state.valorInputUrlPost,
     };
-    const novosPosts = [...this.state.pessoas, novoPost];
+    const novosPosts = [...this.state.posts, novoPost];
     this.setState({ posts: novosPosts });
   };
 
@@ -66,20 +123,24 @@ class Post extends React.Component {
 
     const listaDePosts = this.state.posts.map(post => {
       return (
-        <div>
-          <div>
-            <img className={'user-photo'} src={post.fotoUsuario} alt={'Imagem do usuario'}/>
-            <p>{post.nomeUsuario}</p>
-          </div>
+        <PostContainer>
+          <PostHead>
+            <ProfileImg className={'user-photo'} src={post.fotoUsuario} alt={'Imagem do usuario'}/>
+            <Nome>{post.nomeUsuario}</Nome>
+          </PostHead>
           
-          <img className={'post-photo'} src={post.fotoPost} alt={'Imagem do post'}/>
-        </div>
+          <PostImg className={'post-photo'} src={post.fotoPost} alt={'Imagem do post'}/>
+          <PostFoot>
+            <Icone src={iconeCoracaoBranco} />
+            <Icone src={iconeComentario} />
+          </PostFoot>
+        </PostContainer>
       );
     });
 
 
     return (
-      <div>
+      <Container>
 
           <div>
           <input
@@ -102,7 +163,7 @@ class Post extends React.Component {
         
         <div>{listaDePosts}</div>
 
-      </div>
+      </Container>
 
 
     );
