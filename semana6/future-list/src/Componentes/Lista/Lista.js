@@ -45,6 +45,10 @@ export default class Lista extends React.Component{
             this.setState({tarefaInput: event.target.value})
         };
 
+        onChangeFiltro = (event) => {
+            this.setState({filtro: event.target.value})
+        };
+
 
         adicionaTarefa = () =>{
             const novaTarefa = {
@@ -71,10 +75,30 @@ export default class Lista extends React.Component{
             this.setState({tarefas: listaComTarefaCompleta})
             };
 
+        
+        apagarTarefa(idParaApagar) {
+            let tarefaParaApagar
 
-        onChangeFiltro = (event) => {
-            this.setState({filtro: event.target.value})
-        };
+            for(const tarefa of this.state.tarefas){
+                if (tarefa.id === idParaApagar){
+                 tarefaParaApagar = tarefa
+                }
+            }
+
+            const tarefasCopia = [... this.state.tarefas]
+            const indiceParaDeletar = tarefasCopia.indexOf(tarefaParaApagar)
+            tarefasCopia.splice(indiceParaDeletar, 1)
+
+            this.setState({
+            tarefas: tarefasCopia
+            })
+        }
+
+        apagarTodasTarefas = () => {
+            
+            this.setState({tarefas:[]})
+
+        }
 
 
         componentDidMount() {
@@ -136,6 +160,12 @@ export default class Lista extends React.Component{
                         <option value="Pendente">Pendente</option>
                         <option value="Completa">Completa</option>
                     </select>
+                    <button
+                    onClick={this.apagarTodasTarefas}
+                    >
+                        Apagar Tarefas
+                    </button>
+                    
 
                     <ListaTarefas>
                         {listaFiltrada.map(tarefa => {
@@ -144,6 +174,7 @@ export default class Lista extends React.Component{
                                     <Tarefas
                                        completa={tarefa.completa}
                                        onClick={() => this.selecionarTarefa(tarefa.id)}
+                                       onDoubleClick={() => {this.apagarTarefa( tarefa.id )}}
                                     >
                                         {tarefa.texto}
                                     </Tarefas>
