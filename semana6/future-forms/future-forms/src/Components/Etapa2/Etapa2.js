@@ -50,14 +50,13 @@ class Etapa2 extends React.Component {
                 <input name="curso" 
                 value={this.valorInputCurso}
                 onChange={this.onChangeInputCurso}
-                required/>
+                />
 
                 <label for="unidade">Insira a Unidade de Ensino de seu curso:</label>
                 <input name="unidade" 
                 value={this.valorInputUnidadeDeEnsino}
                 onChange={this.onChangeInputUnidadeDeEnsino}
-                required/>
-
+                />
 
                 <button 
                 type="submit"
