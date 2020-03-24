@@ -13,7 +13,11 @@ const Input = styled.div`
     margin: 1vw;
 `
 
-const Tarefas = styled.div`
+const ListaTarefas = styled.ul`
+`
+
+const Tarefas = styled.li`
+  text-decoration: ${({completa}) => (completa ? 'line-through' : 'none')};
 `
 
 export default class Lista extends React.Component{
@@ -21,20 +25,56 @@ export default class Lista extends React.Component{
         super(props)
 
         this.state = {
+
+            tarefas:
+            [
+            {
+            id: "", 
+            texto: "", 
+            completa: false,
+            }
+            ],
+
             tarefaInput: "",
+
+            filtro:"",
         }
-        console.log(this.state.value)
     }
 
-        onChangeInputTarefa = event => {
+        onChangeInputTarefa = (event) => {
             this.setState({tarefaInput: event.target.value})
-        }
+        };
+
 
         adicionaTarefa = () =>{
-            const tarefasParaLista = [this.state.tarefaInput]
-            //const listaDeTarefas = tarefasParaLista.map(parafazer => <li>parafazer.tarefa</li>)
-            tarefasParaLista.map((paraFazer) => <li>{paraFazer.tarefa}</li>)
-        }  
+            const novaTarefa = {
+                id: Date.now(),
+                texto: this.state.tarefaInput,
+                completa: false,
+            }
+            const listaDeTarefas = [...this.state.tarefas, novaTarefa]
+            this.setState({tarefas: listaDeTarefas, tarefaInput: ""})
+        };
+
+
+        selecionarTarefa = (id) => {
+            const listaComTarefaCompleta = this.state.tarefas.map((elemento) =>{
+                
+                if (elemento.id === id){
+                    elemento.completa = !elemento.completa;
+                    return elemento;
+                }
+                else {
+                    return elemento;
+                }
+            })
+            this.setState({tarefas: listaComTarefaCompleta})
+            };
+
+
+        onChangeFiltro = (event) => {
+            this.setState({filtro: event.target.value})
+        };
 
 
         componentDidMount() {
@@ -48,7 +88,7 @@ export default class Lista extends React.Component{
                     tarefaInput: dadosTarefa.tarefa
                 })
             }
-        }
+        };
 
         componentDidUpdate() {
             const tarefaParaSalvar = {
@@ -58,9 +98,20 @@ export default class Lista extends React.Component{
             const tarefaString = JSON.stringify(tarefaParaSalvar);
 
             localStorage.setItem("tarefa", tarefaString)
-        }
+        };
 
         render(){
+
+            const listaFiltrada = this.state.tarefas.filter(tarefa => {
+              switch (this.state.filtro) {
+                case 'Pendente':
+                  return !tarefa.completa
+                case 'Completa':
+                  return tarefa.completa
+                default:
+                  return true
+              }
+            })
 
             return(
                 <Container>
@@ -70,22 +121,39 @@ export default class Lista extends React.Component{
                         name="filtro"
                         value={this.state.tarefaInput}
                         onChange={this.onChangeInputTarefa}
+                        placeholder="Escreva sua tarefa aqui!"
+                        autoFocus
                         ></input>
                         <button onClick={this.adicionaTarefa}> Adicionar </button>
                     </Input>
 
                     <label for="filtro">Filtro: </label>
                     <select 
-
+                    value={this.state.filter}
+                    onChange={this.onChangeFiltro}
                     >
                         <option value="Nenhum">Nenhum</option>
                         <option value="Pendente">Pendente</option>
                         <option value="Completa">Completa</option>
                     </select>
-                    <Tarefas>
-                        <ul>
-                        </ul>
-                    </Tarefas>
+
+                    <ListaTarefas>
+                        {listaFiltrada.map(tarefa => {
+                            if(tarefa.id){
+                                return(
+                                    <Tarefas
+                                       completa={tarefa.completa}
+                                       onClick={() => this.selecionarTarefa(tarefa.id)}
+                                    >
+                                        {tarefa.texto}
+                                    </Tarefas>
+                                )
+                            } else {return}
+
+                        })}
+
+                    </ListaTarefas>
+
 
                 </Container>
             )
