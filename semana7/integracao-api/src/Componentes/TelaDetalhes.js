@@ -25,6 +25,15 @@ const Nome = styled.h3`
 
 const Email = styled.p`
     font-family: serif;
+    margin: 1vw 0;
+`
+
+const BotaoDeletar = styled.span`
+    cursor: pointer;
+    color: red;
+    font-family: serif;
+    background-color: grey;
+    padding: 5px 5px;
 `
 
 class TelaDetalhe extends React.Component {
@@ -36,6 +45,9 @@ class TelaDetalhe extends React.Component {
         <Detalhes>
             <Nome> Nome: { this.props.nomeUsuario } </Nome>
             <Email> Email: { this.props.emailUsuario } </Email>
+            <BotaoDeletar
+                onClick = { this.props.deletarLogin }
+            >Deletar Usuário</BotaoDeletar>
         </Detalhes>
 
       </Container>

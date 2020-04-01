@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import TelaDetalhe from './TelaDetalhes';
+import axios from 'axios'
 
 const Container = styled.div`
     width: 16vw;
@@ -30,30 +31,10 @@ const H = styled.h2`
 `
 
 class Lista extends React.Component {
-    constructor(props){
-        super(props);
 
-        this.state = {
-            name: "",
-            email: "",
-            mostrarDetalhe: false,
-        }
-    }
-
-    onClickDetalhes = (userName, userEmail) => {
-        this.setState ({name: userName, email: userEmail, mostrarDetalhe: true})
-    }
 
   render () {
-    if(this.state.mostrarDetalhe) {
         return (
-            <TelaDetalhe
-            nomeUsuario = { this.state.name }
-            emaiUsuario = { this.state.email }
-            />
-        )
-    }else {
-            return (
             <Container>
                 <H>Usuários Cadastrados</H>
                     {this.props.listaDeUsuarios.map(usuario =>(
@@ -61,9 +42,9 @@ class Lista extends React.Component {
                             key={usuario.id}
                             >
                             <span 
-                            onClick={() => this.onClickDetalhes(usuario.name, usuario.email)}
+                            onClick={() => this.props.enviarDetalhes(usuario.id)}
                             >
-                                {usuario.name}
+                            {usuario.name}
                             </span>
                             <BotaoDeletar
                             onClick = {() => this.props.deletarLogin(usuario.id)}
@@ -73,8 +54,6 @@ class Lista extends React.Component {
             </Container>
           );
     }
-
-  }
 }
 
 export default Lista;

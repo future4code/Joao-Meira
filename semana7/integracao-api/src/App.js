@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Login from './Componentes/Login';
 import Lista from './Componentes/Lista';
 import axios from 'axios'
+import TelaDetalhe from './Componentes/TelaDetalhes'
 
 const Container = styled.div`
   display: flex;
@@ -24,7 +25,10 @@ class App extends React.Component {
       ],
     name: "",
     email: "",
-    mostrarLista: false,
+    mostrarLista: "2",
+    nomeDetalhe: "",
+    emailDetalhe:"",
+    idDetalhe: "",
     };
 
   }
@@ -84,9 +88,21 @@ class App extends React.Component {
   };
 
   onClickMostrarLista = () => {    
-    this.setState({
-      mostrarLista: !this.state.mostrarLista
+    
+    if(this.state.mostrarLista === "1"){
+      this.setState({
+      mostrarLista: "2"
     })
+    } else if (this.state.mostrarLista === "2"){
+      this.setState({
+        mostrarLista: "1"
+      })
+    } else if (this.state.mostrarLista === "3"){
+      this.setState({
+        mostrarLista: "1"
+      })
+    }
+
   }
 
   onChangeInput = event => {
@@ -117,8 +133,34 @@ class App extends React.Component {
     }
   };
 
+
+  onClickDetalhes = (usuario) => {
+    this.setState({mostrarLista: "3"})
+    axios
+    .get (
+      `https://us-central1-future-apis.cloudfunctions.net/api/users/${usuario}`,
+      {
+        headers: {
+          "api-token": "joaomeira-hamilton"
+        }
+      }
+    )
+    .then((resposta) => {
+      this.setState ({ 
+          nomeDetalhe: resposta.data.result.name, 
+          emailDetalhe: resposta.data.result.email,
+          idDetalhe: resposta.data.result.id,
+          mostrarDetalhe: true,
+        })
+        console.log(resposta.data.result.id)
+    })
+    .catch (() => {
+      alert('Usuários não baixados!')
+    })
+}
+
   render () {
-    if(this.state.mostrarLista) {
+    if(this.state.mostrarLista === "1") {
     return (
       <Container>
         <Button
@@ -129,12 +171,13 @@ class App extends React.Component {
         <Lista
         listaDeUsuarios = {this.state.logins}
         deletarLogin = {this.onClickDeletarLogin}
+        enviarDetalhes = {this.onClickDetalhes}
         >
         </Lista>
         
       </Container>
     )
-  } else {
+  } else if (this.state.mostrarLista === "2") {
     return (
       <Container>
         <Button
@@ -151,7 +194,22 @@ class App extends React.Component {
         />
 
       </Container>
-    )}
+    )} else if (this.state.mostrarLista === "3") {
+      return (
+        <Container>
+        <Button
+        onClick = {this.onClickMostrarLista}> 
+        Ir para a página de lista
+        </Button>
+        <TelaDetalhe
+        nomeUsuario = { this.state.nomeDetalhe }
+        emailUsuario = { this.state.emailDetalhe }
+        deletarLogin = {() => this.onClickdeletarLogin(this.state.idDetalhe)}
+        />
+        </Container>
+
+      )
+    }
   }
 }
 
