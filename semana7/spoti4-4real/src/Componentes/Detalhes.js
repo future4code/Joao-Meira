@@ -14,6 +14,15 @@ const Container = styled.div`
   align-self: flex-start;
 `
 
+const BotaoDeletar = styled.span`
+  border-radius: 10px;
+  border: 1px solid grey;
+  color: #ed4b70;
+  padding: 5px 3px;
+  background-color: #f4f4f4;
+  cursor: pointer;
+`
+
 
 export default class Detalhes extends React.Component {
     constructor(props) {
@@ -44,11 +53,30 @@ export default class Detalhes extends React.Component {
         })
       }
 
+      deletarPlaylist = (id) => {
+        axios
+        .delete (
+          `https://us-central1-future-apis.cloudfunctions.net/spotifour/playlists/${id}`,
+          {
+            headers: {"auth": "joaomeira-hamilton"}
+          }
+        )
+        .then(() => {
+          alert('Playlist deletada!')
+        })
+        .catch (() => {
+          alert ('Ops! Não conseguimos deletar!')
+        })
+      }
+
 
     render() {
         return(
             <Container>
-                <h2>Playlist: {this.props.nome} </h2>
+                <h2>Playlist: {this.props.nome} </h2> 
+                <BotaoDeletar
+                onClick = {() => this.deletarPlaylist (this.props.id)}
+                >Deletar esta Playlist</BotaoDeletar>
                 <h3>Músicas</h3>
                 <ul>
                     {this.props.detalhesMusicas.map(musica => (

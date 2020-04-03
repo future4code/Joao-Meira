@@ -16,6 +16,11 @@ const Container = styled.div`
   overflow: scroll;
 `
 
+const Item = styled.li`
+    cursor: pointer;
+    padding-bottom: 5px;
+`
+
 export default class Visualizar extends React.Component {
     constructor(props){
         super(props);
@@ -25,6 +30,7 @@ export default class Visualizar extends React.Component {
             renderizarDetalhe: false,
             detalhes: [],
             nomeDaPlaylist: "",
+            idDaPlaylist: "",
         }
     }
 
@@ -37,8 +43,7 @@ export default class Visualizar extends React.Component {
     }
 
     mostrarDetalhe = (id, nome) => {
-        console.log(id)
-
+        this.setState({idDaPlaylist: id})
         axios
         .get (
           `https://us-central1-future-apis.cloudfunctions.net/spotifour/playlists/${id}/songs`,
@@ -68,12 +73,12 @@ export default class Visualizar extends React.Component {
                 <div>
                     <ol>
                         {this.props.playlists.map(playlist => (
-                        <li 
+                        <Item 
                         key={playlist.id}
                         onClick={() => this.mostrarDetalhe(playlist.id, playlist.name)}
                         >
                             <p>{playlist.name}</p>
-                        </li>
+                        </Item>
                         ))}
                     </ol>
                 </div>
@@ -94,6 +99,8 @@ export default class Visualizar extends React.Component {
             detalhesMusicas = { this.state.detalhes.musics }
             nome = { this.state.nomeDaPlaylist }
             onClickVoltar = {this.onClickVoltar}
+            buscarPlaylist = {this.props.atualizarBaixarPlaylist}
+            id = {this.state.idDaPlaylist}
             />
             )
 
