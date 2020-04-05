@@ -256,6 +256,7 @@ class App extends React.Component {
 
       <Visualizar
       playlists = { this.state.playlists }
+      atualizarLista = {this.baixarPlaylists}
       />
 
     </Container>

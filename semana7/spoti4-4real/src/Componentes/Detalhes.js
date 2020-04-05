@@ -62,6 +62,7 @@ export default class Detalhes extends React.Component {
           }
         )
         .then(() => {
+          this.props.atualizar()
           alert('Playlist deletada!')
         })
         .catch (() => {
@@ -82,7 +83,8 @@ export default class Detalhes extends React.Component {
                     {this.props.detalhesMusicas.map(musica => (
                         <li
                         key = {musica.id}
-                        >{musica.name} do artista {musica.artist}</li>
+                        ><p>{musica.name}, do artista <strong>{musica.artist}</strong></p>
+                        <audio controls src={musica.url}/></li>
                     ))}
                 </ul>
                 <button

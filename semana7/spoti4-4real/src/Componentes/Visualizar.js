@@ -40,6 +40,7 @@ export default class Visualizar extends React.Component {
 
     onClickVoltar = () => {
         this.setState({renderizarDetalhe: false})
+        this.props.atualizarLista()
     }
 
     mostrarDetalhe = (id, nome) => {
@@ -101,6 +102,7 @@ export default class Visualizar extends React.Component {
             onClickVoltar = {this.onClickVoltar}
             buscarPlaylist = {this.props.atualizarBaixarPlaylist}
             id = {this.state.idDaPlaylist}
+            atualizar = {this.onClickVoltar}
             />
             )
 
