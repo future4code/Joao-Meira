@@ -13,7 +13,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  overflow: scroll;
 `
 
 const Item = styled.li`
@@ -35,7 +34,7 @@ export default class Visualizar extends React.Component {
     }
 
     visualizarPlaylists = () =>{
-        this.setState({renderizarLista: true})        
+        this.setState({renderizarLista: !this.state.renderizarLista})        
     }
 
     onClickVoltar = () => {

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Visualizar from './Componentes/Visualizar';
+import BuscarMúsica from './Componentes/BuscarMúsica';
 
 
 const Container = styled.div`
@@ -15,7 +16,7 @@ const Container = styled.div`
 `
 
 const InputContainer = styled.div`
-  width: 40vw;
+  width: 45vw;
   height: 20vw;
   margin: auto;
   border: black solid 1px;
@@ -26,7 +27,7 @@ const InputContainer = styled.div`
 `
 
 const CriarPlaylist = styled.div`
-  width: 20vw;
+  width: 30vw;
   height: 9vw;
   margin: auto;
   display: flex;
@@ -37,10 +38,12 @@ const CriarPlaylist = styled.div`
 
 const AdicionarMúsicas = styled.div`
   font-size: 1vw;
-  width: 20vw;
+  text-align: center;
+  width: 30vw;
   height: 15vw;
   margin: auto;
   border-left: black solid 1px;
+  border-right: black solid 1px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,7 +52,7 @@ const AdicionarMúsicas = styled.div`
 
 const Input = styled.input`
   box-sizing: border-box;
-  width: 80%;
+  width: 85%;
 `
 
 const Select = styled.select`
@@ -69,6 +72,7 @@ class App extends React.Component {
         inputAutor: "",
         inputUrl: "",
         inputId: "",
+        buscarInput: "",
       }
   }
 
@@ -140,10 +144,6 @@ class App extends React.Component {
   }
 
   onClickAdicionarMúsica = () => {
-    console.log(this.state.inputAutor)
-    console.log(this.state.inputId)
-    console.log(this.state.inputMúsica)
-    console.log(this.state.inputUrl)
     let body = 
     {
       name: this.state.inputMúsica,
@@ -161,8 +161,7 @@ class App extends React.Component {
     )
       .then(() => {
         this.baixarPlaylists();
-        alert(`A música ${this.state.inputMúsica} 
-        foi adicionada à playlist!`)
+        alert(`A música ${this.state.inputMúsica} foi adicionada à playlist!`)
         this.setState ({
           inputMúsica: "",
           inputAutor: "",
@@ -234,8 +233,13 @@ class App extends React.Component {
       value = {this.state.inputUrl}
       />
 
+      <label
+      htmlFor="playlists">Escolha a playlist</label>
       <Select
+      required
+      name = "playlists"
       >
+        <option>-</option>
         {this.state.playlists.map(playlist => (
           <option 
           key = {playlist.id}
@@ -243,6 +247,7 @@ class App extends React.Component {
           onClick = {this.onChangeInputSelect}
           >{playlist.name}</option>
         ))}
+
       </Select>
 
       <button
@@ -251,6 +256,12 @@ class App extends React.Component {
         Adicionar Música!
       </button>
       </AdicionarMúsicas>
+
+      <BuscarMúsica
+      onChange = {this.onChangeInput}
+      value = {this.state.buscarInput}
+      playlists = {this.state.playlists}
+      />
 
       </InputContainer>
 

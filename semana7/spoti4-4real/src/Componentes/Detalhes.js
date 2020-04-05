@@ -21,6 +21,11 @@ const BotaoDeletar = styled.span`
   padding: 5px 3px;
   background-color: #f4f4f4;
   cursor: pointer;
+  transition: 1s, linear;
+
+  &:hover{
+    background-color: #ffbaba;
+  }
 `
 
 
@@ -83,7 +88,8 @@ export default class Detalhes extends React.Component {
                     {this.props.detalhesMusicas.map(musica => (
                         <li
                         key = {musica.id}
-                        ><p>{musica.name}, do artista <strong>{musica.artist}</strong></p>
+                        >
+                        <p>{musica.name}, do artista <strong>{musica.artist}</strong></p>
                         <audio controls src={musica.url}/></li>
                     ))}
                 </ul>
