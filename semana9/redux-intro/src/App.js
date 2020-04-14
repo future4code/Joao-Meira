@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Input from './Componentes/Input';
 import Lista from './Componentes/Lista';
 import Buttons from './Componentes/Buttons';
+// import CustomizedInputBase from './Componentes/CustomizedInputBase';
 
 const Container = styled.div`
   margin: auto;
@@ -76,6 +77,7 @@ export default class App extends React.Component {
     return (
 
       <Container>
+        {/* <CustomizedInputBase/> */}
         <Input
         inputTarefa = {this.onChageTarefaInput}
         valueInput = {this.state.tarefaInput}
