@@ -16,8 +16,8 @@ const Item = styled.li`
 `
 
 const Span = styled.span`
-  text-decoration: ${({completa}) => 
-                    (completa ? 'line-through' : 'none')};
+  text-decoration: ${({complete}) => 
+                    (complete ? 'line-through' : 'none')};
 `
 
 export default class Task extends React.Component {
@@ -30,15 +30,22 @@ export default class Task extends React.Component {
             <Container>
                 <Item>
                 <Span
-                completa={this.props.tarefa.completa}
-                onClick={() => this.props.selecionarTarefa(tarefa.id)}
-                >{tarefa.texto}
+                key= {toDo.id}
+                complete={toDo.complete}
+                onClick={() => markToDo(toDo.id)}
+                >{toDo.text}
                 </Span>
                 <span
-                onClick={() => this.props.apagarTarefa(tarefa.id)}
+                onClick={() => deleteToDo(toDo.id)}
                 >X</span>
                 </Item>
             </Container>
         );
   }
+}
+
+const mapStateToProps = state => {
+    return {
+        text: state.toDosReducer.toDosList.text
+    }
 }
