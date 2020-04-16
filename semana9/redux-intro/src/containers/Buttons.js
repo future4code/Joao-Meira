@@ -18,7 +18,7 @@ const Button1 = styled.div`
     cursor: pointer;
     text-align: center;
     width: 33%;
-
+    font-size: 1.1vw;
 
     &&:hover{
         text-decoration: underline;
@@ -31,6 +31,7 @@ const Button2 = styled.div`
     padding: 5px;
     cursor: pointer;
     width: 11%;
+    font-size: 1.1vw;
 `
 
 const Button3 = styled.div`
@@ -39,6 +40,7 @@ const Button3 = styled.div`
     border: solid transparent 1px;
     cursor: pointer;
     width: 11%;
+    font-size: 1.1vw;
 
     &&:hover{
         border: solid grey 1px;
@@ -51,6 +53,7 @@ const Button4 = styled.div`
     border: solid transparent 1px;
     cursor: pointer;
     width: 11%;
+    font-size: 1.1vw;
 
     &&:hover{
         border: solid grey 1px;
@@ -62,6 +65,7 @@ const Button5 = styled.div`
     cursor: pointer;
     text-align: center;
     width: 33%;
+    font-size: 1.1vw;
 
     &&:hover{
         text-decoration: underline;

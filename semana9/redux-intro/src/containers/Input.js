@@ -11,6 +11,8 @@ const Container = styled.div`
     justify-content: center;
 `
 const InputTarefa = styled.input`
+  width: 55%;
+  max-width: 400px;
 `
 
 
@@ -38,7 +40,7 @@ export class Input extends React.Component {
 
       <Container>
         <InputTarefa
-        placeholder = "Digite uma tarefa e aperte enter"
+        placeholder = "O que deve ser feito?"
         onChange = {this.onChageTaskInput}
         value = {this.state.taskInput}
         />

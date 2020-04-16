@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { connect } from 'react-redux'
 import { markTask } from '../actions/todos';
 import { deleteTask } from '../actions/todos';
+import { DeleteForever } from '@material-ui/icons'
 
 const Container = styled.div`
-  width: 40%;
+  width: 50%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -17,6 +18,7 @@ const Item = styled.li`
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  padding-bottom: 1vw;
 `
 
 const P = styled.span`
@@ -55,9 +57,9 @@ class TaskList extends React.Component {
                 >
                 {task.text}
                 </P>
-                <span
-                onClick={() => this.onClickDeleteTask(task.id)}
-                >X</span>
+              <DeleteForever
+              onClick={() => this.onClickDeleteTask(task.id)}
+              />
                 </Item>
               )}
           )}
