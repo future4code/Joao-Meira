@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { markAllCompleteTasks } from '../actions/todos'
+import { deleteAllComplete } from '../actions/todos'
 
 const Container = styled.div`
     width: 100%;
@@ -65,34 +68,34 @@ const Button5 = styled.div`
     }
 `
 
-export default class Buttons extends React.Component {
-
-
-  onChageTarefaInput = (e) => {
-    this.setState({tarefaInput: e.target.value})
-  }
-
-  criarTarefa = () => {
-    let novaTarefa = {
-      id: Date.now(),
-      texto: this.state.tarefaInput,
-      completa: false,
-    }
-    this.props.tarefaParaAdicionar(novaTarefa)
-    this.setState({tarefaInput: ""})
-  }
+class Buttons extends React.Component {
 
 
   render(){
     return (
 
       <Container>
-          <Button1>Marcar todas como completas</Button1>
+          <Button1
+          onClick={this.props.markAllCompleteTasks}
+          >Marcar todas como completas</Button1>
           <Button2>Todas</Button2>
           <Button3>Pendentes</Button3>
           <Button4>Completas</Button4>
-          <Button5>Remover Completas</Button5>
+          <Button5
+          onClick={this.props.deleteAllComplete}
+          >Remover Completas</Button5>
       </Container>
     );
   }
 }
+
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    markAllCompleteTasks: () => dispatch(markAllCompleteTasks()),
+    deleteAllComplete: () => dispatch(deleteAllComplete())
+  }
+}
+
+export default connect (null, mapDispatchToProps)(Buttons)

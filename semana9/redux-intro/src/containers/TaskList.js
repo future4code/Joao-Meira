@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux'
 import { markTask } from '../actions/todos';
+import { deleteTask } from '../actions/todos';
 
 const Container = styled.div`
   width: 40%;
@@ -19,42 +20,54 @@ const Item = styled.li`
 `
 
 const P = styled.span`
-  text-decoration: ${({complete}) => (complete==="complete" ? 'line-through' : 'none')};
+  text-decoration: ${({complete}) => (complete ? 'line-through' : 'none')};
 `
 
 class TaskList extends React.Component {
 
+  onClickDeleteTask = (id) => {
+    this.props.deleteTask(id)
+
+  }
+
+  onClickMarkTask = (id) => {
+    this.props.markTask(id)
+  }
+
     
   render(){
+      console.log(this.props.toDosList)
         return (
       <Container>
           {this.props.toDosList.map(task => {
-            if(task.text && task.complete === "complete"){
+            if(task.text && task.complete){
               return(
                 <Item
+                key={task.id}
                 >
                 <P
                 complete={task.complete}
-                onClick={() => this.props.markTask(task.id)}
+                onClick={() => this.onClickMarkTask(task.id)}
                 >
                 {task.text}
                 </P>
                 <span
-                onClick={() => this.props.deleteTask(task.id)}
+                onClick={() => this.onClickDeleteTask(task.id)}
                 >X</span>
                 </Item>
-              )} else if (task.text && task.complete === "incomplete") {
+              )} else if (task.text) {
                 return(
                 <Item
+                key={task.id}
                 >
                 <P
                 complete={task.complete}
-                onClick={() => this.props.markTask(task.id)}
+                onClick={() => this.onClickMarkTask(task.id)}
                 >
                 {task.text}
                 </P>
                 <span
-                onClick={() => this.props.deleteTask(task.id)}
+                onClick={() => this.onClickDeleteTask(task.id)}
                 >X</span>
                 </Item>
                 )} else {return}
@@ -72,10 +85,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return{
-      markTask: id => {
-        const action = markTask(id)
-        dispatch(action)
-      } 
+      markTask: id => dispatch(markTask(id)),
+      deleteTask: id => dispatch(deleteTask(id))
     }
 }
 

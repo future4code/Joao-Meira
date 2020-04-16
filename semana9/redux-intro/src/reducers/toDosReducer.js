@@ -2,23 +2,8 @@ const initialState = {
     toDosList: [
         {
             id: Date.now(),
-            text: "tarefa doidera",
-            complete: "incomplete",
-        },
-        {
-            id: Date.now(),
-            text: "tarefa maneira",
-            complete: "incomplete",
-        },
-        {
-            id: Date.now(),
-            text: "tarefa dois toque de bola",
-            complete: "incomplete",
-        },
-        {
-            id: Date.now(),
-            text: "tarefa na missão",
-            complete: "incomplete",
+            text: "",
+            complete: false,
         }
     ],
 }
@@ -26,21 +11,42 @@ const initialState = {
 export const toDosReducer = (state = initialState, action) => {
     console.log(action)
     switch (action.type){
-        case 'ADD_TASK' :
-            const newToDo = [...state.toDosList,           
+        case 'ADD_TASK' :{
+            const newToDo =           
             {
-                id: action.payload.id,
+                id: Date.now(),
                 text: action.payload.text,
-                completed: "incomplete",
-            }]
-            return {...state, toDosList: newToDo}
-            
-        case 'MARK_TASK':
-            return state.toDosList.map(toDo =>
-                toDo.id === action.id ? 
-                {completed: "complete"} : 
-                    toDo
+                completed: action.payload.complete,
+            }
+            return {toDosList: [newToDo, ...state.toDosList]};
+        }
+        case 'MARK_TASK':{
+            const newToDosList = state.toDosList.map(toDo =>
+                toDo.id === action.payload.id ? 
+                {...toDo, complete: !toDo.complete} : toDo
             )
+            return {toDosList: newToDosList};
+        }
+        case 'DELETE_TASK':{
+            const newToDosList = state.toDosList.filter(toDo =>
+                toDo.id !== action.payload.id ? true : false
+            )
+            return {toDosList: newToDosList};
+        }
+        case 'MARK_ALL_COMPLETE_TASKS':{
+            const newToDosList = state.toDosList.map(toDo =>
+                toDo.complete ? 
+                toDo : {...toDo, complete: !toDo.complete} 
+            )
+            return {toDosList: newToDosList};
+        }
+        case 'DELETE_ALL_COMPLETE':{
+            const newToDosList = state.toDosList.filter(toDo =>
+                toDo.complete!==true ? toDo : false
+            )
+            return {toDosList: newToDosList};
+        }
+        
         default:
             return state
     }

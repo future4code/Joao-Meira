@@ -2,9 +2,8 @@ export const addTask = (text) => {
     return{
         type: 'ADD_TASK',
         payload: {
-            id: Date.now(),
             text: text,
-            complete: "incomplete",
+            complete: false,
         },
     }
 }
@@ -29,9 +28,9 @@ export const markTask = (id) => {
 }
 
 
-export const markAllCompleteTask = () => {
+export const markAllCompleteTasks = () => {
     return {
-        type: 'MARK_ALL_COMPLETE_TASK',
+        type: 'MARK_ALL_COMPLETE_TASKS',
         payload: {},
     }
 }
