@@ -51,18 +51,14 @@ export class Input extends React.Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {
-  }
-}
 
 const mapDispatchToProps = dispatch => {
   return{
-    addTask: text => dispatch(addTask(text))
+    addTask: text => dispatch(addTask(text)),
   }
 }
 
 export default connect (
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 ) (Input);

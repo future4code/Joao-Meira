@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { markAllCompleteTasks } from '../actions/todos'
-import { deleteAllComplete } from '../actions/todos'
+import { deleteAllComplete, setFilter } from '../actions/todos'
 
 const Container = styled.div`
     width: 100%;
@@ -75,15 +75,26 @@ class Buttons extends React.Component {
     return (
 
       <Container>
-          <Button1
+          <Button1 
           onClick={this.props.markAllCompleteTasks}
-          >Marcar todas como completas</Button1>
-          <Button2>Todas</Button2>
-          <Button3>Pendentes</Button3>
-          <Button4>Completas</Button4>
+          >Marcar todas como completas
+          </Button1>
+          <Button2
+          onClick={() => this.props.setFilter('todas')}
+          >Todas
+          </Button2>
+          <Button3
+          onClick={() => this.props.setFilter('pendentes')}
+          >Pendentes
+          </Button3>
+          <Button4
+          onClick={() => this.props.setFilter('completas')}
+          >Completas
+          </Button4>
           <Button5
           onClick={this.props.deleteAllComplete}
-          >Remover Completas</Button5>
+          >Remover Completas
+          </Button5>
       </Container>
     );
   }
@@ -94,7 +105,8 @@ class Buttons extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     markAllCompleteTasks: () => dispatch(markAllCompleteTasks()),
-    deleteAllComplete: () => dispatch(deleteAllComplete())
+    deleteAllComplete: () => dispatch(deleteAllComplete()),
+    setFilter: (filter) => dispatch(setFilter(filter))
   }
 }
 

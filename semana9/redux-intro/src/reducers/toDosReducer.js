@@ -1,11 +1,7 @@
 const initialState = {
-    toDosList: [
-        {
-            id: Date.now(),
-            text: "",
-            complete: false,
-        }
-    ],
+    toDosList: [],
+
+    filter: "todas"
 }
 
 export const toDosReducer = (state = initialState, action) => {
@@ -16,35 +12,38 @@ export const toDosReducer = (state = initialState, action) => {
             {
                 id: Date.now(),
                 text: action.payload.text,
-                completed: action.payload.complete,
+                complete: action.payload.complete,
             }
-            return {toDosList: [newToDo, ...state.toDosList]};
+            return {...state, toDosList: [newToDo, ...state.toDosList]};
         }
         case 'MARK_TASK':{
             const newToDosList = state.toDosList.map(toDo =>
                 toDo.id === action.payload.id ? 
                 {...toDo, complete: !toDo.complete} : toDo
             )
-            return {toDosList: newToDosList};
+            return {...state, toDosList: newToDosList};
         }
         case 'DELETE_TASK':{
             const newToDosList = state.toDosList.filter(toDo =>
                 toDo.id !== action.payload.id ? true : false
             )
-            return {toDosList: newToDosList};
+            return {...state, toDosList: newToDosList};
         }
         case 'MARK_ALL_COMPLETE_TASKS':{
             const newToDosList = state.toDosList.map(toDo =>
                 toDo.complete ? 
                 toDo : {...toDo, complete: !toDo.complete} 
             )
-            return {toDosList: newToDosList};
+            return {...state, toDosList: newToDosList};
         }
         case 'DELETE_ALL_COMPLETE':{
             const newToDosList = state.toDosList.filter(toDo =>
                 toDo.complete!==true ? toDo : false
             )
-            return {toDosList: newToDosList};
+            return {...state, toDosList: newToDosList};
+        }
+        case 'SET_FILTER': {
+            return {...state, filter: action.payload.filter}
         }
         
         default:

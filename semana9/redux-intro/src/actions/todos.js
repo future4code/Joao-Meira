@@ -51,10 +51,3 @@ export const setFilter = (filter) => {
     }
 }
 
-
-export const filters = {
-SHOW_ALL: 'SHOW_ALL',
-SHOW_COMPLETED: 'SHOW_COMPLETED',
-SHOW_INCOMPLETE: 'SHOW_INCOMPLETE'
-}
-

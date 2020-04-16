@@ -39,8 +39,12 @@ class TaskList extends React.Component {
       console.log(this.props.toDosList)
         return (
       <Container>
-          {this.props.toDosList.map(task => {
-            if(task.text && task.complete){
+          {this.props.toDosList.filter(task =>{
+            const filter = this.props.filter
+            if(filter === 'pendentes') return task.complete === false
+            if(filter === 'completas') return task.complete === true
+            return true
+          }).map(task => {
               return(
                 <Item
                 key={task.id}
@@ -55,23 +59,8 @@ class TaskList extends React.Component {
                 onClick={() => this.onClickDeleteTask(task.id)}
                 >X</span>
                 </Item>
-              )} else if (task.text) {
-                return(
-                <Item
-                key={task.id}
-                >
-                <P
-                complete={task.complete}
-                onClick={() => this.onClickMarkTask(task.id)}
-                >
-                {task.text}
-                </P>
-                <span
-                onClick={() => this.onClickDeleteTask(task.id)}
-                >X</span>
-                </Item>
-                )} else {return}
-          })}
+              )}
+          )}
       </Container>
     );
   }
@@ -79,7 +68,8 @@ class TaskList extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        toDosList: state.toDosReducer.toDosList
+        toDosList: state.toDosReducer.toDosList,
+        filter: state.toDosReducer.filter,
     }
 }
 
