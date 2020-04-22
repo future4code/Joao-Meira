@@ -4,15 +4,25 @@ import { push } from "connected-react-router";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
+import FutureX from '../../img/futurex.png'
+import { routes } from "../Router";
+
 
 const LoginWrapper = styled.form`
   width: 100%;
-  height: 100vh;
+  height: 75vh;
   gap: 10px;
-  place-content: center;
-  justify-items: center;
+  place-content: start center;
   display: grid;
-`;
+`
+
+const Img = styled.img`
+  width: 17vw;
+  min-width: 250px;
+  box-shadow: 5px 5px 1vw;
+  border-radius: 2vw;
+  margin: 5vw 0 4vw 0;
+`
 
 class LoginPage extends Component {
   constructor(props) {
@@ -34,6 +44,7 @@ class LoginPage extends Component {
 
     return (
       <LoginWrapper>
+          <Img src={FutureX}/>
         <TextField
           onChange={this.handleFieldChange}
           name="email"
@@ -48,10 +59,16 @@ class LoginPage extends Component {
           label="Password"
           value={password}
         />
-        <Button>Login</Button>
+        <Button onClick={this.props.goToAdminPage}>Login</Button>
       </LoginWrapper>
     );
   }
 }
 
-export default LoginPage;
+const mapDispatchToProps = (dispatch) => {
+  return {
+      goToAdminPage: () => dispatch(push(routes.adminPage))
+  }
+}
+
+export default connect (null, mapDispatchToProps) (LoginPage);
