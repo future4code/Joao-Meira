@@ -33,13 +33,7 @@ class ApplicationPage extends Component {
   }
 
   componentDidMount () {
-    const token = localStorage.getItem('token')
-
-    if(!token){
-        this.props.goToLoginPage()
-    } else {
       this.props.getTripsList()
-    }
 }
 
 

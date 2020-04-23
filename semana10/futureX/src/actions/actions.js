@@ -30,16 +30,12 @@ export const getTripsList = () => async (dispatch) => {
     console.log(response.data)
 }
 
-// const getProtectData = () => async (dispatch) => {
-//     const token = window.localStorage.getItem('token')
-
-//     const response = await axios.get(http,
-//         {
-//             headers: {
-//                 auth: token
-//             }
-//         })
+// export const applyToTrip = () => async (dispatch) => {
+//     const response = await axios.post (`${baseUrl}/trips/${id}/apply`)
 // }
+
+
+
 
 
 export const setTripsList = (tripsList) => {

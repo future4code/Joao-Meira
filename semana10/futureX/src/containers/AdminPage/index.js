@@ -63,6 +63,14 @@ class AdminPage extends Component {
   }
 
 
+  componentDidMount () {
+    const token = localStorage.getItem('token')
+
+    if(!token){
+        this.props.goToLoginPage()
+    }
+  }
+
   formSubmit = event => {
     event.preventDefault();
     console.log(this.state.form)
