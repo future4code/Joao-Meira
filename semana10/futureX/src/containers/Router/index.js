@@ -10,6 +10,7 @@ import Phone from '@material-ui/icons/PhoneInTalkOutlined'
 import Header from "../Header";
 import AdminPage from "../AdminPage";
 import ApplicationPage from "../ApplicationPage";
+import TripsListPage from "../TripsListPage";
 
 
 
@@ -18,7 +19,7 @@ export const routes = {
   root: "/",
   adminPage: "/adminpage",
   applicationPage: "/application",
-  listPage: "/listpage",
+  tripsListPage: "/tripsList",
   tripDetail: "/tripdetail",
 };
 
@@ -35,7 +36,7 @@ function Router(props) {
         <Route exact path={routes.root} component={LoginPage} />
         <Route exact path={routes.adminPage} component={AdminPage}/>
         <Route exact path={routes.applicationPage} component={ApplicationPage}/>
-        <Route exact path={routes.listPage} component={LoginPage}/>
+        <Route exact path={routes.tripsListPage} component={TripsListPage}/>
         <Route exact path={routes.tripDetail} component={LoginPage}/>
       </Switch>
       </ConnectedRouter>

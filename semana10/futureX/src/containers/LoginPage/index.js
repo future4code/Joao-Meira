@@ -6,23 +6,10 @@ import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import FutureX from '../../img/futurex.png'
 import { routes } from "../Router";
+import { toLogin } from "../../actions/actions";
 
 
-const LoginWrapper = styled.form`
-  width: 100%;
-  height: 75vh;
-  gap: 10px;
-  place-content: start center;
-  display: grid;
-`
 
-const Img = styled.img`
-  width: 17vw;
-  min-width: 250px;
-  box-shadow: 5px 5px 1vw;
-  border-radius: 2vw;
-  margin: 5vw 0 4vw 0;
-`
 
 class LoginPage extends Component {
   constructor(props) {
@@ -39,36 +26,83 @@ class LoginPage extends Component {
     });
   };
 
+  toLogin = event => {
+    event.preventDefault()
+
+    this.props.toLogin(this.state.email, this.state.password)
+    console.log(this.state.email, this.state.password)
+    this.setState({email: "", password: ""})
+  }
+
+  // toLogout = () => {
+  //     localStorage.clear()
+  // }
+
   render() {
     const { email, password } = this.state;
+    const isLogged = localStorage.getItem("token") !== null
 
     return (
-      <LoginWrapper>
+      <LoginPageWrapper>
+        {isLogged ? 
+        <LoginWrapper>
           <Img src={FutureX}/>
-        <TextField
-          onChange={this.handleFieldChange}
-          name="email"
-          type="email"
-          label="E-mail"
-          value={email}
-        />
-        <TextField
-          onChange={this.handleFieldChange}
-          name="password"
-          type="password"
-          label="Password"
-          value={password}
-        />
-        <Button onClick={this.props.goToAdminPage}>Login</Button>
-      </LoginWrapper>
+          <Button onClick={this.props.goToAdminPage}>Criar Expedição</Button>
+        </LoginWrapper>
+        :
+        <LoginWrapper onSubmit={this.toLogin}>
+          <Img src={FutureX}/>
+          <TextField
+            onChange={this.handleFieldChange}
+            name="email"
+            type="email"
+            label="E-mail"
+            value={email}
+          />
+          <TextField
+            onChange={this.handleFieldChange}
+            name="password"
+            type="password"
+            label="Password"
+            value={password}
+          />
+          <Button type="submit">Login</Button>
+        </LoginWrapper>
+          }
+      </LoginPageWrapper>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      goToAdminPage: () => dispatch(push(routes.adminPage))
+      goToAdminPage: () => dispatch(push(routes.adminPage)),
+      toLogin: (email, password) => dispatch(toLogin(email, password))
   }
 }
+
+
+const LoginPageWrapper = styled.form`
+  width: 100%;
+  height: 75vh;
+  gap: 10px;
+  place-content: start center;
+  display: grid;
+`
+const LoginWrapper = styled.form`
+  width: 100%;
+  height: 100%;
+  gap: 10px;
+  place-content: start center;
+  display: grid;
+`
+
+const Img = styled.img`
+  width: 17vw;
+  min-width: 250px;
+  box-shadow: 5px 5px 1vw;
+  border-radius: 2vw;
+  margin: 5vw 0 4vw 0;
+`
 
 export default connect (null, mapDispatchToProps) (LoginPage);
