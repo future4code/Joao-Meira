@@ -25,7 +25,7 @@ const TripsList = styled.div`
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
   column-gap: 20px;
   row-gap: 20px;
 `;

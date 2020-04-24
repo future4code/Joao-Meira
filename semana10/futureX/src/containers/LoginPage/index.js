@@ -34,9 +34,7 @@ class LoginPage extends Component {
     this.setState({email: "", password: ""})
   }
 
-  // toLogout = () => {
-  //     localStorage.clear()
-  // }
+
 
   render() {
     const { email, password } = this.state;
@@ -47,7 +45,14 @@ class LoginPage extends Component {
         {isLogged ? 
         <LoginWrapper>
           <Img src={FutureX}/>
-          <Button onClick={this.props.goToAdminPage}>Criar Expedição</Button>
+          <Button 
+            onClick={this.props.goToAdminPage}
+            >Para Criar Expedição
+          </Button>
+          <Button
+            onClick={this.props.goToTripsListPage}
+            >Explorar Lista de Viagens
+          </Button>
         </LoginWrapper>
         :
         <LoginWrapper onSubmit={this.toLogin}>
@@ -77,7 +82,8 @@ class LoginPage extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
       goToAdminPage: () => dispatch(push(routes.adminPage)),
-      toLogin: (email, password) => dispatch(toLogin(email, password))
+      toLogin: (email, password) => dispatch(toLogin(email, password)),
+      goToTripsListPage: () => dispatch(push(routes.tripsListPage)),
   }
 }
 

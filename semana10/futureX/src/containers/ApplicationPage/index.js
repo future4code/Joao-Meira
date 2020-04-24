@@ -9,7 +9,9 @@ import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-countr
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { goToAdminPage, getTripsList } from "../../actions/actions";
+import InputLabel from '@material-ui/core/InputLabel';
+import { goToAdminPage, getTripsList, toSendApplication } from "../../actions/actions";
+import countryList from 'react-select-country-list'
 
 
 
@@ -17,20 +19,21 @@ import { goToAdminPage, getTripsList } from "../../actions/actions";
 const tripForm = [
   {name: "name", type: "text", label: "Nome do Expedicionário", required: true, pattern: "[A-Za-z ãé]{3,}", title: "O nome deve conter no mínimo 5 letras"},
   {name: "age", type: "number", label: "Idade", required: true, min: 18, title: "Você deve ter mais de 18 anos!"},
-  {name: "applicationText", type: "text", label: "Conte-nos sobre você", required: true, pattern: "[A-Za-z ãéÁáêõÕÊíÍçÇÚúüÜ]{30,}", title: "O texto de aplicação deve ter no mínimo 30 caracteres"},
+  {name: "applicationText", type: "text", label: "Conte-nos sobre você", required: true, pattern: "^.{30,}$", title: "O texto de aplicação deve ter no mínimo 30 caracteres"},
   {name: "profession", type: "text", label: "Profissão", required: true, pattern: "[A-Za-z ãéÁáêõÕÊíÍçÇÚúüÜ]{10,}", title: "A profissão deve ter no mínimo 10 caracteres"},
-  // {name: "tripId", type: "text", label: "Viagem", required: true,  title: "A profissão deve ter no mínimo 10 caracteres"},
 ]
 
 
 class ApplicationPage extends Component {
   constructor(props) {
     super(props);
+    this.options = countryList().getData()
     this.state = {
+      countries: this.options,
       form: {},
-      trip:"",
     };
   }
+
 
   componentDidMount () {
       this.props.getTripsList()
@@ -39,8 +42,10 @@ class ApplicationPage extends Component {
 
   formSubmit = event => {
     event.preventDefault();
-    console.log(this.state.form)
-
+    this.props.toSendApplication(this.state.form)
+    console.log(
+      this.state.form
+    )
     this.setState({form:{}})
   }
 
@@ -49,10 +54,12 @@ class ApplicationPage extends Component {
     this.setState({
       form:{...this.state.form, [event.target.name]: event.target.value}
     });
+    // window.localStorage.setItem(`${[event.target.name]}`, `${event.target.value}`)
   };
 
   render() {
     const {tripsList} = this.props
+
 
     return (
       <AdminWrapper>
@@ -77,19 +84,35 @@ class ApplicationPage extends Component {
               />
           ))}
 
-          <CountryDropdown/>
+          <FormControl required >
+           <InputLabel id="demo-mutiple-name-label">País de Origem</InputLabel>
+            <Select
+              id="country"
+              name="country"
+              type="text"
+              value={this.state.form.country || ""}
+              onChange={this.handleFieldChange}
+            >
+          {this.state.countries.map(country => (
+              <MenuItem value={country.label}>
+                {country.label}
+              </MenuItem>
+            ))}
+            </Select>
+          </FormControl>
 
           <FormControl required >
+           <InputLabel id="demo-mutiple-name-label">Escolha uma Expedição</InputLabel>
             <Select
-              id="trip"
-              name="trip"
+              id="tripId"
+              name="tripId"
               type="text"
-              value={this.state.trip || ""}
+              value={this.state.form.tripId || ""}
               onChange={this.handleFieldChange}
             >
           {tripsList ? tripsList.map(trip => (
-              <MenuItem value={trip.name}>
-                {trip.name}
+              <MenuItem value={trip.id}>
+                {trip.name} - {trip.planet}
               </MenuItem>
             )) : <span>Carregando...</span>}
             </Select>
@@ -113,7 +136,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
       goToLoginPage: () => dispatch(push(routes.root)),
-      getTripsList: () => dispatch(getTripsList())
+      getTripsList: () => dispatch(getTripsList()),
+      toSendApplication: (application) => 
+        dispatch(toSendApplication(application )),
+
   }
 }
 

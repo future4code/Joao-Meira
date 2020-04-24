@@ -12,8 +12,8 @@ export default class Trip extends Component {
       <TripWrapper>
         <TripName>{this.props.tripName}</TripName>
         <TripInfo>
-          {this.props.tripDate}
-          {this.props.tripDescription}
+          <p>{this.props.tripDate}</p>
+          <p>{this.props.tripDescription}</p>
         </TripInfo>
         <Button>
           Detalhes da Viagem
@@ -31,9 +31,10 @@ const TripWrapper = styled.div`
   align-items: center;
   padding: 10px;
   width: 100%;
-  height: 40vh;
-  background: linear-gradient(to bottom, #ffbb97 0%, #ffffff 100%);
+  height: 100%;
+  background: linear-gradient(to bottom, #ff9454 0%, #ffdcc7 90%, #ffffff 100%);
   transition: 0.2s ease-out;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 
   &:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -41,19 +42,22 @@ const TripWrapper = styled.div`
   }
 `;
 
-const TripName = styled.p`
+const TripName = styled.h3`
   text-transform: capitalize;
-  color: #939393;
+  color: #707070;
   font-size: 2vw;
   padding: 2px;
   text-align: center;
 `;
 
 const TripInfo = styled.p`
-  color: #939393;
+  color: #707070;
   font-size: 1.2vw;
   padding: 0 5px;
   text-align: justify;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 

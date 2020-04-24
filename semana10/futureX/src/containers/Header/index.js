@@ -4,14 +4,23 @@ import logo from '../../img/logo.png'
 import { push, goBack } from 'connected-react-router'
 import { connect } from 'react-redux'
 import { routes } from '../Router'
-
+import Fab from '@material-ui/core/Fab';
 
 
 
 
 
 class Header extends React.Component {
+
+  toLogout = () => {
+      localStorage.clear()
+      this.props.goToLoginPage()
+      window.location.reload(true)
+      }
+
     render () {
+      const isLogged = localStorage.getItem("token") !== null
+
         return (
               <HeaderWrapper>
                 <ImgContainer>
@@ -19,10 +28,20 @@ class Header extends React.Component {
                   onClick={this.props.goToLoginPage}
                   />
                 </ImgContainer>
+                <ButtonWrapper>
                 <JoinTrip
                 onClick={this.props.goToApplicationPage}
                 >Join a Trip!
                 </JoinTrip>
+                {isLogged ?                 
+                <Fab variant = "extended" size="small" color="primary" aria-label="add"
+                onClick={this.toLogout}
+                >
+                Logout
+                </Fab> : <span/>}
+
+                </ButtonWrapper>
+
               </HeaderWrapper>
           );
         }
@@ -66,6 +85,16 @@ const Img = styled.img`
   cursor: pointer;
 `
 const JoinTrip = styled.div`
+  text-align: center;
+  font-size: 1.5vw;
+  color: #ff595c;
+  font-weight: 700;
+  height: 70%;
+  cursor: pointer;
+  margin-right: 2vw;
+  `
+
+const ButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,7 +103,7 @@ const JoinTrip = styled.div`
   color: #ff595c;
   font-weight: 700;
   height: 70%;
-  padding-right: 20vw;
+  padding-right: 12vw;
   cursor: pointer;
   `
 

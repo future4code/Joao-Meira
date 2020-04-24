@@ -8,7 +8,8 @@ import Button from "@material-ui/core/Button";
 import MenuItem from '@material-ui/core/MenuItem';
 import styled from "styled-components";
 import { routes } from "../Router";
-
+import {toCreateTrip} from "../../actions/actions"
+import moment from 'moment'
 
 
 const todayDate = () => {
@@ -34,13 +35,18 @@ const todayDate = () => {
       }
 }
 
+// const teste = new Date()
+// const maxDate = moment(new Date, 'DD-MM-YYYY').format();
+// console.log(maxDate)
+// console.log(teste.getDate())
 
 const tripForm = [
   {name: "name", type: "text", label: "Nome da Expedição", required: true, pattern: "[A-Za-z ãé]{5,}", title: "O nome deve conter no mínimo 5 letras"},
   {name: "date", type: "date", label: "", required: true, min: todayDate()},
-  {name: "description", type: "text", label: "Descrição da Viagem", required: true, pattern: "[A-Za-z ãé]{30,}", title: "A descrição deve ter no mínimo 30 caracteres"},
+  {name: "description", type: "text", label: "Descrição da Viagem", required: true, pattern: "^.{30,}$", title: "A descrição deve ter no mínimo 30 caracteres"},
   {name: "durationInDays", type: "number", label: "Duração da Viagem", required: true,  min: 50, title: "A expedição deve ser de no mínimo 50 dias"},
 ]
+
 
 const planets = [
   {name: ""},
@@ -73,7 +79,8 @@ class AdminPage extends Component {
 
   formSubmit = event => {
     event.preventDefault();
-    console.log(this.state.form)
+    this.props.toCreateTrip(this.state.form)
+    console.log(moment(this.state.form.date).format('DD/MM/YYYY'))
 
     this.setState({form:{}})
   }
@@ -127,7 +134,7 @@ class AdminPage extends Component {
 
           <Button
           type="submit"
-          >Criar Viagem
+          >Criar Expedição
           </Button>
         </FormWrapper>
         <Button
@@ -144,6 +151,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
       goToLoginPage: () => dispatch(push(routes.root)),
       goToTripsListPage: () => dispatch(push(routes.tripsListPage)),
+      toCreateTrip: (trip) => dispatch(toCreateTrip(trip))
   }
 }
 
