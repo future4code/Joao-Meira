@@ -1,16 +1,19 @@
 {
   "files": {
-    "main.js": "/static/js/main.5b5f61fe.chunk.js",
-    "main.js.map": "/static/js/main.5b5f61fe.chunk.js.map",
+    "main.js": "/static/js/main.42a2677b.chunk.js",
+    "main.js.map": "/static/js/main.42a2677b.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.3cc4bf02.chunk.js": "/static/js/2.3cc4bf02.chunk.js",
-    "static/js/2.3cc4bf02.chunk.js.map": "/static/js/2.3cc4bf02.chunk.js.map",
+    "static/js/2.ae714f9a.chunk.js": "/static/js/2.ae714f9a.chunk.js",
+    "static/js/2.ae714f9a.chunk.js.map": "/static/js/2.ae714f9a.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.08184fcdaa6c9f0238e370a99f21faf5.js": "/precache-manifest.08184fcdaa6c9f0238e370a99f21faf5.js",
+    "precache-manifest.b4be3e58efa4da2c3514578a7e5a956a.js": "/precache-manifest.b4be3e58efa4da2c3514578a7e5a956a.js",
     "service-worker.js": "/service-worker.js",
     "static/media/futurex.png": "/static/media/futurex.9a254c5b.png",
     "static/media/instagram.png": "/static/media/instagram.a31c5288.png",
+    "static/media/rickandmorty.jpg": "/static/media/rickandmorty.1ee4aeb4.jpg",
+    "static/media/rickandmorty2.jpeg": "/static/media/rickandmorty2.deb980b8.jpeg",
+    "static/media/rickandmorty3.jpg": "/static/media/rickandmorty3.01270d71.jpg",
     "static/media/whatsapp.png": "/static/media/whatsapp.934170ab.png"
   }
 }

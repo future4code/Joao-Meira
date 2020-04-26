@@ -106,7 +106,7 @@ const LoginWrapper = styled.form`
 const Img = styled.img`
   width: 17vw;
   min-width: 250px;
-  box-shadow: 5px 5px 1vw;
+  box-shadow: 0.5vw 0.5vw 1vw;
   border-radius: 2vw;
   margin: 5vw 0 4vw 0;
 `

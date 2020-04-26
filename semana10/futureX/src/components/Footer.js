@@ -19,15 +19,15 @@ export default function Footer() {
           </Texto>
         </Contato>
         <RedesSociais>
-          <DivIcon2>
-            <img src={require('../img/facebook.png')}/>
-          </DivIcon2>
-          <DivIcon2>
-            <img src={require('../img/instagram.png')}/>
-          </DivIcon2>
-          <DivIcon2>
-            <img src={require('../img/whatsapp.png')}/>
-          </DivIcon2>
+          <DivIcon2
+            img={require('../img/facebook.png')}
+          />
+          <DivIcon2
+            img={require('../img/instagram.png')}
+          />
+          <DivIcon2
+            img={require('../img/whatsapp.png')}
+          />
         </RedesSociais>
       </FooterWrapper>
   );
@@ -61,6 +61,7 @@ padding-left: 1%;
 height: 40%;
 width: 50%;
 border-left: 1px dashed white;
+z-index: -0;
 `
 const DivIcon = styled.div`
   display: flex;
@@ -79,13 +80,25 @@ const DivIcon2 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px dashed rgba(11,79,96,1);
-  background-color: white;
   border-radius: 5px;
   height: 2vw;
   width: 2vw;
   margin-right: 1vw;
+  background: url(${props => props.img});
+  background-size: 2vw 2vw;
+  background-repeat: no-repeat;
+
+  &:before {
+  content: " ";
+  border-radius: 5px;
+  position: absolute;
+  width: 2vw; 
+  height: 2vw;
+  background-color: white;
+  z-index: -2;
+  }
 `
+
 const Texto = styled.div`
   color: white;
   text-align: center;
