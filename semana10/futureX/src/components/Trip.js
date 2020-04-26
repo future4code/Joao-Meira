@@ -15,7 +15,9 @@ export default class Trip extends Component {
           <p>{this.props.tripDate}</p>
           <p>{this.props.tripDescription}</p>
         </TripInfo>
-        <Button>
+        <Button
+        onClick={this.props.goToTripDetails}
+        >
           Detalhes da Viagem
         </Button>
       </TripWrapper>
@@ -50,7 +52,7 @@ const TripName = styled.h3`
   text-align: center;
 `;
 
-const TripInfo = styled.p`
+const TripInfo = styled.div`
   color: #707070;
   font-size: 1.2vw;
   padding: 0 5px;
@@ -60,15 +62,6 @@ const TripInfo = styled.p`
   align-items: center;
 `;
 
-
-const Img = styled.div`
-  width: 100%;
-  height: 100%;
-  /* background-image: url(${props => props.img}); */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
 
 const Button = styled.button`
   box-sizing: border-box;

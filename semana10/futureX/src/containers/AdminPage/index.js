@@ -35,10 +35,6 @@ const todayDate = () => {
       }
 }
 
-// const teste = new Date()
-// const maxDate = moment(new Date, 'DD-MM-YYYY').format();
-// console.log(maxDate)
-// console.log(teste.getDate())
 
 const tripForm = [
   {name: "name", type: "text", label: "Nome da Expedição", required: true, pattern: "[A-Za-z ãé]{5,}", title: "O nome deve conter no mínimo 5 letras"},
@@ -95,7 +91,9 @@ class AdminPage extends Component {
   render() {
 
     return (
-      <AdminWrapper>
+      <AdminWrapper
+      img={require('../../img/rickandmorty2.jpeg')}
+      >
         <h2>Crie uma Expedição Interplanetária</h2>
         
         <FormWrapper onSubmit={this.formSubmit}>
@@ -137,10 +135,10 @@ class AdminPage extends Component {
           >Criar Expedição
           </Button>
         </FormWrapper>
-        <Button
+        <Button2
         onClick={this.props.goToTripsListPage}
           >Explorar Lista de Viagens
-        </Button>
+        </Button2>
       </AdminWrapper>
 
     );
@@ -159,18 +157,57 @@ export default connect (null, mapDispatchToProps) (AdminPage);
 
 
 const AdminWrapper = styled.div`
- width: 100%;
+  width: 100%;
   height: 75vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  &:before {
+  content: " ";
+  border-radius: 1vw;
+  position: absolute;
+  width: 50%; 
+  height: 70%;  
+  opacity: .4; 
+  z-index: -3;
+  background: url(${props => props.img});
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.4;
+  }
 `
 
 const FormWrapper = styled.form`
-  width: 17%;
+  width: 20%;
   height: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  background-color: rgba(250, 250, 250, 0.9);
+  border-radius: 5px;
+  padding: 2vw;
+  margin: 1vw 0;
 `
+
+const Button2 = styled.button`
+  box-sizing: border-box;
+  background-color: #939393;
+  border: 2px solid #939393;
+  color: white;
+  padding: 5px;
+  margin-bottom: 1vw;
+  width: 100%;
+  max-width: 10vw;
+  border-radius: 5px;
+  font-size: 0.8vw;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+
+  &:hover {
+    background-color: white;
+    color: #939393;
+  }
+`;

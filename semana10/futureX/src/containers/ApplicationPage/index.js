@@ -5,12 +5,11 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { routes } from "../Router";
-import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
-import { goToAdminPage, getTripsList, toSendApplication } from "../../actions/actions";
+import { getTripsList, toSendApplication } from "../../actions/actions";
 import countryList from 'react-select-country-list'
 
 
@@ -54,7 +53,6 @@ class ApplicationPage extends Component {
     this.setState({
       form:{...this.state.form, [event.target.name]: event.target.value}
     });
-    // window.localStorage.setItem(`${[event.target.name]}`, `${event.target.value}`)
   };
 
   render() {
@@ -62,7 +60,9 @@ class ApplicationPage extends Component {
 
 
     return (
-      <AdminWrapper>
+      <AdminWrapper
+      img={require('../../img/rickandmorty3.jpg')}
+      >
         <h2>Inscreva-se para uma Expedição Interplanetária</h2>
         
         <FormWrapper onSubmit={this.formSubmit}>
@@ -147,19 +147,39 @@ export default connect (mapStateToProps, mapDispatchToProps) (ApplicationPage);
 
 
 const AdminWrapper = styled.div`
+  position: relative;
   width: 100%;
   height: 75vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 1;
+
+  &:before {
+  content: " ";
+  border-radius: 1vw;
+  position: absolute;
+  width: 80%; 
+  height: 90%;  
+  opacity: .4; 
+  z-index: -3;
+  background: url(${props => props.img});
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.5;
+}
 `
 
 const FormWrapper = styled.form`
-  width: 17%;
+  width: 20%;
   height: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  background-color: rgba(250, 250, 250, 0.7);
+  border-radius: 5px;
+  padding: 2vw;
 `
 

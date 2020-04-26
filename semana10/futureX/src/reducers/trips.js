@@ -1,5 +1,7 @@
 const initialState = {
     tripsList: [],
+
+    tripDetails:{}
 }
 
 const trips = (state = initialState, action) => {
@@ -8,6 +10,11 @@ const trips = (state = initialState, action) => {
         case 'SET_TRIPS_LIST' : {
             return{
                 ...state, tripsList: action.payload
+            }
+        }
+        case 'SET_TRIP_DETAILS' : {
+            return{
+                tripDetails: action.payload
             }
         }
     }

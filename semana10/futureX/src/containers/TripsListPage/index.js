@@ -4,7 +4,7 @@ import { push } from "connected-react-router";
 import styled, { css } from "styled-components";
 import { routes } from "../Router";
 import Trip from "../../components/Trip";
-import { goToAdminPage, getTripsList } from "../../actions/actions";
+import { getTripDetails, getTripsList } from "../../actions/actions";
 
 
 
@@ -44,6 +44,12 @@ class ListPage extends Component {
       }
   }
 
+  goToTripDetails = (tripId) => {
+    localStorage.setItem("tripId", tripId)
+    this.props.getTripDetails(tripId)
+    this.props.goToTripDetails()
+  }
+
   render() {
     const {tripsList} = this.props
 
@@ -57,6 +63,7 @@ class ListPage extends Component {
               tripDate={trip.date}
               tripDescription={trip.description}
               key={trip.id}
+              goToTripDetails={() => this.goToTripDetails (trip.id)}
             /> )) : <span>Carregando...</span>}
         </TripsList>
       </ListWrapper>
@@ -72,7 +79,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
       goToAdminPage: () => dispatch(push(routes.adminPage)),
       goToLoginPage: () => dispatch(push(routes.root)),
-      getTripsList: () => dispatch(getTripsList())
+      goToTripDetails: () => dispatch(push(routes.tripDetailsPage)),
+      getTripsList: () => dispatch(getTripsList()),
+      getTripDetails: (tripId) => dispatch (getTripDetails(tripId))
   }
 }
 

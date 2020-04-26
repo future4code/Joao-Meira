@@ -6,7 +6,7 @@ import moment from 'moment'
 
 const baseUrl = "https://us-central1-missao-newton.cloudfunctions.net/futureX/joao-meira"
 
-
+const token = localStorage.getItem('token')
 
 export const toLogin = (email, password) => async (dispatch) => {
     const body = {
@@ -27,6 +27,7 @@ export const toLogin = (email, password) => async (dispatch) => {
 }
 
 export const toSendApplication = (application) => async (dispatch) => {
+    
     const body = {
         name: application.name,
         age: application.age,
@@ -42,7 +43,6 @@ export const toSendApplication = (application) => async (dispatch) => {
     } catch (error){
         console.error(error)
     }
-
 }
 
 export const toCreateTrip = (trip) => async (dispatch) => {
@@ -50,7 +50,7 @@ export const toCreateTrip = (trip) => async (dispatch) => {
     
     const headers = {
         headers:{
-            "auth": localStorage.getItem('token'),
+            "auth": token,
         }
     }
 
@@ -70,9 +70,31 @@ export const toCreateTrip = (trip) => async (dispatch) => {
         dispatch(push(routes.tripsListPage))
     } catch (error){
         console.error(error)
-        console.log(body)
-        console.log(headers)
-        console.log(body.date)
+    }
+
+}
+
+export const approveCandidate = (tripId, candidateId) => async (dispatch) => {
+    
+    const headers = {
+        headers:{
+            "auth": token,
+        }
+    }
+
+    const body = {
+        "approve": true,
+    }
+
+    try{
+        await axios.put(`${baseUrl}/trips/${tripId}/candidates/${candidateId}/decide`,
+        body,
+        headers)
+        alert("Candidato Aprovado!")
+        dispatch(push(routes.tripDetailsPage))
+        window.location.reload(true)
+    } catch (error){
+        console.error(error)
     }
 
 }
@@ -82,15 +104,32 @@ export const getTripsList = () => async (dispatch) => {
     dispatch(setTripsList(response.data.trips))
 }
 
+export const getTripDetails = (tripId) => async (dispatch) => {
+    const headers = {
+        headers:{
+            "auth": token,
+        }
+    }
+
+    const response = await axios.get(`${baseUrl}/trip/${tripId}`, headers)
+    dispatch(setTripDetails(response.data.trip))
+}
+
 
 
 
 
 export const setTripsList = (tripsList) => {
-	console.log(tripsList)
 	return{
 	type: 'SET_TRIPS_LIST',
 	payload: tripsList,
 	}
 
+}
+
+export const setTripDetails = (trip) => {
+    return {
+        type: 'SET_TRIP_DETAILS',
+        payload: trip,
+    }
 }
