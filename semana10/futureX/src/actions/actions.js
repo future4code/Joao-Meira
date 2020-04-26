@@ -18,8 +18,8 @@ export const toLogin = (email, password) => async (dispatch) => {
         const response = await axios.post( `${baseUrl}/login`, 
         body)
         window.localStorage.setItem("token", response.data.token)
-        dispatch(push(routes.adminPage))
         window.location.reload(true)
+        dispatch(push(routes.adminPage))
     } catch (error){
         console.error(error)
     }
