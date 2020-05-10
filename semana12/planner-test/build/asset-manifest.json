@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.js": "/static/js/main.ce9ece84.chunk.js",
+    "main.js.map": "/static/js/main.ce9ece84.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.e205388c.chunk.js": "/static/js/2.e205388c.chunk.js",
+    "static/js/2.e205388c.chunk.js.map": "/static/js/2.e205388c.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.f6f8c74406301e49ffaefa348a338249.js": "/precache-manifest.f6f8c74406301e49ffaefa348a338249.js",
+    "service-worker.js": "/service-worker.js",
+    "static/media/background-valley.jpg": "/static/media/background-valley.de907e3d.jpg"
+  }
+}

@@ -40,7 +40,7 @@ export class Board extends React.Component {
       <BoardWrapper>
             {daysOfTheWeek.map((day) => (
             <CommitmentsList key = {day.name}>
-            <p> {day.name} </p>
+            <p>{day.name}</p>
             <ul>
               {commitmentsPerDay[day.name] ? 
               (

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import valley from '../../img/background-valley.jpg'
 
 
-class Planner extends React.Component {
+export class Planner extends React.Component {
   render() {
     return (
     <PlannerWrapper img = {valley}>
@@ -24,7 +24,7 @@ class Planner extends React.Component {
 
 export default connect()(Planner);
 
-const PlannerWrapper = styled.div`
+export const PlannerWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,7 +37,7 @@ const PlannerWrapper = styled.div`
     color: brown;
 `
 
-const PlannerTitle = styled.h2`
+export const PlannerTitle = styled.h2`
     color: #667651;
     width: 20%;
     height: 4%;

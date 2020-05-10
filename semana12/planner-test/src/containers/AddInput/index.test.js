@@ -40,7 +40,6 @@ describe('AddInput container',() => {
         const findMenuItem = renderedComponent.find(MenuItem)
 
         daysOfTheWeek.forEach((day, index) => {
-            console.log(findMenuItem.at(index+1).props())
             expect(findMenuItem.at(index+1).props().value).toEqual(day.name)
             expect(findMenuItem.at(index+1).props().children).toEqual(day.name)
         })
