@@ -1,10 +1,10 @@
 {
-  "name": "aula-back-arquitetura",
+  "name": "script2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "exercicio2.js",
   "scripts": {
-    "start": "tsc && node build/index.js",
+    "start": "tsc && node build/exercicio2.js"
   },
   "author": "",
   "license": "ISC",
