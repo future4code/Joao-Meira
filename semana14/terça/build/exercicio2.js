@@ -10,4 +10,4 @@ try {
 catch (error) {
     console.error(error);
 }
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=exercicio2.js.map
