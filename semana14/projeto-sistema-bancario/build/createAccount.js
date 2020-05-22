@@ -21,24 +21,34 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
 const accountsList = require("../accounts.json");
-function addCredit(cpf, value) {
-    const newAccountsList = accountsList.map((account) => {
-        if (account.cpf === cpf) {
-            return account.balance = value, account;
-        }
-        else {
-            return account;
-        }
+function createAccount(userName, cpf, birthDay) {
+    const cpfVerification = accountsList.find(account => {
+        return account.cpf === cpf;
     });
-    try {
-        fs.writeFileSync('accounts.json', JSON.stringify(newAccountsList));
-        console.log(`Depósito de ${value} efetuado com sucesso!`);
+    if (cpfVerification) {
+        console.log("Este CPF já possuí uma conta cadastrada.");
     }
-    catch (error) {
-        console.error(error);
+    else {
+        try {
+            const newAccount = {
+                userName: userName,
+                cpf: cpf,
+                birthDay: birthDay,
+                balance: 0,
+                bankStatement: [],
+            };
+            accountsList.push(newAccount);
+            const newAccountsList = JSON.stringify(accountsList);
+            fs.writeFileSync('accounts.json', newAccountsList, 'utf8');
+            return console.log("Conta criada com sucesso!");
+        }
+        catch (error) {
+            console.error(error);
+        }
     }
 }
-const accountToAddCredit = process.argv[2];
-const valueOfCredit = Number(process.argv[3]);
-addCredit(accountToAddCredit, valueOfCredit);
-//# sourceMappingURL=index.js.map
+const nameToCreate = process.argv[2];
+const cpfToCreate = process.argv[3];
+const birthDayToCreate = process.argv[4];
+createAccount(nameToCreate, cpfToCreate, birthDayToCreate);
+//# sourceMappingURL=createAccount.js.map

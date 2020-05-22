@@ -6,7 +6,9 @@
     "outDir": "build",
     "sourceMap": true,
     "target": "es6",
-    "module": "commonjs"
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

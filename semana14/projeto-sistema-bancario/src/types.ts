@@ -6,7 +6,7 @@ export type bankTransaction = {
 
 export type account = {
     userName: string,
-    cpf: number,
+    cpf: string,
     birthDay: string,
     balance: number,
     bankStatement: bankTransaction[],
