@@ -6,8 +6,10 @@ const accountsList : account[] = require("../accounts.json")
 function addCredit ( cpf : string, value : number ) {
     const newAccountsList = accountsList.map(( account ) => {
         if (account.cpf === cpf) {
-           return account.balance = value, account
-
+           return (
+            account.balance = value, 
+            account
+            )
         } else { return account }
     })
     try{

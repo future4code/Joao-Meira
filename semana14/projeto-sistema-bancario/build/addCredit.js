@@ -20,13 +20,26 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
-function addCredit() {
+const accountsList = require("../accounts.json");
+function addCredit(cpf, value) {
+    const newAccountsList = accountsList.map((account) => {
+        if (account.cpf === cpf) {
+            return (account.balance = value,
+                account);
+        }
+        else {
+            return account;
+        }
+    });
     try {
-        console.log(fs.readFileSync('accounts.json', 'utf8'));
+        fs.writeFileSync('accounts.json', JSON.stringify(newAccountsList));
+        console.log(`Depósito de ${value} efetuado com sucesso!`);
     }
     catch (error) {
         console.error(error);
     }
 }
-addCredit();
-//# sourceMappingURL=index.js.map
+const accountToAddCredit = process.argv[2];
+const valueOfCredit = Number(process.argv[3]);
+addCredit(accountToAddCredit, valueOfCredit);
+//# sourceMappingURL=addCredit.js.map
