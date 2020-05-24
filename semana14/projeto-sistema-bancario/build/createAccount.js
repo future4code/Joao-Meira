@@ -20,30 +20,38 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
+const moment = require("moment");
 const accountsList = require("../accounts.json");
 function createAccount(userName, cpf, birthDay) {
     const cpfVerification = accountsList.find(account => {
         return account.cpf === cpf;
     });
+    const ageVerification = moment().diff(birthDay, 'years');
+    console.log(ageVerification);
     if (cpfVerification) {
         console.log("Este CPF já possuí uma conta cadastrada.");
     }
     else {
-        try {
-            const newAccount = {
-                userName: userName,
-                cpf: cpf,
-                birthDay: birthDay,
-                balance: 0,
-                bankStatement: [],
-            };
-            accountsList.push(newAccount);
-            const newAccountsList = JSON.stringify(accountsList);
-            fs.writeFileSync('accounts.json', newAccountsList, 'utf8');
-            return console.log("Conta criada com sucesso!");
+        if (ageVerification < 18) {
+            console.log('Contas só podem ser abertas por maiores de 18 anos.');
         }
-        catch (error) {
-            console.error(error);
+        else {
+            try {
+                const newAccount = {
+                    userName: userName,
+                    cpf: cpf,
+                    birthDay: birthDay,
+                    balance: 0,
+                    bankStatement: [],
+                };
+                accountsList.push(newAccount);
+                const newAccountsList = JSON.stringify(accountsList);
+                fs.writeFileSync('accounts.json', newAccountsList, 'utf8');
+                return console.log("Conta criada com sucesso!");
+            }
+            catch (error) {
+                console.error(error);
+            }
         }
     }
 }

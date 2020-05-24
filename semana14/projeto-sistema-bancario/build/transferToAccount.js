@@ -53,11 +53,15 @@ function transferValue(userNameTransfering, cpfTransfering, userNameReceiving, c
         else if (credit === valueTransfered && verifyUserInfo === 1 && verifyReceiver === 0) {
             console.log(`Informações do Depositário incorretas.`);
         }
+        else if (credit !== valueTransfered && verifyUserInfo === 0) {
+            console.log(`Saldo insuficiente para transferência!`);
+            console.log(`Informações do depositante incorretas.`);
+        }
         else if (credit === valueTransfered && verifyUserInfo === 0 && verifyReceiver === 1) {
             console.log(`Informações do depositante incorretas.`);
         }
         else {
-            console.log(`Saldo insuficiente para transferência!`);
+            console.log(`A transferência não pôde ser processada.`);
         }
     }
     catch (error) {

@@ -1,17 +1,29 @@
 import { account } from './types';
 import * as fs from 'fs';
+import moment = require('moment')
 
 const accountsList : account[] = require("../accounts.json")
+
 
 function createAccount (
     userName : string, cpf : string, birthDay : string
     ) {
+    
     const cpfVerification = accountsList.find( account => {
         return account.cpf === cpf
     })
+
+
+    const ageVerification = moment().diff(birthDay, 'years')
+    console.log(ageVerification)
+
     if (cpfVerification) {
         console.log("Este CPF já possuí uma conta cadastrada.")
+
     } else {
+        if(ageVerification < 18) {
+            console.log('Contas só podem ser abertas por maiores de 18 anos.')
+        } else {
         try{
             const newAccount : account = {
             userName: userName,
@@ -27,8 +39,7 @@ function createAccount (
             } catch (error){
             console.error(error)
         }
-    }
-
+    }}
 }
 
 const nameToCreate : string = process.argv[2];
