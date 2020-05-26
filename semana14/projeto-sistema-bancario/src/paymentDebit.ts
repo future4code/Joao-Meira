@@ -7,15 +7,15 @@ let verifyDebit : number = 0;
 
 function paymentDebit ( 
     cpfToDebit : string, 
-    paymentDescription : string, 
-    dateOfPayment : string,
+    debitDescription : string, 
+    debitDate : string,
     debitValue: number
     ) {
     
     const debit : bankTransaction = {
-        value: debitValue,
-        date: dateOfPayment,
-        description: paymentDescription
+        value: (debitValue) * -1,
+        date: debitDate,
+        description: debitDescription
     }
 
     try{
@@ -33,9 +33,9 @@ function paymentDebit (
         })
         if(verifyDebit){
             fs.writeFileSync('accounts.json', JSON.stringify(newAccountsList))
-            console.log(`O pagamento no valor de ${debitValue} foi efetuado com sucesso!`)
+            console.log(`Foi realizado o débito de R$${debitValue}.`)
         } else {
-            console.log(`O pagamento não foi processado`)
+            console.log(`O débito não foi processado`)
         }
     } catch(error) {
         console.error(error)
@@ -43,8 +43,8 @@ function paymentDebit (
 }
 
 const cpfToDebit : string = process.argv[2];
-const paymentDescription : string = process.argv[3];
-const dateOfPayment : string = process.argv[4];
+const debitDescription : string = process.argv[3];
+const debitDate : string = process.argv[4];
 const debitValue : number = Number(process.argv[5])
 
-paymentDebit(  cpfToDebit, paymentDescription, dateOfPayment, debitValue )
+paymentDebit(  cpfToDebit, debitDescription, debitDate, debitValue )

@@ -90,4 +90,4 @@ const paymentDescription = process.argv[3];
 const paymentValue = Number(process.argv[4]);
 const dateOfPayment = process.argv[5];
 payBill(cpfToPay, paymentDescription, paymentValue, dateOfPayment);
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=payBill.js.map

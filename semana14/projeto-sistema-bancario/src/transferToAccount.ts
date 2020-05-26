@@ -1,5 +1,6 @@
 import * as fs from 'fs';
-import { account } from './types';
+import { account, bankTransaction } from './types';
+import moment = require('moment')
 
 const accountsList : account[] = require("../accounts.json")
 
@@ -17,6 +18,19 @@ function transferValue (
     valueTransfered: number
     ) {
 
+        const transferCredit : bankTransaction = {
+            value: valueTransfered,
+            date: moment().format('L'),
+            description: `Transferência bancária de ${userNameTransfering}`
+        }
+    
+        const transferDebit : bankTransaction = {
+            value: (valueTransfered) * -1,
+            date: moment().format('L'),
+            description: `Transferência bancária para ${userNameReceiving}`
+        }
+    
+
     accountsList.map(account => {
             if( account.cpf === cpfTransfering, account.balance >= valueTransfered) {
                 return credit=valueTransfered
@@ -28,13 +42,15 @@ function transferValue (
             if (account.balance >= valueTransfered && account.cpf === cpfTransfering && account.userName === userNameTransfering) {
                 return (
                     verifyUserInfo = 1,
-                    account.balance -= valueTransfered, 
+                    account.balance -= valueTransfered,
+                    account.bankStatement.push(transferDebit),
                     account
                )
             } else if ( credit === valueTransfered && account.cpf === cpfReceiving && account.userName === userNameReceiving ) {
                     return (
                        verifyReceiver = 1,
                        account.balance += valueTransfered,
+                       account.bankStatement.push(transferCredit),
                        account
                    )
             } else {

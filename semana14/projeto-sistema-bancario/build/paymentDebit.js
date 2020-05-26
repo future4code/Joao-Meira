@@ -22,11 +22,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
 const accountsList = require("../accounts.json");
 let verifyDebit = 0;
-function paymentDebit(cpfToDebit, paymentDescription, dateOfPayment, debitValue) {
+function paymentDebit(cpfToDebit, debitDescription, debitDate, debitValue) {
     const debit = {
-        value: debitValue,
-        date: dateOfPayment,
-        description: paymentDescription
+        value: (debitValue) * -1,
+        date: debitDate,
+        description: debitDescription
     };
     try {
         const newAccountsList = accountsList.map((account) => {
@@ -42,10 +42,10 @@ function paymentDebit(cpfToDebit, paymentDescription, dateOfPayment, debitValue)
         });
         if (verifyDebit) {
             fs.writeFileSync('accounts.json', JSON.stringify(newAccountsList));
-            console.log(`O pagamento no valor de ${debitValue} foi efetuado com sucesso!`);
+            console.log(`Foi realizado o débito de R$${debitValue}.`);
         }
         else {
-            console.log(`O pagamento não foi processado`);
+            console.log(`O débito não foi processado`);
         }
     }
     catch (error) {
@@ -53,8 +53,8 @@ function paymentDebit(cpfToDebit, paymentDescription, dateOfPayment, debitValue)
     }
 }
 const cpfToDebit = process.argv[2];
-const paymentDescription = process.argv[3];
-const dateOfPayment = process.argv[4];
+const debitDescription = process.argv[3];
+const debitDate = process.argv[4];
 const debitValue = Number(process.argv[5]);
-paymentDebit(cpfToDebit, paymentDescription, dateOfPayment, debitValue);
+paymentDebit(cpfToDebit, debitDescription, debitDate, debitValue);
 //# sourceMappingURL=paymentDebit.js.map

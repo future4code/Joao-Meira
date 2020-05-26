@@ -26,9 +26,7 @@ function createAccount(userName, cpf, birthDay) {
     const cpfVerification = accountsList.find(account => {
         return account.cpf === cpf;
     });
-    const birthDayFormat = moment(birthDay).format('L');
-    console.log(birthDayFormat);
-    const ageVerification = moment().diff(birthDayFormat, 'years');
+    const ageVerification = moment().diff(birthDay, 'years');
     console.log(ageVerification);
     if (cpfVerification) {
         console.log("Este CPF já possuí uma conta cadastrada.");
@@ -37,7 +35,7 @@ function createAccount(userName, cpf, birthDay) {
         if (ageVerification < 18) {
             console.log('Contas só podem ser abertas por maiores de 18 anos.');
         }
-        else {
+        else if (ageVerification >= 18) {
             try {
                 const newAccount = {
                     userName: userName,
