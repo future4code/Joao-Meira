@@ -9,7 +9,7 @@ function addCredit ( cpf : string, value : number ) {
 
     const credit : bankTransaction = {
         value: value,
-        date: Date.now,
+        date: moment().format('L'),
         description: `Depósito em dinheiro de R$${value.toFixed(2)}`
     }
     console.log(credit)

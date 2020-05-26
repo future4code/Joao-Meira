@@ -23,7 +23,7 @@ function createAccount (
     } else {
         if(ageVerification < 18) {
             console.log('Contas só podem ser abertas por maiores de 18 anos.')
-        } else {
+        } else if ( ageVerification >= 18 ) {
         try{
             const newAccount : account = {
             userName: userName,

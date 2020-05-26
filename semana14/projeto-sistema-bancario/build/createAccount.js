@@ -26,7 +26,9 @@ function createAccount(userName, cpf, birthDay) {
     const cpfVerification = accountsList.find(account => {
         return account.cpf === cpf;
     });
-    const ageVerification = moment().diff(birthDay, 'years');
+    const birthDayFormat = moment(birthDay).format('L');
+    console.log(birthDayFormat);
+    const ageVerification = moment().diff(birthDayFormat, 'years');
     console.log(ageVerification);
     if (cpfVerification) {
         console.log("Este CPF já possuí uma conta cadastrada.");

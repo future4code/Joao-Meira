@@ -20,11 +20,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
+const moment = require("moment");
 const accountsList = require("../accounts.json");
 function addCredit(cpf, value) {
     const credit = {
         value: value,
-        date: Date.now,
+        date: moment().format('L'),
         description: `Depósito em dinheiro de R$${value.toFixed(2)}`
     };
     console.log(credit);
