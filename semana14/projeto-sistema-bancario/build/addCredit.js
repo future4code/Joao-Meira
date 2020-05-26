@@ -22,18 +22,33 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
 const accountsList = require("../accounts.json");
 function addCredit(cpf, value) {
-    const newAccountsList = accountsList.map((account) => {
-        if (account.cpf === cpf) {
-            return (account.balance = value,
-                account);
+    const credit = {
+        value: value,
+        date: Date.now,
+        description: `Depósito em dinheiro de R$${value.toFixed(2)}`
+    };
+    console.log(credit);
+    let verifyInfo = 0;
+    try {
+        const newAccountsList = accountsList.map(account => {
+            if (account.cpf === cpf) {
+                verifyInfo = 1;
+                return (account.balance += value,
+                    account.bankStatement.push(credit),
+                    account);
+            }
+            else {
+                return account;
+            }
+        });
+        if (verifyInfo) {
+            fs.writeFileSync('accounts.json', JSON.stringify(newAccountsList));
+            console.log(`Depósito de R$${value.toFixed(2)} efetuado com sucesso!`);
         }
         else {
-            return account;
+            console.log('\u001b[31m' + `Deposito NÃO efetuado. Confira as informações.`);
         }
-    });
-    try {
-        fs.writeFileSync('accounts.json', JSON.stringify(newAccountsList));
-        console.log(`Depósito de ${value} efetuado com sucesso!`);
+        ;
     }
     catch (error) {
         console.error(error);

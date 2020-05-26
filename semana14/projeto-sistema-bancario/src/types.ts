@@ -1,6 +1,6 @@
 export type bankTransaction = {
     value: number,
-    date: string,
+    date: any,
     description: string,
 }
 
