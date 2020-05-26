@@ -19,6 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.paymentDebit = void 0;
 const fs = __importStar(require("fs"));
 const accountsList = require("../accounts.json");
 let verifyDebit = 0;
@@ -52,6 +53,7 @@ function paymentDebit(cpfToDebit, debitDescription, debitDate, debitValue) {
         console.error(error);
     }
 }
+exports.paymentDebit = paymentDebit;
 const cpfToDebit = process.argv[2];
 const debitDescription = process.argv[3];
 const debitDate = process.argv[4];

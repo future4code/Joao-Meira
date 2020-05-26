@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.checkBalance = void 0;
 const accountsList = require("../accounts.json");
-function verifyBalance(userName, userCpf) {
+function checkBalance(userName, userCpf) {
     let infoVerify = 0;
     accountsList.filter(account => {
         if (account.userName === userName && account.cpf === userCpf)
@@ -23,7 +24,8 @@ function verifyBalance(userName, userCpf) {
         console.error(error);
     }
 }
+exports.checkBalance = checkBalance;
 const userName = process.argv[2];
 const userCpf = process.argv[3];
-verifyBalance(userName, userCpf);
+checkBalance(userName, userCpf);
 //# sourceMappingURL=checkBalance.js.map

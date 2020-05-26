@@ -25,12 +25,12 @@ const accountsList = require("../accounts.json");
 let verifyPayment = 0;
 function payBill(cpfToPay, paymentDescription, paymentValue, dateOfPayment) {
     const payment = {
-        value: paymentValue,
+        value: (paymentValue) * -1,
         date: dateOfPayment,
         description: paymentDescription
     };
     const scheduledPayment = {
-        value: paymentValue,
+        value: (paymentValue) * -1,
         date: moment().format("L"),
         description: paymentDescription
     };

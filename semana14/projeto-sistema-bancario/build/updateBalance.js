@@ -19,45 +19,38 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addCredit = void 0;
 const fs = __importStar(require("fs"));
 const moment = require("moment");
 const accountsList = require("../accounts.json");
-function addCredit(cpf, value) {
-    const credit = {
-        value: value,
-        date: moment().format('L'),
-        description: `Depósito em dinheiro de R$${value.toFixed(2)}`
-    };
-    console.log(credit);
-    let verifyInfo = 0;
-    try {
-        const newAccountsList = accountsList.map(account => {
-            if (account.cpf === cpf) {
-                verifyInfo = 1;
-                return (account.balance += value,
-                    account.bankStatement.push(credit),
+function updateBalance() {
+    const newAccountsList = accountsList.map((account) => {
+        account.bankStatement.map(operation => {
+            if (operation.date < moment('L')) {
+                account.balance = 0;
+                return (account.balance += operation.value,
                     account);
             }
             else {
-                return account;
+                return operation;
             }
         });
-        if (verifyInfo) {
-            fs.writeFileSync('accounts.json', JSON.stringify(newAccountsList));
-            console.log(`Depósito de R$${value.toFixed(2)} efetuado com sucesso!`);
-        }
-        else {
-            console.log('\u001b[31m' + `Deposito NÃO efetuado. Confira as informações.`);
-        }
-        ;
+        return account;
+    });
+    try {
+        newAccountsList.map(account => {
+            console.log(`Titular da Conta: ${account.userName}
+                    CPF: ${account.cpf}
+                    Data de Nascimento: ${account.birthDay}
+                    Saldo: ${account.balance.toFixed(2)}
+                    ` +
+                'Extrato da conta:\n', account.bankStatement, '\n');
+            console.log();
+        });
+        fs.writeFileSync('accounts.json', JSON.stringify(newAccountsList));
     }
     catch (error) {
         console.error(error);
     }
 }
-exports.addCredit = addCredit;
-const accountToAddCredit = process.argv[2];
-const valueOfCredit = Number(process.argv[3]);
-addCredit(accountToAddCredit, valueOfCredit);
-//# sourceMappingURL=addCredit.js.map
+updateBalance();
+//# sourceMappingURL=updateBalance.js.map

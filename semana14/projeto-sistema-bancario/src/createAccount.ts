@@ -5,7 +5,7 @@ import moment = require('moment')
 const accountsList : account[] = require("../accounts.json")
 
 
-function createAccount (
+export function createAccount (
     userName : string, cpf : string, birthDay : string
     ) {
     

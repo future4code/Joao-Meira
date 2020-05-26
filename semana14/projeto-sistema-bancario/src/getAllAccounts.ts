@@ -3,7 +3,7 @@ import { account } from './types';
 
 const accountsList : account[] = require("../accounts.json")
 
-function getAllAccounts () {
+export function getAllAccounts () {
     try{
         accountsList.map( account => {
             console.log(

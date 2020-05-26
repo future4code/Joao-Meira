@@ -5,7 +5,7 @@ const accountsList : account[] = require("../accounts.json")
 
 let verifyDebit : number = 0;
 
-function paymentDebit ( 
+export function paymentDebit ( 
     cpfToDebit : string, 
     debitDescription : string, 
     debitDate : string,

@@ -19,12 +19,24 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.transferToAccount = void 0;
 const fs = __importStar(require("fs"));
+const moment = require("moment");
 const accountsList = require("../accounts.json");
 let credit = 0;
 let verifyUserInfo = 0;
 let verifyReceiver = 0;
-function transferValue(userNameTransfering, cpfTransfering, userNameReceiving, cpfReceiving, valueTransfered) {
+function transferToAccount(userNameTransfering, cpfTransfering, userNameReceiving, cpfReceiving, valueTransfered) {
+    const transferCredit = {
+        value: valueTransfered,
+        date: moment().format('L'),
+        description: `Transferência bancária de ${userNameTransfering}`
+    };
+    const transferDebit = {
+        value: (valueTransfered) * -1,
+        date: moment().format('L'),
+        description: `Transferência bancária para ${userNameReceiving}`
+    };
     accountsList.map(account => {
         if (account.cpf === cpfTransfering, account.balance >= valueTransfered) {
             return credit = valueTransfered;
@@ -35,11 +47,13 @@ function transferValue(userNameTransfering, cpfTransfering, userNameReceiving, c
             if (account.balance >= valueTransfered && account.cpf === cpfTransfering && account.userName === userNameTransfering) {
                 return (verifyUserInfo = 1,
                     account.balance -= valueTransfered,
+                    account.bankStatement.push(transferDebit),
                     account);
             }
             else if (credit === valueTransfered && account.cpf === cpfReceiving && account.userName === userNameReceiving) {
                 return (verifyReceiver = 1,
                     account.balance += valueTransfered,
+                    account.bankStatement.push(transferCredit),
                     account);
             }
             else {
@@ -68,10 +82,11 @@ function transferValue(userNameTransfering, cpfTransfering, userNameReceiving, c
         console.error(error);
     }
 }
+exports.transferToAccount = transferToAccount;
 const userTransfering = process.argv[2];
 const cpfTransfering = process.argv[3];
 const userReceiving = process.argv[4];
 const cpfReceiving = process.argv[5];
 const valueTransfered = Number(process.argv[6]);
-transferValue(userTransfering, cpfTransfering, userReceiving, cpfReceiving, valueTransfered);
+transferToAccount(userTransfering, cpfTransfering, userReceiving, cpfReceiving, valueTransfered);
 //# sourceMappingURL=transferToAccount.js.map

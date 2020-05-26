@@ -4,7 +4,7 @@ const accountsList : account[] = require("../accounts.json")
 
 
 
-function verifyBalance ( 
+export function checkBalance ( 
     userName: string,
     userCpf : string 
     ) {
@@ -38,4 +38,4 @@ const userName : string = process.argv[2];
 const userCpf : string = process.argv[3];
 
 
-verifyBalance(  userName, userCpf )
+checkBalance(  userName, userCpf )

@@ -19,6 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createAccount = void 0;
 const fs = __importStar(require("fs"));
 const moment = require("moment");
 const accountsList = require("../accounts.json");
@@ -55,6 +56,7 @@ function createAccount(userName, cpf, birthDay) {
         }
     }
 }
+exports.createAccount = createAccount;
 const nameToCreate = process.argv[2];
 const cpfToCreate = process.argv[3];
 const birthDayToCreate = process.argv[4];

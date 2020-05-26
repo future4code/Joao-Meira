@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getAllAccounts = void 0;
 const accountsList = require("../accounts.json");
 function getAllAccounts() {
     try {
@@ -17,5 +18,6 @@ function getAllAccounts() {
         console.error(error);
     }
 }
+exports.getAllAccounts = getAllAccounts;
 getAllAccounts();
 //# sourceMappingURL=getAllAccounts.js.map

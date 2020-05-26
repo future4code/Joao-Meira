@@ -5,7 +5,7 @@ import moment = require('moment')
 const accountsList : account[] = require("../accounts.json")
 
 
-function addCredit ( cpf : string, value : number ) {
+export function addCredit ( cpf : string, value : number ) {
 
     const credit : bankTransaction = {
         value: value,

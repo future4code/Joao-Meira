@@ -10,7 +10,7 @@ let verifyUserInfo : number = 0;
 
 let verifyReceiver : number = 0;
 
-function transferValue ( 
+export function transferToAccount ( 
     userNameTransfering : string, 
     cpfTransfering : string, 
     userNameReceiving : string, 
@@ -84,4 +84,4 @@ const userReceiving : string = process.argv[4];
 const cpfReceiving : string = process.argv[5];
 const valueTransfered : number = Number(process.argv[6])
 
-transferValue( userTransfering , cpfTransfering, userReceiving, cpfReceiving, valueTransfered )
+transferToAccount( userTransfering , cpfTransfering, userReceiving, cpfReceiving, valueTransfered )

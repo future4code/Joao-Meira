@@ -1,93 +1,38 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs = __importStar(require("fs"));
-const moment = require("moment");
-const accountsList = require("../accounts.json");
-let verifyPayment = 0;
-function payBill(cpfToPay, paymentDescription, paymentValue, dateOfPayment) {
-    const payment = {
-        value: paymentValue,
-        date: dateOfPayment,
-        description: paymentDescription
-    };
-    const scheduledPayment = {
-        value: paymentValue,
-        date: moment().format("L"),
-        description: paymentDescription
-    };
-    if (dateOfPayment) {
-        const newAccountsList = accountsList.map((account) => {
-            if (account.balance >= paymentValue && account.cpf === cpfToPay) {
-                verifyPayment = 1;
-                return (account.balance -= paymentValue,
-                    account.bankStatement.push(payment),
-                    account);
-            }
-            else {
-                return account;
-            }
-        });
-        try {
-            if (verifyPayment) {
-                fs.writeFileSync('accounts.json', JSON.stringify(newAccountsList));
-                console.log(`O pagamento no valor de ${paymentValue} foi efetuado com sucesso!`);
-            }
-            else {
-                console.log(`O pagamento não foi processado`);
-            }
-        }
-        catch (error) {
-            console.error(error);
-        }
-    }
-    else {
-        const newAccountsList = accountsList.map((account) => {
-            if (account.balance >= paymentValue && account.cpf === cpfToPay) {
-                verifyPayment = 1;
-                return (account.balance -= paymentValue,
-                    account.bankStatement.push(scheduledPayment),
-                    account);
-            }
-            else {
-                return account;
-            }
-        });
-        try {
-            if (verifyPayment) {
-                fs.writeFileSync('accounts.json', JSON.stringify(newAccountsList));
-                console.log(`O pagamento no valor de ${paymentValue} foi efetuado com sucesso!`);
-            }
-            else {
-                console.log(`O pagamento não foi processado`);
-            }
-        }
-        catch (error) {
-            console.error(error);
-        }
-    }
+const getAllAccounts_1 = require("./getAllAccounts");
+const createAccount_1 = require("./createAccount");
+const checkBalance_1 = require("./checkBalance");
+const addCredit_1 = require("./addCredit");
+const transferToAccount_1 = require("./transferToAccount");
+const paymentDebit_1 = require("./paymentDebit");
+const actionChoice = process.argv[2];
+const firstArgument = process.argv[3];
+const secondArgument = process.argv[4];
+const thirdArgument = process.argv[5];
+const fourthArgument = process.argv[6];
+const fifthArgument = process.argv[7];
+switch (actionChoice) {
+    case "GET_ALL_ACCOUNTS":
+        getAllAccounts_1.getAllAccounts();
+        break;
+    case "CREATE_ACCOUNT":
+        createAccount_1.createAccount(firstArgument, secondArgument, thirdArgument);
+        break;
+    case "CHECK_BALANCE":
+        checkBalance_1.checkBalance(firstArgument, secondArgument);
+        break;
+    case "ADD_CREDIT":
+        addCredit_1.addCredit(firstArgument, secondArgument);
+        break;
+    case "TRANSFER_TO_ACCOUNT":
+        transferToAccount_1.transferToAccount(firstArgument, secondArgument, thirdArgument, fourthArgument, fifthArgument);
+        break;
+    case "DEBIT":
+        paymentDebit_1.paymentDebit(firstArgument, secondArgument, thirdArgument, fourthArgument);
+        break;
+    default:
+        console.log('Ação não encontrada!');
+        break;
 }
-const cpfToPay = process.argv[2];
-const paymentDescription = process.argv[3];
-const paymentValue = Number(process.argv[4]);
-const dateOfPayment = process.argv[5];
-payBill(cpfToPay, paymentDescription, paymentValue, dateOfPayment);
 //# sourceMappingURL=index.js.map
