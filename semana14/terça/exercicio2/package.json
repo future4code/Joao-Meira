@@ -1,0 +1,17 @@
+{
+  "name": "script2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "exercicio2.js",
+  "scripts": {
+    "start": "tsc && node build/exercicio2.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^13.7.7",
+    "ts-node": "^8.6.2",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.3"
+  }
+}
