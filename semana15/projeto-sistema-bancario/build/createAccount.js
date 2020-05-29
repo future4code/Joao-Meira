@@ -31,8 +31,6 @@ function createAccount(userName, cpf, birthDay) {
         return account.cpf === cpf;
     });
     const ageVerification = moment_1.default().diff(birthDay, 'years');
-    console.log(ageVerification);
-    console.log(ageVerification);
     if (cpfVerification) {
         console.log("\x1b[31m", "Este CPF já possuí uma conta cadastrada.");
     }

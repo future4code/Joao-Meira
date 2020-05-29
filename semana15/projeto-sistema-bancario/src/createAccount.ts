@@ -14,8 +14,6 @@ export function createAccount (
         return account.cpf === cpf
     })
     const ageVerification = moment().diff(birthDay, 'years')
-    console.log(ageVerification)
-    console.log(ageVerification)
 
     if (cpfVerification) {
         console.log("\x1b[31m", "Este CPF já possuí uma conta cadastrada.")

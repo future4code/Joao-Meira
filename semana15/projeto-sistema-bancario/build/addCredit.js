@@ -26,7 +26,7 @@ const accountsList = require("../accounts.json");
 function addCredit(cpf, value) {
     const credit = {
         value: value,
-        date: moment().format('L'),
+        date: moment().format("DD/MM/YYYY"),
         description: `Depósito em dinheiro de R$${value.toFixed(2)}`
     };
     let verifyInfo = 0;

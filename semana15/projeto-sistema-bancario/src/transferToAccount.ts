@@ -20,13 +20,13 @@ export function transferToAccount (
 
         const transferCredit : bankTransaction = {
             value: valueTransfered,
-            date: moment().format('L'),
+            date: moment().format("DD/MM/YYYY"),
             description: `Transferência bancária de ${userNameTransfering}`
         }
     
         const transferDebit : bankTransaction = {
             value: (valueTransfered) * -1,
-            date: moment().format('L'),
+            date: moment().format("DD/MM/YYYY"),
             description: `Transferência bancária para ${userNameReceiving}`
         }
     
@@ -91,8 +91,7 @@ export function transferToAccount (
             ) {
             console.log(
                 "\x1b[31m",
-                `Saldo insuficiente para transferência!
-                Informações do depositante incorretas.`
+                `Saldo insuficiente para transferência ou Informações do depositante incorretas.`
                 )
         } else if (
             verifyCredit === valueTransfered && 

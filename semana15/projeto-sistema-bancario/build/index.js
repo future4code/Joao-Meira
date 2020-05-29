@@ -6,6 +6,7 @@ const checkBalance_1 = require("./checkBalance");
 const addCredit_1 = require("./addCredit");
 const transferToAccount_1 = require("./transferToAccount");
 const payBill_1 = require("./payBill");
+const updateBalance_1 = require("./updateBalance");
 const moment = require('moment');
 const actionType = process.argv[2];
 console.log(actionType);
@@ -27,6 +28,9 @@ switch (actionType) {
         break;
     case 'PAYMENT':
         payBill_1.payBill(process.argv[3], process.argv[4], Number(process.argv[5]), moment(process.argv[6], 'DD/MM/YYYY'));
+        break;
+    case 'UPDATE_BALANCE':
+        updateBalance_1.updateBalance();
         break;
     default:
         console.log('Ação não encontrada!');

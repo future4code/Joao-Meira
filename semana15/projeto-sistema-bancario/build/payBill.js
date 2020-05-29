@@ -26,8 +26,6 @@ const accountsList = require("../accounts.json");
 let verifyPayment = 0;
 function payBill(cpfToPay, paymentDescription, paymentValue, dateOfPayment) {
     const dateNow = moment().diff(dateOfPayment, "days");
-    console.log(dateOfPayment);
-    console.log(dateNow);
     const scheduledPayment = {
         value: (paymentValue) * -1,
         date: moment(dateOfPayment).format('DD/MM/YYYY'),

@@ -14,8 +14,6 @@ export function payBill (
     ) {
 
     const dateNow : number = moment().diff(dateOfPayment, "days")
-    console.log(dateOfPayment)
-    console.log(dateNow)
     
     const scheduledPayment : bankTransaction = {
         value: (paymentValue) * -1,

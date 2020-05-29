@@ -19,38 +19,35 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.updateBalance = void 0;
 const fs = __importStar(require("fs"));
 const moment = require("moment");
+const getAllAccounts_1 = require("./getAllAccounts");
 const accountsList = require("../accounts.json");
 function updateBalance() {
     const newAccountsList = accountsList.map((account) => {
         account.bankStatement.map(operation => {
-            if (operation.date < moment('L')) {
-                account.balance = 0;
-                return (account.balance += operation.value,
-                    account);
+            const operationDate = moment(operation.date, "DD/MM/YYYY");
+            const isToUpdate = moment().diff(operationDate);
+            console.log(isToUpdate);
+            account.balance = 0;
+            if (isToUpdate < 0) {
+                return (operation);
             }
             else {
-                return operation;
+                return (account.balance += operation.value,
+                    account);
             }
         });
         return account;
     });
     try {
-        newAccountsList.map(account => {
-            console.log(`Titular da Conta: ${account.userName}
-                    CPF: ${account.cpf}
-                    Data de Nascimento: ${account.birthDay}
-                    Saldo: ${account.balance.toFixed(2)}
-                    ` +
-                'Extrato da conta:\n', account.bankStatement, '\n');
-            console.log();
-        });
         fs.writeFileSync('accounts.json', JSON.stringify(newAccountsList));
+        getAllAccounts_1.getAllAccounts();
     }
     catch (error) {
         console.error(error);
     }
 }
-updateBalance();
+exports.updateBalance = updateBalance;
 //# sourceMappingURL=updateBalance.js.map

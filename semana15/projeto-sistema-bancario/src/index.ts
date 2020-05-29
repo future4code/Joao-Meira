@@ -5,7 +5,7 @@ import { checkBalance } from './checkBalance'
 import { addCredit } from './addCredit'
 import { transferToAccount } from './transferToAccount'
 import { payBill } from './payBill'
-import { paymentDebit } from './paymentDebit'
+import { updateBalance } from './updateBalance'
 const moment = require('moment')
 
 
@@ -56,6 +56,10 @@ console.log(actionType)
                     Number(process.argv[5]), 
                     moment(process.argv[6], 'DD/MM/YYYY')
                     ) 
+            break;
+            
+        case 'UPDATE_BALANCE':
+                updateBalance() 
             break;
             
         default:

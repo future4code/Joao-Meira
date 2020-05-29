@@ -29,12 +29,12 @@ let verifyReceiver = 0;
 function transferToAccount(userNameTransfering, cpfTransfering, userNameReceiving, cpfReceiving, valueTransfered) {
     const transferCredit = {
         value: valueTransfered,
-        date: moment().format('L'),
+        date: moment().format("DD/MM/YYYY"),
         description: `Transferência bancária de ${userNameTransfering}`
     };
     const transferDebit = {
         value: (valueTransfered) * -1,
-        date: moment().format('L'),
+        date: moment().format("DD/MM/YYYY"),
         description: `Transferência bancária para ${userNameReceiving}`
     };
     accountsList.map(account => {
@@ -77,8 +77,7 @@ function transferToAccount(userNameTransfering, cpfTransfering, userNameReceivin
         }
         else if (verifyCredit !== valueTransfered &&
             verifyUserInfo === 0) {
-            console.log("\x1b[31m", `Saldo insuficiente para transferência!
-                Informações do depositante incorretas.`);
+            console.log("\x1b[31m", `Saldo insuficiente para transferência ou Informações do depositante incorretas.`);
         }
         else if (verifyCredit === valueTransfered &&
             verifyUserInfo === 0 &&
