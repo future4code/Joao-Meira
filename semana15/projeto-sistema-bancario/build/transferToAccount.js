@@ -48,7 +48,6 @@ function transferToAccount(userNameTransfering, cpfTransfering, userNameReceivin
                 account.cpf === cpfTransfering &&
                 account.userName === userNameTransfering) {
                 return (verifyUserInfo = 1,
-                    account.balance -= valueTransfered,
                     account.bankStatement.push(transferDebit),
                     account);
             }
@@ -56,7 +55,6 @@ function transferToAccount(userNameTransfering, cpfTransfering, userNameReceivin
                 account.cpf === cpfReceiving &&
                 account.userName === userNameReceiving) {
                 return (verifyReceiver = 1,
-                    account.balance += valueTransfered,
                     account.bankStatement.push(transferCredit),
                     account);
             }

@@ -46,7 +46,6 @@ export function transferToAccount (
                 ) {
                 return (
                     verifyUserInfo = 1,
-                    account.balance -= valueTransfered,
                     account.bankStatement.push(transferDebit),
                     account
                )
@@ -57,7 +56,6 @@ export function transferToAccount (
                 ) {
                 return (
                     verifyReceiver = 1,
-                    account.balance += valueTransfered,
                     account.bankStatement.push(transferCredit),
                     account
                 )

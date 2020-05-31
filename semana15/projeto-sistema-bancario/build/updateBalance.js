@@ -29,7 +29,7 @@ function updateBalance() {
         account.balance = 0;
         account.bankStatement.map(operation => {
             const operationDate = moment(operation.date, "DD/MM/YYYY");
-            const isToUpdate = moment([2020, 10, 12]).diff(operationDate);
+            const isToUpdate = moment().diff(operationDate);
             console.log(isToUpdate);
             if (isToUpdate < 0) {
                 return (operation);
