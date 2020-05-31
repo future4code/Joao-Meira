@@ -26,17 +26,16 @@ const getAllAccounts_1 = require("./getAllAccounts");
 const accountsList = require("../accounts.json");
 function updateBalance() {
     const newAccountsList = accountsList.map((account) => {
+        account.balance = 0;
         account.bankStatement.map(operation => {
             const operationDate = moment(operation.date, "DD/MM/YYYY");
-            const isToUpdate = moment().diff(operationDate);
+            const isToUpdate = moment([2020, 10, 12]).diff(operationDate);
             console.log(isToUpdate);
-            account.balance = 0;
             if (isToUpdate < 0) {
                 return (operation);
             }
             else {
-                return (account.balance += operation.value,
-                    account);
+                return (account.balance += operation.value);
             }
         });
         return account;

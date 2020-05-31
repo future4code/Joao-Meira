@@ -8,19 +8,18 @@ const accountsList : account[] = require("../accounts.json")
 export function updateBalance() {
 
         const newAccountsList = accountsList.map(( account ) => {
+            account.balance = 0
             account.bankStatement.map( operation => {
                 const operationDate : moment.Moment = moment(operation.date, "DD/MM/YYYY")
-                const isToUpdate = moment().diff(operationDate)
+                const isToUpdate = moment([2020, 10, 12]).diff(operationDate)
                 console.log(isToUpdate)
-                account.balance = 0
                 if( isToUpdate < 0 ){
                     return (
                     operation
                     )
                 } else {
                     return (
-                    account.balance += operation.value,
-                    account
+                    account.balance += operation.value
                     )
                 }
             })
@@ -28,20 +27,9 @@ export function updateBalance() {
         })
 
         try{
-            // newAccountsList.map( account => {
-            //     console.log(
-            //         `Titular da Conta: ${account.userName}
-            //         CPF: ${account.cpf}
-            //         Data de Nascimento: ${account.birthDay}
-            //         Saldo: ${account.balance.toFixed(2)}
-            //         ` +
-            //         'Extrato da conta:\n', account.bankStatement, '\n');
-            //     console.log()
-            // })
             fs.writeFileSync('accounts.json', JSON.stringify(newAccountsList))
             getAllAccounts()
         } catch(error) {
             console.error(error)
         }
     }
-   
