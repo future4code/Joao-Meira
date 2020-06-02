@@ -1,4 +1,6 @@
-class Seller extends EmployeeExercise {
+import { Employee } from "./employee";
+
+export class Manager extends Employee {
     private salesQuantity : number = 0;
     static SALES_COMISSION : number = 5;
 
@@ -7,6 +9,6 @@ class Seller extends EmployeeExercise {
     }
 
     calculateTotalSalary() {
-        return (this.baseSalary + Seller.BENEFITS_VALUE + (this.salesQuantity * Seller.SALES_COMISSION))
+        return (this.baseSalary + Manager.BENEFITS_VALUE + (this.salesQuantity * Manager.SALES_COMISSION))
     }
 }
