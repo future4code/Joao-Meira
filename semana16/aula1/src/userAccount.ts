@@ -11,8 +11,8 @@ export class UserAccount {
 
     constructor(
         name : string, 
-        birthDay : string, 
         cpf : string, 
+        birthDay : string, 
         ) {
             this.name = name;
             this.birthDay = birthDay;
@@ -35,8 +35,12 @@ export class UserAccount {
             moment().format("DD/MM/YYYY"),
             )
 
-        this.balance = this.balance + value
-        this.transactions.push(credit)
+        return (
+            this.balance = this.balance + value,
+            this.transactions.push(credit),
+            console.log(this.balance, this.transactions),
+            console.log("\x1b[32m", `Depósito de R$${value.toFixed(2)} efetuado com sucesso!`)
+        )
     }
 }
 

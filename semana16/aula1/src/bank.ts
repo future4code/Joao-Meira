@@ -1,7 +1,6 @@
 import { JSONFileManager } from "./fileManager";
 import { UserAccount } from "./userAccount";
-import * as fs from 'fs'
-import moment from 'moment'
+import moment, { Moment } from 'moment'
 
 export class Bank {
     public accounts : UserAccount[];
@@ -14,14 +13,15 @@ export class Bank {
 
     createAccount(    
         name : string, 
-        birthDay : string,
-        cpf : string, 
+        cpf : string,
+        birthDay : string, 
         ) : void {
 
         const cpfVerification = this.accounts.find( account => {
             return account.cpf === cpf
         })
         const ageVerification = moment().diff(birthDay, 'years')
+        console.log(birthDay)
 
         if (cpfVerification) {
             console.log("\x1b[31m", "Este CPF já possuí uma conta cadastrada.")
@@ -30,7 +30,7 @@ export class Bank {
                 console.log("\x1b[31m", 'Contas só podem ser abertas por maiores de 18 anos.')
             } else if ( ageVerification >= 18 && cpf && birthDay ) {
             try{
-                const newAccount : UserAccount = new UserAccount(name, cpf, birthDay)
+                const newAccount : UserAccount = new UserAccount(name, cpf, moment(birthDay).format('DD/MM/YYYY'))
                 this.accounts.push(newAccount)
                 this.fileManager.writeAccountToFile(this.accounts)
 
@@ -47,13 +47,18 @@ export class Bank {
     getAllAccounts(): void {
         try{
             this.accounts.map( account => {
+                const thisAccount = new UserAccount(
+                    account.name,
+                    account.cpf,
+                    account.birthDay
+                    )
                 console.log("\x1b[1m",`
-                Titular da Conta: ${account.name}
-                CPF: ${account.cpf}
-                Data de Nascimento: ${account.birthDay}
-                Saldo: R$${account.getBalance().toFixed(2)}
+                Titular da Conta: ${thisAccount.name}
+                CPF: ${thisAccount.cpf}
+                Data de Nascimento: ${thisAccount.birthDay}
+                Saldo: R$${thisAccount.getBalance().toFixed(2)}
                 ` +
-                'Extrato da conta:\n', account.transactions, '\n');
+                'Extrato da conta:\n', thisAccount.transactions, '\n');
             })
         } catch(error) {
             console.error(error)
