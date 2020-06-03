@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Saitama",
+    "birthDay": "21/05/1989",
+    "cpf": "1",
+    "balance": 30000,
+    "transactions": [
+      {
+        "value": 30000,
+        "date": "02/06/2020",
+        "description": "Você depositou o valor de R$30000.00"
+      }
+    ]
+  },
+  {
+    "name": "Genos",
+    "birthDay": "21/03/1991",
+    "cpf": "2",
+    "balance": 0,
+    "transactions": []
+  }
+]
