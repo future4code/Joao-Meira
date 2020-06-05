@@ -1,3 +1,4 @@
+const moment = require('moment')
 import { User } from "./User";
 
 export class Student implements User{
@@ -16,11 +17,11 @@ export class Student implements User{
     }
 
     getAge () : number {
-        let age = 0
-        return age
+        const age = moment(this.birthDay, 'DD/MM/YYYY')
+        return moment().diff(age, 'years')
     }
+    
     getId () : number {
-        let id = 0
-        return id
+        return this.id
     }
 }

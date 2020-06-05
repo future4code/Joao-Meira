@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Student = void 0;
+const moment = require('moment');
 class Student {
     constructor(name, email, birthDay, hobbies) {
         this.name = name;
@@ -14,12 +15,11 @@ class Student {
         this.hobbies = hobbies;
     }
     getAge() {
-        let age = 0;
-        return age;
+        const age = moment(this.birthDay, 'DD/MM/YYYY');
+        return moment().diff(age, 'years');
     }
     getId() {
-        let id = 0;
-        return id;
+        return this.id;
     }
 }
 exports.Student = Student;
