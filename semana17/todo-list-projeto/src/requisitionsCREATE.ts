@@ -43,17 +43,29 @@ export const createTaskEndingPoint = async (
             limit_date: request.body.limit_date,
             creator_id: request.body.creator_id
         }
-       const requisition = await createTask(
-            task.title,
-            task.description,
-            task.status,
-            task.limit_date,
-            task.creator_id
-        )
+        let requisition
+        if(
+            task.status === "to_do" ||
+            task.status === "doing" ||
+            task.status === "done"
+            ){
+                requisition = await createTask(
+                    task.title,
+                    task.description,
+                    task.status,
+                    task.limit_date,
+                    task.creator_id
+                )
+            } else {
+                requisition = false
+            }
+
         if(requisition){
             response.status(200).send( {message: "Tarefa criada!"} )
         } else {
-            return response.status(400).send({ error: "Dados da tarefa incorretos." })
+            return response.status(400).send({ 
+                error: "Dados da tarefa incorretos." 
+            })
         }    } catch(error){
         response.status(400).send({ error: error.message })
     }

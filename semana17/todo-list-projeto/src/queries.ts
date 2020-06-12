@@ -74,7 +74,7 @@ export const editUser = async (
 export const  createTask = async (
     title : string,
     description : string,
-    status : string,
+    status : any,
     limit_date : string,
     creator_id : string
 ) => {
