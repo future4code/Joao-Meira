@@ -159,3 +159,20 @@ export const createBind = async (
         console.error(error)
     }
 }
+
+export const getResponsible = async (
+        taskId : string,
+    ) => {
+    try{
+        const response = await connection.raw(`
+            SELECT * FROM task_responsible_todo_list
+            WHERE task_id = "${taskId}"
+        `)
+        console.log(response[0])
+        if(response){
+            return response[0]
+        } else return false
+    } catch(error){
+        console.error(error)
+    }
+}

@@ -10,7 +10,8 @@ import {
     getTaskEndingPoint,
     getAllUsersEndingPoint,
     getUserTasksEndingPoint,
-    searchUserEndingPoint
+    searchUserEndingPoint,
+    getResponsibleEndingPoint
 } from "./requisitionsGET";
 import { 
     editUserEndingPoint
@@ -36,6 +37,8 @@ app.get("/list/:id", getTaskEndingPoint)
 app.put("/user/edit", editUserEndingPoint)
 
 app.post("/user/bindtotask", bindToTaskEndingPoint)
+
+app.get("/user/:id/responsible", getResponsibleEndingPoint)
 
 
 

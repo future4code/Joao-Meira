@@ -4,7 +4,8 @@ import {
     getTask,
     getAllUsers,
     getUserTasks,
-    searchUser
+    searchUser,
+    getResponsible
 } from "./queries";
 
 export const getUserEndingPoint = async (    
@@ -93,3 +94,22 @@ export const searchUserEndingPoint = async (
         response.status(400).send({ error: error.message })
     }
 }
+
+export const getResponsibleEndingPoint = async (
+    request : Request,
+    response : Response
+) => {
+    try{
+        const task = request.params.id
+        const responsible = await getResponsible(task)
+
+        if(responsible && task){
+            response.status(200).send({ users: responsible })
+        } else {
+            response.status(200).send([])
+        }
+    } catch(error){
+        response.status(400).send({ error: error.message })
+    }
+}
+

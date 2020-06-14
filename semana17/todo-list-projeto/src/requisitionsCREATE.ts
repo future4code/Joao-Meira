@@ -104,4 +104,3 @@ export const bindToTaskEndingPoint = async (
         response.status(400).send({ error: error.message })
     }
 }
-
