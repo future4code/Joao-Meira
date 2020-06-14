@@ -2,7 +2,8 @@ import { AddressInfo } from "net";
 import express from 'express';
 import { 
     createUserEndingPoint, 
-    createTaskEndingPoint,    
+    createTaskEndingPoint,
+    bindToTaskEndingPoint,    
 } from "./requisitionsCREATE";
 import { 
     getUserEndingPoint,
@@ -33,6 +34,8 @@ app.get("/task?", getUserTasksEndingPoint)
 app.get("/list/:id", getTaskEndingPoint)
 
 app.put("/user/edit", editUserEndingPoint)
+
+app.post("/user/bindtotask", bindToTaskEndingPoint)
 
 
 

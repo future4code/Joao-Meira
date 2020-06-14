@@ -94,7 +94,7 @@ export const  createTask = async (
             return true
         } else return false
     } catch(error) {
-        console.log(error)
+        console.error(error)
     }
 }
 
@@ -135,6 +135,26 @@ export const searchUser = async (
             WHERE id = "${query}"
         `)
         return response[0]
+    } catch(error){
+        console.error(error)
+    }
+}
+
+export const createBind = async (
+        userId : string,
+        taskId : string
+    ) => {
+    try{
+        const response = await connection.raw(`
+            INSERT INTO task_responsible_todo_list
+            VALUES(
+                "${taskId}",
+                "${userId}"
+            )
+        `)
+        if(response){
+            return true
+        } else return false
     } catch(error){
         console.error(error)
     }

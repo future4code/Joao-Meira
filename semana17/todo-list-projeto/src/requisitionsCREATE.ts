@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { 
     createUser,
     createTask,
+    createBind,
 } from "./queries";
 
 
@@ -65,6 +66,39 @@ export const createTaskEndingPoint = async (
         } else {
             return response.status(400).send({ 
                 error: "Dados da tarefa incorretos." 
+            })
+        }    } catch(error){
+        response.status(400).send({ error: error.message })
+    }
+}
+
+export const bindToTaskEndingPoint = async (
+    request : Request,
+    response : Response
+) => {
+    try{
+        const bind = {
+            user_id: request.body.user_id,
+            task_id: request.body.task_id
+        }
+        let requisition
+        if(
+            bind.user_id,
+            bind.task_id
+            ){
+                requisition = await createBind( 
+                    bind.user_id,
+                    bind.task_id
+                    )
+                    
+            } else {
+                requisition = false
+            }
+        if(requisition){
+            response.status(200).send( {message: `Tarefa atribuída!`} )
+        } else {
+            return response.status(400).send({ 
+                error: "Ops! Parece que alguma informação está incorreta!" 
             })
         }    } catch(error){
         response.status(400).send({ error: error.message })
