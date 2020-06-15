@@ -1,4 +1,5 @@
 import { connection } from './dotenv'
+import moment from 'moment'
 
 export const createUser = async (
     name : string,
@@ -125,7 +126,7 @@ export const getTask = async (
                 title: task[0][0].title,
                 description: task[0][0].description,
                 status: task[0][0].status,
-                limit_date: task[0][0].limit_date,
+                limit_date: moment(task[0][0].limit_date).format('DD/MM/YYYY'),
                 creator_id: task[0][0].creator_id,
                 responsible_users: responsibles[0]
             })
