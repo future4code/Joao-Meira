@@ -46,6 +46,15 @@ class UserDatabase {
             return user[0];
         });
     }
+    getUserById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const profile = yield this.connection
+                .select("*")
+                .from(UserDatabase.TABLE_NAME)
+                .where({ id });
+            return profile[0];
+        });
+    }
 }
 exports.UserDatabase = UserDatabase;
 UserDatabase.TABLE_NAME = "user_info";

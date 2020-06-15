@@ -43,12 +43,25 @@ export class UserDatabase {
   }
 
 
-  public async getUserByEmail( email: string ): Promise<any> {
+  public async getUserByEmail( 
+      email : string 
+  ): Promise<any> {
     const user = await this.connection
       .select("*")
       .from(UserDatabase.TABLE_NAME)
       .where({ email });
 
     return user[0];
+  }
+
+  public async getUserById( 
+    id : string 
+  ): Promise<any> {
+    const profile = await this.connection
+      .select("*")
+      .from(UserDatabase.TABLE_NAME)
+      .where({ id });
+
+    return profile[0];
   }
 }
