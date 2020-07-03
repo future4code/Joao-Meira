@@ -17,10 +17,10 @@ describe("Testing UserBusiness.signup", () => {
         idGenerator as any
       );
 
-      await userBusiness.signup("", "astrodev@gmail.com", "123456", "ADMIN");
+      await userBusiness.signup("", "astrodev@gmail.com", "12345677", "ADMIN");
     } catch (err) {
       expect(err.errorCode).toBe(422);
-      expect(err.message).toBe("Missing input");
+      expect(err.message).toBe("Nome inválido");
     }
   });
 
@@ -34,10 +34,10 @@ describe("Testing UserBusiness.signup", () => {
         idGenerator as any
       );
 
-      await userBusiness.signup("Astrodev", "", "123456", "ADMIN");
+      await userBusiness.signup("Astrodev", "", "12345677", "ADMIN");
     } catch (err) {
       expect(err.errorCode).toBe(422);
-      expect(err.message).toBe("Missing input");
+      expect(err.message).toBe("Email inválido");
     }
   });
 
@@ -54,7 +54,7 @@ describe("Testing UserBusiness.signup", () => {
       await userBusiness.signup("Astrodev", "astrodev@gmail.com", "", "ADMIN");
     } catch (err) {
       expect(err.errorCode).toBe(422);
-      expect(err.message).toBe("Missing input");
+      expect(err.message).toBe("Password inválido");
     }
   });
 
@@ -68,10 +68,10 @@ describe("Testing UserBusiness.signup", () => {
         idGenerator as any
       );
 
-      await userBusiness.signup("Astrodev", "astrodev@gmail.com", "123456", "");
+      await userBusiness.signup("Astrodev", "astrodev@gmail.com", "1234567", "");
     } catch (err) {
       expect(err.errorCode).toBe(422);
-      expect(err.message).toBe("Missing input");
+      expect(err.message).toBe("Tipo de usuário inválido");
     }
   });
 
@@ -88,12 +88,12 @@ describe("Testing UserBusiness.signup", () => {
       await userBusiness.signup(
         "Astrodev",
         "astrodevgmail.com",
-        "123456",
+        "1234567",
         "ADMIN"
       );
     } catch (err) {
       expect(err.errorCode).toBe(422);
-      expect(err.message).toBe("Invalid email");
+      expect(err.message).toBe("Email inválido");
     }
   });
 
@@ -115,7 +115,7 @@ describe("Testing UserBusiness.signup", () => {
       );
     } catch (err) {
       expect(err.errorCode).toBe(422);
-      expect(err.message).toBe("Invalid password");
+      expect(err.message).toBe("Password inválido");
     }
   });
 
@@ -138,12 +138,12 @@ describe("Testing UserBusiness.signup", () => {
       await userBusiness.signup(
         "Astrodev",
         "astrodev@gmail.com",
-        "123456",
+        "1234567",
         "superadmin"
       );
     } catch (err) {
       expect(err.errorCode).toBe(422);
-      expect(err.message).toBe("Invalid user role");
+      expect(err.message).toBe("Tipo de usuário inválido");
     }
   });
 
@@ -170,12 +170,12 @@ describe("Testing UserBusiness.signup", () => {
     const result = await userBusiness.signup(
       "Astrodev",
       "astrodev@gmail.com",
-      "123456",
+      "1234567",
       "ADMIN"
     );
 
     expect(result.accessToken).toBe("token");
-    expect(hash).toHaveBeenCalledWith("123456");
+    expect(hash).toHaveBeenCalledWith("1234567");
     expect(generateId).toHaveBeenCalledTimes(1);
     expect(generateToken).toHaveBeenCalledWith({ id: "id", role: "ADMIN" });
     expect(createUser).toHaveBeenCalledWith(

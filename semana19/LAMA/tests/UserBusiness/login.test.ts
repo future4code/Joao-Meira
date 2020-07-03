@@ -1,5 +1,5 @@
 import { UserBusiness } from "../../src/business/UserBusiness";
-import { User, UserRole, stringToUserRole } from "../../src/model/User";
+import { User, UserRole } from "../../src/model/User";
 
 describe("Testing UserBusiness.login", () => {
   let userDatabase = {};
@@ -20,7 +20,7 @@ describe("Testing UserBusiness.login", () => {
       await userBusiness.login("", "123456");
     } catch (err) {
       expect(err.errorCode).toBe(422);
-      expect(err.message).toBe("Missing input");
+      expect(err.message).toBe("Email ou senha inválido");
     }
   });
 
@@ -34,10 +34,10 @@ describe("Testing UserBusiness.login", () => {
         idGenerator as any
       );
 
-      await userBusiness.login("astrodev@gmail.com", "");
+      await userBusiness.login("saitama@gmail.com", "");
     } catch (err) {
       expect(err.errorCode).toBe(422);
-      expect(err.message).toBe("Missing input");
+      expect(err.message).toBe("Email ou senha inválido");
     }
   });
 
@@ -59,7 +59,7 @@ describe("Testing UserBusiness.login", () => {
     } catch (err) {
       expect(getUserByEmail).toHaveBeenCalledWith("no-user@gmail.com");
       expect(err.errorCode).toBe(404);
-      expect(err.message).toBe("User not found");
+      expect(err.message).toBe("Este usuário não existe");
     }
   });
 
@@ -68,8 +68,8 @@ describe("Testing UserBusiness.login", () => {
     const getUserByEmail = jest.fn((user: User) => {
       return new User(
         "id",
-        "Astrodev",
-        "astrodev@gmail.com",
+        "saitama",
+        "saitama@gmail.com",
         "hash",
         UserRole.ADMIN
       );
@@ -87,12 +87,12 @@ describe("Testing UserBusiness.login", () => {
         idGenerator as any
       );
 
-      await userBusiness.login("astrodev@gmail.com", "123456");
+      await userBusiness.login("saitama@gmail.com", "123456");
     } catch (err) {
-      expect(getUserByEmail).toHaveBeenCalledWith("astrodev@gmail.com");
+      expect(getUserByEmail).toHaveBeenCalledWith("saitama@gmail.com");
       expect(compareHash).toHaveBeenCalledWith("123456", "hash");
       expect(err.errorCode).toBe(422);
-      expect(err.message).toBe("Invalid password");
+      expect(err.message).toBe("Email ou senha incorretos");
     }
   });
 
@@ -100,8 +100,8 @@ describe("Testing UserBusiness.login", () => {
     const getUserByEmail = jest.fn((user: User) => {
       return new User(
         "id",
-        "Astrodev",
-        "astrodev@gmail.com",
+        "saitama",
+        "saitama@gmail.com",
         "hash",
         UserRole.ADMIN
       );
@@ -121,9 +121,9 @@ describe("Testing UserBusiness.login", () => {
       idGenerator as any
     );
 
-    const result = await userBusiness.login("astrodev@gmail.com", "123456");
+    const result = await userBusiness.login("saitama@gmail.com", "123456");
 
-    expect(getUserByEmail).toHaveBeenCalledWith("astrodev@gmail.com");
+    expect(getUserByEmail).toHaveBeenCalledWith("saitama@gmail.com");
     expect(compareHash).toHaveBeenCalledWith("123456", "hash");
     expect(generateToken).toHaveBeenCalled();
     expect(result.accessToken).toBe("token");

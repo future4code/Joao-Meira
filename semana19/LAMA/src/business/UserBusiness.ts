@@ -5,6 +5,8 @@ import { HashGenerator } from "../services/hashGenerator";
 import { TokenGenerator } from "../services/tokenGenerator";
 import { NotFoundError } from "../errors/NotFoundError";
 import { InvalidParameterError } from "../errors/InvalidParameterError";
+import validateEmail from "../../util/emailValidate";
+import { validatePassword } from "../../util/validatePassword";
 
 export class UserBusiness {
   constructor(
@@ -20,23 +22,27 @@ export class UserBusiness {
     password: string,
     role: string
   ) {
-    if (!name || !email || !password || !role) {
-      throw new InvalidParameterError("Missing input");
+    if (!name ) {
+      throw new InvalidParameterError("Nome inválido");
     }
 
-    if (email.indexOf("@") === -1) {
-      throw new InvalidParameterError("Invalid email");
+    if (!validateEmail(email)) {
+      throw new InvalidParameterError("Email inválido");
     }
 
-    if (password.length < 6) {
-      throw new InvalidParameterError("Invalid password");
+    if (!validatePassword(password)) {
+      throw new InvalidParameterError("Password inválido");
+    }
+
+    if (!role){
+      throw new InvalidParameterError("Tipo de usuário inválido")
     }
 
     const id = this.idGenerator.generate();
-    const cryptedPassword = await this.hashGenerator.hash(password);
+    const encryptedPassword = await this.hashGenerator.hash(password);
 
     await this.userDatabase.createUser(
-      new User(id, name, email, cryptedPassword, stringToUserRole(role))
+      new User(id, name, email, encryptedPassword, stringToUserRole(role))
     );
 
     const accessToken = this.tokenGenerator.generate({
@@ -47,14 +53,18 @@ export class UserBusiness {
   }
 
   public async login(email: string, password: string) {
-    if (!email || !password) {
-      throw new InvalidParameterError("Missing input");
+    if (!validateEmail(email)) {
+      throw new InvalidParameterError("Email ou senha inválido");
+    }
+
+    if (!validatePassword(password)) {
+      throw new InvalidParameterError("Email ou senha inválido");
     }
 
     const user = await this.userDatabase.getUserByEmail(email);
 
     if (!user) {
-      throw new NotFoundError("User not found");
+      throw new NotFoundError("Este usuário não existe");
     }
 
     const isPasswordCorrect = await this.hashGenerator.compareHash(
@@ -63,7 +73,7 @@ export class UserBusiness {
     );
 
     if (!isPasswordCorrect) {
-      throw new InvalidParameterError("Invalid password");
+      throw new InvalidParameterError("Email ou senha incorretos");
     }
 
     const accessToken = this.tokenGenerator.generate({

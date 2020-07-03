@@ -1,6 +1,7 @@
 import { InvalidParameterError } from "../errors/InvalidParameterError";
 
 export class User {
+  
   constructor(
     private id: string,
     private name: string,
@@ -37,7 +38,7 @@ export const stringToUserRole = (input: string): UserRole => {
     case "ADMIN":
       return UserRole.ADMIN;
     default:
-      throw new InvalidParameterError("Invalid user role");
+      throw new InvalidParameterError("Tipo de usuário inválido");
   }
 };
 

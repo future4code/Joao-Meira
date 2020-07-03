@@ -1,12 +1,14 @@
 import express from "express";
 import {AddressInfo} from "net";
 import { userRouter } from "./routes/User.routes";
+import { bandRouter } from "./routes/Band.routes";
 import errorCatcher from "./middlewares/ErrorCatcher";
 
 const app = express();
 app.use(express.json());
 
-app.use("/users/", userRouter);
+app.use("/user", userRouter);
+app.use("/band", bandRouter)
 
 app.use(errorCatcher);
 
