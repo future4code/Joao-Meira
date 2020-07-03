@@ -12,19 +12,26 @@ export class BandController {
     new IdGenerator
   );
 
-  async registerBand(req: Request, res: Response) {
+  async registerBand(request: Request, response: Response) {
       
     await BandController.bandBusiness.registerBand(
-        req.body.name,
-        req.body.genre,
-        req.body.leader,
-        req.headers.authorization as string
+        request.body.name,
+        request.body.genre,
+        request.body.leader,
+        request.headers.authorization as string
       );
 
-      try {
-      res.status(200).send({message: "Banda registrada com sucesso!"});
-    } catch (err) {
-      res.status(err.errorCode || 400).send({ message: err.message });
-    }
+      response.status(200).send({message: "Banda registrada com sucesso!"});
+    await new BandDataBase().destroyConnection()
+  }
+
+  async getBandByNameOrId (request: Request, response: Response){
+  
+  const bandInfo =  await BandController.bandBusiness.getBandByNameOrId(
+      request.query.id as string,
+      request.query.name as string
+    )
+
+  response.status(200).send({bandInfo})
   }
 }
