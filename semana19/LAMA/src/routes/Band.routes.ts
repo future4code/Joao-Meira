@@ -2,7 +2,7 @@ import { Router } from "express";
 import { BandController } from "../controller/BandController";
 
 export const bandRouter = Router();
+const bandController = new BandController();
 
-bandRouter.post("/register", new BandController().registerBand);
-bandRouter.post("/register", new BandController().getBandByNameOrId);
-
+bandRouter.post("/register", bandController.registerBand);
+bandRouter.get("/register?", bandController.getBandByNameOrId);

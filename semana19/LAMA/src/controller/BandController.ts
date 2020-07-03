@@ -4,7 +4,6 @@ import { TokenGenerator } from "../services/tokenGenerator";
 import { IdGenerator } from "../services/idGenerator";
 import { BandDataBase } from "../data/BandDataBase";
 
-
 export class BandController {
   private static bandBusiness = new BandBusiness(
     new BandDataBase,
@@ -26,12 +25,13 @@ export class BandController {
   }
 
   async getBandByNameOrId (request: Request, response: Response){
-  
   const bandInfo =  await BandController.bandBusiness.getBandByNameOrId(
       request.query.id as string,
       request.query.name as string
     )
+    console.log(bandInfo)
 
-  response.status(200).send({bandInfo})
+  response.status(200).send({ bandInfo })
+  await new BandDataBase().destroyConnection()
   }
 }

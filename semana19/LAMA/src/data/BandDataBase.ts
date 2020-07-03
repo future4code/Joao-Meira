@@ -35,6 +35,7 @@ export class BandDataBase extends BaseDataBase {
   }
 
   public async getbandByName(name: string): Promise<Band | undefined> {
+    console.log(name)
     const result = await super.getConnection().raw(`
       SELECT * from ${this.tableName} WHERE name = '${name}'
       `);

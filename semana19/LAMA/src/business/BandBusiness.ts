@@ -42,13 +42,13 @@ export class BandBusiness {
     await this.bandDataBase.registerBand(new Band(id, name, genre, leader));
   }
 
-  async getBandByNameOrId(name?: string, id?: string) {
+  async getBandByNameOrId(id?: string, name?: string) {
     if (id) {
       return await this.bandDataBase.getbandById(id);
     } else if (name) {
-      await this.bandDataBase.getbandByName( name )
+      return await this.bandDataBase.getbandByName(name);
     } else {
-      throw new CustomError("Campos de busca inválidos", 422)
+      throw new CustomError("Campos de busca inválidos", 422);
     }
   }
 }
