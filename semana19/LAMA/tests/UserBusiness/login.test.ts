@@ -44,7 +44,7 @@ describe("Testing UserBusiness.login", () => {
   test("Should return 'User not found' when there is no user with the provided email", async () => {
     expect.assertions(3);
 
-    const getUserByEmail = jest.fn((user: User) => {});
+    const getUserByEmail = jest.fn((email: string) => {});
     userDatabase = { getUserByEmail };
 
     try {

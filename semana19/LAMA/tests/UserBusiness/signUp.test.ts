@@ -68,7 +68,12 @@ describe("Testing UserBusiness.signup", () => {
         idGenerator as any
       );
 
-      await userBusiness.signup("Astrodev", "astrodev@gmail.com", "1234567", "");
+      await userBusiness.signup(
+        "Astrodev",
+        "astrodev@gmail.com",
+        "1234567",
+        ""
+      );
     } catch (err) {
       expect(err.errorCode).toBe(422);
       expect(err.message).toBe("Tipo de usuário inválido");

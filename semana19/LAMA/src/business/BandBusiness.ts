@@ -4,6 +4,7 @@ import { TokenGenerator } from "../services/tokenGenerator";
 import { InvalidParameterError } from "../errors/InvalidParameterError";
 import { Band } from "../model/Band";
 import { CustomError } from "../errors/CustomError";
+import { Forbidden } from "../errors/Forbidden";
 
 export class BandBusiness {
   constructor(
@@ -27,12 +28,15 @@ export class BandBusiness {
     }
 
     if (!leader) {
-      throw new CustomError("Responsável inválido", 404);
+      throw new InvalidParameterError("Responsável inválido");
+    }
+    if (!token) {
+      throw new InvalidParameterError("Autenticação inválida");
     }
 
     const isAdmin = this.tokenGenerator.verify(token);
     if (isAdmin.role !== "ADMIN") {
-      throw new InvalidParameterError(
+      throw new Forbidden(
         "Você precisa ser um ADMIN para registrar uma banda"
       );
     }
