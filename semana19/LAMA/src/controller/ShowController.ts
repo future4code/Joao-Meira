@@ -1,13 +1,12 @@
 import { Request, Response } from "express";
-import { ShowBusimess } from "../business/ShowBusiness";
+import { ShowBusiness } from "../business/ShowBusiness";
 import { ShowDataBase } from "../data/ShowDataBase";
-import { TokenGenerator } from "../services/tokenGenerator";
 import { IdGenerator } from "../services/idGenerator";
 import { ShowInput } from "../model/Show";
 
 
 export class ShowController {
-    private static showBusiness = new ShowBusimess(
+    private static showBusiness = new ShowBusiness(
         new ShowDataBase,
         new IdGenerator
     )

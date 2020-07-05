@@ -31,7 +31,7 @@ export class ShowDataBase extends BaseDataBase {
     `);
   }
 
-  async verifyScheduele( show : ShowInput ): Promise<string> {
+  async verifyConflict( show : ShowInput ): Promise<Show | undefined> {
     const day = weekDayFormat(show.weekDay)
     const conflict = await super.getConnection().raw(`
         SELECT * FROM ${this.tableName}
@@ -52,8 +52,7 @@ export class ShowDataBase extends BaseDataBase {
             (end_time > ${show.startTime} AND end_time < ${show.endTime})
           )
     `);
-    console.log(conflict[0][0])
-    return conflict[0][0]
+    return this.toModel(conflict[0][0])
   }
 }
 
