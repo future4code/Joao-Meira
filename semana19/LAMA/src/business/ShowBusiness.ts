@@ -3,6 +3,7 @@ import { TokenGenerator } from "../services/tokenGenerator";
 import { IdGenerator } from "../services/idGenerator";
 import { CustomError } from "../errors/CustomError";
 import { ShowInput, Show, stringToWeekDay, weekDayFormat } from "../model/Show";
+import { InvalidParameterError } from "../errors/InvalidParameterError";
 
 export class ShowBusiness {
   constructor(
@@ -39,5 +40,14 @@ export class ShowBusiness {
         show.bandId
       )
     );
+  }
+
+  async getShowsInDay(weekDay: string) {
+    const formatedWeekDay = weekDayFormat(weekDay);
+    stringToWeekDay(formatedWeekDay)
+
+    const showsList = await this.showDataBase.getShowsInDay(formatedWeekDay);
+    
+    return showsList
   }
 }

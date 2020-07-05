@@ -9,7 +9,7 @@ export default function errorCatcher (
 ) {
     if(error instanceof CustomError){
         return response
-                .status(error.code)
+                .status(error.errorCode)
                 .send({ message: error.message })
     } else {
         console.log(error)

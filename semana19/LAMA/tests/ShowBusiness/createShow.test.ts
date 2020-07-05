@@ -10,7 +10,7 @@ describe("testing createShow requisition", () => {
     expect.assertions(3);
     const showBusinessMock = new ShowBusiness(showDataBase, idGenerator);
     const showMock: ShowInput = {
-      weekDay: "SABADO",
+      weekDay: "sábado",
       startTime: 7,
       endTime: 8,
       bandId: "id",
@@ -34,7 +34,7 @@ describe("testing createShow requisition", () => {
     showDataBase = { verifyConflict };
     const showBusinessMock = new ShowBusiness(showDataBase, idGenerator);
     const showMock: ShowInput = {
-      weekDay: "SABADO",
+      weekDay: "SÁBADO",
       startTime: 9,
       endTime: 10,
       bandId: "id",
@@ -57,7 +57,7 @@ describe("testing createShow requisition", () => {
     showDataBase = { verifyConflict };
     const showBusinessMock = new ShowBusiness(showDataBase, idGenerator);
     const showMock: ShowInput = {
-      weekDay: "SABADO",
+      weekDay: "sexta-feira",
       startTime: 9,
       endTime: 11,
       bandId: "id",
@@ -104,7 +104,7 @@ describe("testing createShow requisition", () => {
 
     const showBusinessMock = new ShowBusiness(showDataBase, idGenerator);
     const showMock: ShowInput = {
-      weekDay: "SABADO",
+      weekDay: "sexta-FEIRA",
       startTime: 8,
       endTime: 10,
       bandId: "bandIdMock",
@@ -115,7 +115,7 @@ describe("testing createShow requisition", () => {
     expect(verifyConflict).toHaveBeenCalled();
     expect(generate).toHaveBeenCalled;
     expect(createShow).toHaveBeenCalledWith(
-      new Show("idMock", stringToWeekDay("SABADO"), 8, 10, "bandIdMock")
+      new Show("idMock", stringToWeekDay("SEXTA"), 8, 10, "bandIdMock")
     );
   });
 });

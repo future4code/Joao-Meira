@@ -1,4 +1,4 @@
-import { Show, ShowInput, weekDayFormat } from "../model/Show";
+import { Show, ShowInput, weekDayFormat, WeekDay } from "../model/Show";
 import { BaseDataBase } from "./BaseDatabase";
 
 export class ShowDataBase extends BaseDataBase {
@@ -18,7 +18,6 @@ export class ShowDataBase extends BaseDataBase {
   }
 
   async createShow( show: Show): Promise<void> {
-    console.log(show)
     await super.getConnection().raw(`
         INSERT INTO ${this.tableName}
             VALUES(
@@ -47,12 +46,22 @@ export class ShowDataBase extends BaseDataBase {
           ) OR (
             week_day = '${day}'
             AND
-            (start_time < ${show.endTime} AND start_time > ${show.startTime})
+            (week_day = '${day}' AND start_time < ${show.endTime} AND start_time > ${show.startTime})
           ) OR (
-            (end_time > ${show.startTime} AND end_time < ${show.endTime})
+            (week_day = '${day}' AND end_time > ${show.startTime} AND end_time < ${show.endTime})
           )
     `);
     return this.toModel(conflict[0][0])
+  }
+
+  public async getShowsInDay(weekDay : string): Promise<Show[]> {
+    const shows = await super.getConnection().raw(`
+      SELECT * from ${this.tableName}
+      WHERE week_day = '${weekDay}'
+    `);
+    return shows[0].map((show: any) => {
+      return this.toModel(show);
+    });
   }
 }
 

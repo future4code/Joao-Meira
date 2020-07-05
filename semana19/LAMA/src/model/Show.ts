@@ -31,13 +31,12 @@ export class Show {
 }
 
 export const weekDayFormat = (day: string) : string => {
-  day.toUpperCase;
-  if (day === "SEXTA-FEIRA") {
+  if (day.toUpperCase() === "SEXTA-FEIRA") {
     return "SEXTA";
-  } else if (day === "SÁBADO") {
+  } else if (day.toUpperCase() === "SÁBADO") {
     return "SABADO";
   } else {
-    return day;
+    return day.toUpperCase();
   }
 };
 

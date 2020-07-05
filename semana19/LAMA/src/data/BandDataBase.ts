@@ -41,13 +41,4 @@ export class BandDataBase extends BaseDataBase {
       `);
     return this.toModel(result[0][0]);
   }
-
-  // public async getAllbands(): Promise<Band[]> {
-  //   const bands = await super.getConnection().raw(`
-  //     SELECT * from ${this.tableName}
-  //   `);
-  //   return bands[0].map((band: any) => {
-  //     return this.toModel(band);
-  //   });
-  // }
 }
