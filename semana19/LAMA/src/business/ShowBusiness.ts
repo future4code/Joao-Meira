@@ -19,15 +19,13 @@ export class ShowBusimess {
       );
     }
 
-    // const verifyShowConflict : string = await this.showDataBase.verifyScheduele(show);
-    // if (verifyShowConflict) {
-    //   throw new CustomError(
-    //     `Este horário não está disponível. 
-    //     Escolha outro que não conflite com os seguintes horários:
-    //     ${verifyShowConflict}`,
-    //     400
-    //   );
-    // }
+    const verifyShowConflict : string = await this.showDataBase.verifyScheduele(show);
+    if (verifyShowConflict) {
+      throw new CustomError(
+        `Este horário não está disponível.`,  
+        400
+      );
+    }
 
     const id = this.idGenerator.generate();
 

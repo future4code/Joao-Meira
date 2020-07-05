@@ -1,6 +1,5 @@
 import { Show, ShowInput, weekDayFormat } from "../model/Show";
 import { BaseDataBase } from "./BaseDatabase";
-import { start } from "repl";
 
 export class ShowDataBase extends BaseDataBase {
   protected tableName: string = "lama_shows_table";
@@ -32,28 +31,30 @@ export class ShowDataBase extends BaseDataBase {
     `);
   }
 
-  // async verifyScheduele( show : ShowInput ): Promise<string> {
-  //   const day = weekDayFormat(show.weekDay)
-  //   const conflict = await super.getConnection().raw(`
-  //       SELECT * INTO ${this.tableName}
-  //         WHERE 
-  //         (
-  //           week_day = '${day}' 
-  //           AND 
-  //           start_time = ${show.startTime}
-  //         ) OR (
-  //           week_day = '${day}' 
-  //           AND
-  //           end_time = ${show.endTime}
-  //         ) OR (
-  //           week_day = '${day}'
-  //           AND
-  //           (start_time < ${show.endTime} AND start_time > ${show.startTime})
-  //         ) OR (
-  //           (end_time > ${show.startTime} AND end_time < ${show.endTime})
-  //         )
-  //   `);
-  //   console.log(conflict)
-  //   return conflict
-  // }
+  async verifyScheduele( show : ShowInput ): Promise<string> {
+    const day = weekDayFormat(show.weekDay)
+    const conflict = await super.getConnection().raw(`
+        SELECT * FROM ${this.tableName}
+          WHERE 
+          (
+            week_day = '${day}' 
+            AND 
+            start_time = ${show.startTime}
+          ) OR (
+            week_day = '${day}' 
+            AND
+            end_time = ${show.endTime}
+          ) OR (
+            week_day = '${day}'
+            AND
+            (start_time < ${show.endTime} AND start_time > ${show.startTime})
+          ) OR (
+            (end_time > ${show.startTime} AND end_time < ${show.endTime})
+          )
+    `);
+    console.log(conflict[0][0])
+    return conflict[0][0]
+  }
 }
+
+
