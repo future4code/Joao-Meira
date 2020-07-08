@@ -1,0 +1,19 @@
+"use strict";
+exports.myFunc = async (event) => {
+  const regexp = new RegExp(
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
+  const isEmail = regexp.test(event.key1);
+
+  if (!isEmail) {
+    return {
+      ieEmail: false,
+      reason: "Este email não tem a estrutura correta",
+    };
+  }
+
+  return {
+    ieEmail: true,
+    reason: "Este email tem a estrutura correta",
+  };
+};

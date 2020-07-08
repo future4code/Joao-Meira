@@ -1,0 +1,65 @@
+CREATE TABLE if not exists personagem_desenho(
+	id VARCHAR(255) PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+    anime VARCHAR(255) NOT NULL,
+    img_url VARCHAR(1000) NOT NULL
+);
+    
+
+exports.myFunc = async (event: any) => {
+  if (!event.key1.character) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: "Missing input" }),
+    };
+  }
+  const character = {
+    name: event.key1.character.name,
+    anime: event.key1.character.anime,
+    img_url: event.key1.character.img_url,
+  };
+
+  if (!character.name) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: "Missing name" }),
+    };
+  }
+  if (!character.anime) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: "Missing anime" }),
+    };
+  }
+  if (!character.img_url || character.img_url.length < 6) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: "Invalid image url" }),
+    };
+  }
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: "Personagem armazenado com sucesso" }),
+  };
+};
+
+const input = {
+  key1: {
+    character: {
+      name: "Goku",
+      anime: "DBZ",
+      img_url:
+        "https://i0.wp.com/cloud.estacaonerd.com/wp-content/uploads/2020/05/09153450/goku3.jpg?fit=1200%2C630&ssl=1",
+    },
+  },
+  key2: {},
+  key3: {
+    character: {
+      name: "Goku",
+      anime: "",
+      img_url:
+        "https://i0.wp.com/cloud.estacaonerd.com/wp-content/uploads/2020/05/09153450/goku3.jpg?fit=1200%2C630&ssl=1",
+    },
+  },
+};
