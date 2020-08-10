@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node ./node_modules/jest/bin/jest.js",
-    "dev": "ts-node-dev --no-notify --ignore-watch node_modules ./src/exercicio5.ts",
-    "start": "tsc && node ./build/src/exercicio6.js"
+    "dev": "ts-node-dev --no-notify --ignore-watch node_modules ./src/exercicio1-semana2.ts",
+    "start": "tsc && node ./build/src/exercicio1-semana2.js"
   },
   "author": "",
   "license": "ISC",
