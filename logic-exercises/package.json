@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node ./node_modules/jest/bin/jest.js",
     "dev": "ts-node-dev --no-notify --ignore-watch node_modules ./src/exercicio2-semana3.ts",
-    "start": "tsc && node ./build/src/exercicio2-semana3.js"
+    "start": "tsc && node ./build/src/exercicio3-semana3.js"
   },
   "author": "",
   "license": "ISC",
